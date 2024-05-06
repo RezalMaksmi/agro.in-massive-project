@@ -2,7 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center bg-[#161616] text-white">
+    <div className="w-full p-20 rounded-t-[35px] bg-[#1A3D37] ">
+      <div className=""></div>
       <span className="py-2">Agro.in</span>
     </div>
   );
