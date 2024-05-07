@@ -20,6 +20,7 @@ import logoPutih from "../assets/logo/logoputih.svg";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { Artikel, Info } from "../components/moleculs";
 
 const dataProfile = [
   {
@@ -262,6 +263,8 @@ const LandingPage = () => {
           </Swiper>
         </div>
       </div>
+      <Artikel />
+      <Info />
     </div>
   );
 };
