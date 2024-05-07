@@ -223,7 +223,7 @@ const LandingPage = () => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            slidesPerView={4}
+            slidesPerView={5}
             spaceBetween={50}
             breakpoints={{
               640: {
@@ -231,26 +231,30 @@ const LandingPage = () => {
                 spaceBetween: 10,
               },
               768: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 10,
               },
               1024: {
-                slidesPerView: 5,
-                spaceBetween: 40,
+                slidesPerView: 3,
+                spaceBetween: 10,
               },
-              1280: {
+              1440: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              1500: {
                 slidesPerView: 5,
-                spaceBetween: 40,
+                spaceBetween: 0,
               },
             }}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
-            className="mySwiper "
+            className="mySwiper mx-auto"
           >
             {dataProfile.map((item, i) => {
               return (
                 <SwiperSlide key={i}>
-                  <div className="bg-slate-400 overflow-hidden text-[#fff] flex justify-center w-[230px] h-[300px] relative rounded-3xl">
+                  <div className="bg-slate-400 overflow-hidden text-[#fff] flex justify-center mx-auto w-[230px] h-[300px] relative rounded-3xl">
                     <img src={item.image} alt="" className="object-cover" />
                     <div className="absolute bottom-3 text-center">
                       <h5 className="text-2xl font-semibold">{item.name}</h5>
