@@ -4,6 +4,7 @@ import { Footer, Navbar } from "./components/moleculs";
 import { Home, LandingPage, HargaPangan, Analisis } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
+import HasilAnalisis from "./pages/user/HasilAnalisis";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/harga-pangan" element={<HargaPangan />} />
         <Route exact path="/analisis" element={<Analisis />} />
+        <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
       </Routes>
       <Footer />
     </BrowserRouter>

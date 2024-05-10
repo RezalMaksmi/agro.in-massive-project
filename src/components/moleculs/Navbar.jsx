@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logoText from "../../assets/logo/logo-txt-hijau.png";
 import Button from "../atoms/Button";
 
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import {
+  BsChevronDown,
+  BsChevronUp,
+  BsFillCaretDownFill,
+  BsFillCaretUpFill,
+} from "react-icons/bs";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +17,26 @@ const Navbar = () => {
   const { pathname } = location;
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
+
+  const toggleDropdown = () => {
+    setOpenDropdown(!openDropdown);
   };
 
   const handleClick = (e) => {
@@ -121,56 +146,60 @@ const Navbar = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="w-full md:px-10 px-3 fixed top-7 z-50">
+    <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
         <img src={logoText} alt="" />
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
-              <Link
-                to={"/"}
-                className={
-                  pathname === "/"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
-              >
+              <Link to={"/"} className={``}>
                 Home
               </Link>
             </li>
             <li>
-              <Link
-                to={"/tentang"}
-                className={
-                  pathname === "/tentang"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
-              >
+              <Link to={"/about"} className={``}>
                 Tentang Kami
               </Link>
             </li>
-            <li>
-              <Link
-                to={"/layanan"}
-                className={
-                  pathname === "/layanan"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+            <li
+              className="relative dropdown flex justify-center"
+              ref={dropdownRef}
+            >
+              <div
+                onClick={toggleDropdown}
+                className={`cursor-pointer flex flex-row justify-center items-center gap-2`}
               >
-                Layanan
-              </Link>
+                Layanan{" "}
+                {!openDropdown ? (
+                  <BsFillCaretDownFill />
+                ) : (
+                  <BsFillCaretUpFill />
+                )}
+              </div>
+
+              <div
+                className={`${
+                  openDropdown ? "h-[175px] " : "h-0 opacity-0"
+                } absolute bg-white z-20 top-14 w-max overflow-hidden p-2 rounded-lg shadow-lg transform transition-all duration-300`}
+              >
+                <ul>
+                  <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
+                    <Link to={"/harga-pangan"}>Harga Pangan</Link>
+                  </li>
+                  <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
+                    <Link to={"/analisis"}>Analisis Tanah</Link>
+                  </li>
+                  <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
+                    <Link to={"/analisis"}>Analisis Cuaca</Link>
+                  </li>
+                  <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
+                    <Link to={"/diskusi"}>Forum Diskusi</Link>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li>
-              <Link
-                to={"/artikel"}
-                className={
-                  pathname === "/artikel"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
-              >
+              <Link to={"/artikel"} className={``}>
                 Artikel
               </Link>
             </li>
@@ -178,9 +207,13 @@ const Navbar = () => {
         </div>
         <div className=" relative " onClick={() => setOpenProfil(!openProfil)}>
           <div
-            className={`bg-white p-2 flex flex-row gap-4 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
+            className={`bg-white p-2 pl-4 flex flex-row gap-4 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
           >
-            {!openProfil ? <BsChevronDown /> : <BsChevronUp />}
+            {!openProfil ? (
+              <BsFillCaretDownFill className="text-dark_20" />
+            ) : (
+              <BsFillCaretUpFill className="text-dark_20" />
+            )}
             <img
               src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
               alt=""
@@ -203,7 +236,9 @@ const Navbar = () => {
             <Link className="hover:bg-netral_20 px-2 rounded-md py-2">
               Keluar
             </Link>
-            <span className="mx-auto">Logo</span>
+            <span className="mx-auto mt-2">
+              <img src={logoText} alt="" className="w-16" />
+            </span>
           </div>
         </div>
         <div className="-mr-2 flex md:hidden">
