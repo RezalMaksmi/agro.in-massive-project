@@ -47,7 +47,7 @@ const TimKami = () => {
   return (
     <div
       id="tim"
-      className="h-auto md:px-20 px-10 pb-36 gap-16 container mx-auto flex flex-col justify-center items-center"
+      className="h-auto md:px-20 px-10 py-20 gap-16 container mx-auto flex flex-col justify-center items-center"
     >
       <h1 className="text-5xl font-semibold">Tim Kami</h1>
       <div className=" w-full items-center px-3">

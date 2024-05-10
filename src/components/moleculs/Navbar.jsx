@@ -127,8 +127,8 @@ const Navbar = () => {
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
-              <a
-                href={"#home"}
+              <Link
+                to={"/"}
                 className={
                   pathname === "/"
                     ? "border-solid border-b-[3px] border-[#FAB737]"
@@ -136,43 +136,43 @@ const Navbar = () => {
                 }
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={"#tentang"}
+              <Link
+                to={"/tentang"}
                 className={
-                  pathname === "#tentang"
+                  pathname === "/tentang"
                     ? "border-solid border-b-[3px] border-[#FAB737]"
                     : ""
                 }
               >
                 Tentang Kami
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={"#layanan"}
+              <Link
+                to={"/layanan"}
                 className={
-                  pathname === "#layanan"
+                  pathname === "/layanan"
                     ? "border-solid border-b-[3px] border-[#FAB737]"
                     : ""
                 }
               >
                 Layanan
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={"#artikel"}
+              <Link
+                to={"/artikel"}
                 className={
-                  pathname === "#artikel"
+                  pathname === "/artikel"
                     ? "border-solid border-b-[3px] border-[#FAB737]"
                     : ""
                 }
               >
                 Artikel
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -191,16 +191,16 @@ const Navbar = () => {
           <div
             className={`${
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
-            }  bg-white rounded-[24px] absolute right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
+            }  bg-white rounded-[24px] absolute shadow-md right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
             <span className="p-2 font-semibold">Mulyadi</span>
             <Link
               to={"/profil"}
-              className="hover:bg-dark_10 px-2 rounded-md py-2"
+              className="hover:bg-netral_20 px-2 rounded-md py-2"
             >
               Lihat Profil
             </Link>
-            <Link className="hover:bg-dark_10 px-2 rounded-md py-2">
+            <Link className="hover:bg-netral_20 px-2 rounded-md py-2">
               Keluar
             </Link>
             <span className="mx-auto">Logo</span>

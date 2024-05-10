@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import artikel from "../../assets/layanan4.jpg";
 import axios from "axios";
-const Artikel = () => {
+
+const Artikel = ({ className, TextColor }) => {
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(true);
   const [article, setArticle] = useState();
@@ -29,10 +30,10 @@ const Artikel = () => {
   return (
     <div
       id="artikel"
-      className="h-auto md:px-20 px-10 pb-36  py-24  mx-auto flex flex-col justify-center items-start bg-[#1A3D37] "
+      className={`h-auto md:px-20 px-10 pb-36  py-24  mx-auto flex flex-col justify-center items-start bg-[#1A3D37] ${className}`}
     >
       <div className="container flex flex-col justify-center items-start mx-auto gap-16">
-        <div className="text-white gap-2">
+        <div className={`flex flex-col gap-2  ${TextColor}`}>
           <h1 className="text-5xl font-bold">Artikel</h1>
           <span>Kumpulan berita terbaru di sekitar Pertanian</span>
         </div>
