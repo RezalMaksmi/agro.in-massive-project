@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 .land {
     fill: #e0e0e0;
     fill-opacity: 1;

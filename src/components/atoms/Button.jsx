@@ -8,7 +8,7 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={` text-white px-6 py-2 rounded-md flex space-x-3 justify-center items-center text-base lg:text-lg font-semibold hover:bg-secondary hover:border-secondary ${className}`}
+          className={` px-5 py-2 rounded-full hover:bg-primary hover:text-white bg-secondary ${className}`}
         >
           {text}
         </button>
@@ -87,7 +87,7 @@ const Button = (props) => {
           {text}
         </Button>
       );
-      case "black":
+    case "black":
       return (
         <a
           href="/"
@@ -98,10 +98,25 @@ const Button = (props) => {
           <span>{text}</span>
         </a>
       );
-      case "ButtonIconCS":
-        return <button onClick={onClick} className={`px-2 py-2 rounded-lg flex gap-2  ${className}`}>{icon}</button>;
+    case "ButtonIconCS":
+      return (
+        <button
+          onClick={onClick}
+          className={`px-2 py-2 rounded-lg flex gap-2  ${className}`}
+        >
+          {icon}
+        </button>
+      );
     case "ButtonIcon":
-        return <button onClick={onClick} className={`px-3 py-1 rounded-lg flex gap-2  ${className}`}>{icon}{text}</button>;
+      return (
+        <button
+          onClick={onClick}
+          className={`px-3 py-1 rounded-lg flex gap-2  ${className}`}
+        >
+          {icon}
+          {text}
+        </button>
+      );
     default:
       return (
         <a
