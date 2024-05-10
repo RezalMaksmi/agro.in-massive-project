@@ -1,7 +1,7 @@
 import { store } from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components/moleculs";
-import { Home, LandingPage, HargaPangan } from "./pages";
+import { Home, LandingPage, HargaPangan, Analisis } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
 
@@ -14,6 +14,7 @@ const Router = () => {
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/harga-pangan" element={<HargaPangan />} />
+        <Route exact path="/analisis" element={<Analisis />} />
       </Routes>
       <Footer />
     </BrowserRouter>
