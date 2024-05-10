@@ -122,7 +122,7 @@ const Navbar = () => {
     //   </div>
     // </div>
     <div className="w-full md:px-10 px-3 fixed top-7 z-50">
-      <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] relative rounded-full flex justify-between px-6 items-center">
+      <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
         <img src={logoText} alt="" />
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
@@ -191,7 +191,7 @@ const Navbar = () => {
           <div
             className={`${
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
-            }  bg-white rounded-[24px] absolute shadow-md right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
+            }  bg-white rounded-[24px] absolute shadow-lg right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
             <span className="p-2 font-semibold">Mulyadi</span>
             <Link

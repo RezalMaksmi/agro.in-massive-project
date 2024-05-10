@@ -58,7 +58,7 @@ const LandingPage = () => {
         <Fitur Title="Layanan" />
       </div>
       {/* Tim kami */}
-      <TimKami />
+      <TimKami className={`bg-darkGray_10`} />
 
       {/* Artikel */}
       <Artikel TextColor="text-white" />
