@@ -16,6 +16,7 @@ export default {
         dark_10: "#BEBCBD",
         dark_20: "#807D7E",
         dark_30: "#3C4242",
+        darkGray_20: "#BAC5C3",
       },
     },
   },

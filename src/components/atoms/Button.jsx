@@ -1,4 +1,5 @@
 import React from "react";
+import { IoArrowForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const Button = (props) => {
@@ -13,14 +14,13 @@ const Button = (props) => {
           {text}
         </button>
       );
-    case "LongPrimaryButtonWithIcon":
+    case "LongPrimaryButtonIconRow":
       return (
         <button
-          onClick={onClick}
-          className="flex space-x-3 justify-center items-center bg-primary hover:bg-secondary text-white font-semibold py-2 px-5 border-2 border-transparent rounded-md shadow"
+          href=""
+          className="py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3"
         >
-          {icon}
-          <p>{text}</p>
+          {text} <IoArrowForward />
         </button>
       );
     case "OperatorButton":

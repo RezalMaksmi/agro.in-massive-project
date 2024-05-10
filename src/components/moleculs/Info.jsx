@@ -1,6 +1,7 @@
 import React from "react";
 import InfoImg from "../../assets/info-img.jpg";
-import { IoArrowForward } from "react-icons/io5";
+import Button from "../atoms/Button";
+
 const Artikel = () => {
   return (
     <div className="h-auto   md:px-20 px-10 pb-36 gap-16 py-24 container mx-auto flex flex-col justify-center items-start  ">
@@ -15,12 +16,10 @@ const Artikel = () => {
             untuk menganalisis tanah, pemetaan cuaca, dan forum diskusi sesama
             petani yang akan membantu petani meningkatkan hasil pertanian.
           </span>
-          <a
-            href=""
-            className="py-2 px-4 bg-[#FAB737] rounded-full w-max flex flex-row justify-center items-center gap-3"
-          >
-            Bergabung dengan kami <IoArrowForward />
-          </a>
+          <Button
+            type="LongPrimaryButtonIconRow"
+            text="Bergabung Dengan Kami"
+          />
         </div>
       </div>
     </div>
