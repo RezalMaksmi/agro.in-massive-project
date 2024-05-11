@@ -1,138 +1,138 @@
 [
     {
-        "id": "11",
-        "nama": "ACEH"
+        "value": "aceh",
+        "label": "Aceh"
     },
     {
-        "id": "12",
-        "nama": "SUMATERA UTARA"
+        "value": "Sumatera Utara",
+        "label": "Sumatera Utara"
     },
     {
-        "id": "13",
-        "nama": "SUMATERA BARAT"
+        "value": "Sumatera Barat",
+        "label": "Sumatera Barat"
     },
     {
-        "id": "14",
-        "nama": "RIAU"
+        "value": "Riau",
+        "label": "Riau"
     },
     {
-        "id": "15",
-        "nama": "JAMBI"
+        "value": "Jambi",
+        "label": "Jambi"
     },
     {
-        "id": "16",
-        "nama": "SUMATERA SELATAN"
+        "value": "Sumatera Selatan",
+        "label": "Sumatera Selatan"
     },
     {
-        "id": "17",
-        "nama": "BENGKULU"
+        "value": "Bengkulu",
+        "label": "Bengkulu"
     },
     {
-        "id": "18",
-        "nama": "LAMPUNG"
+        "value": "Lampung",
+        "label": "Lampung"
     },
     {
-        "id": "19",
-        "nama": "KEPULAUAN BANGKA BELITUNG"
+        "value": "Kepulauan Bangka Belitung",
+        "label": "Kepulauan Bangka Belitung"
     },
     {
-        "id": "21",
-        "nama": "KEPULAUAN RIAU"
+        "value": "Kepulauan Riau",
+        "label": "Kepulauan Riau"
     },
     {
-        "id": "31",
-        "nama": "DKI JAKARTA"
+        "value": "DKI Jakarta",
+        "label": "DKI Jakarta"
     },
     {
-        "id": "32",
-        "nama": "JAWA BARAT"
+        "value": "Jawa Barat",
+        "label": "Jawa Barat"
     },
     {
-        "id": "33",
-        "nama": "JAWA TENGAH"
+        "value": "Jawa Tengah",
+        "label": "Jawa Tengah"
     },
     {
-        "id": "34",
-        "nama": "DAERAH ISTIMEWA YOGYAKARTA"
+        "value": "DAERAH ISTIMEWA YOGYAKARTA",
+        "label": "DAERAH ISTIMEWA YOGYAKARTA"
     },
     {
-        "id": "35",
-        "nama": "JAWA TIMUR"
+        "value": "Jawa Timur",
+        "label": "Jawa Timur"
     },
     {
-        "id": "36",
-        "nama": "BANTEN"
+        "value": "Banten",
+        "label": "Banten"
     },
     {
-        "id": "51",
-        "nama": "BALI"
+        "value": "Bali",
+        "label": "Bali"
     },
     {
-        "id": "52",
-        "nama": "NUSA TENGGARA BARAT"
+        "value": "NUSA TENGGARA BARAT",
+        "label": "NUSA TENGGARA BARAT"
     },
     {
-        "id": "53",
-        "nama": "NUSA TENGGARA TIMUR"
+        "value": "NUSA TENGGARA TIMUR",
+        "label": "NUSA TENGGARA TIMUR"
     },
     {
-        "id": "61",
-        "nama": "KALIMANTAN BARAT"
+        "value": "KALIMANTAN BARAT",
+        "label": "KALIMANTAN BARAT"
     },
     {
-        "id": "62",
-        "nama": "KALIMANTAN TENGAH"
+        "value": "KALIMANTAN TENGAH",
+        "label": "KALIMANTAN TENGAH"
     },
     {
-        "id": "63",
-        "nama": "KALIMANTAN SELATAN"
+        "value": "KALIMANTAN SELATAN",
+        "label": "KALIMANTAN SELATAN"
     },
     {
-        "id": "64",
-        "nama": "KALIMANTAN TIMUR"
+        "value": "KALIMANTAN TIMUR",
+        "label": "KALIMANTAN TIMUR"
     },
     {
-        "id": "65",
-        "nama": "KALIMANTAN UTARA"
+        "value": "KALIMANTAN UTARA",
+        "label": "KALIMANTAN UTARA"
     },
     {
-        "id": "71",
-        "nama": "SULAWESI UTARA"
+        "value": "SULAWESI UTARA",
+        "label": "SULAWESI UTARA"
     },
     {
-        "id": "72",
-        "nama": "SULAWESI TENGAH"
+        "value": "SULAWESI TENGAH",
+        "label": "SULAWESI TENGAH"
     },
     {
-        "id": "73",
-        "nama": "SULAWESI SELATAN"
+        "value": "SULAWESI SELATAN",
+        "label": "SULAWESI SELATAN"
     },
     {
-        "id": "74",
-        "nama": "SULAWESI TENGGARA"
+        "value": "SULAWESI TENGGARA",
+        "label": "SULAWESI TENGGARA"
     },
     {
-        "id": "75",
-        "nama": "GORONTALO"
+        "value": "GORONTALO",
+        "label": "GORONTALO"
     },
     {
-        "id": "76",
-        "nama": "SULAWESI BARAT"
+        "value": "SULAWESI BARAT",
+        "label": "SULAWESI BARAT"
     },
     {
-        "id": "81",
-        "nama": "MALUKU"
+        "value": "MALUKU",
+        "label": "MALUKU"
     },
     {
-        "id": "82",
-        "nama": "MALUKU UTARA"
+        "value": "MALUKU UTARA",
+        "label": "MALUKU UTARA"
     },
     {
-        "id": "91",
-        "nama": "PAPUA"
+        "value": "PAPUA",
+        "label": "PAPUA"
     },
     {
-        "id": "92",
-        "nama": "PAPUA BARAT"
+        "value": "PAPUA BARAT",
+        "label": "PAPUA BARAT"
     }
 ]
