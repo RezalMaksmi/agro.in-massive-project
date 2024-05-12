@@ -4,7 +4,7 @@ import { CommentCard } from "../atoms";
 
 const CommentDiskusi = () => {
   return (
-    <div className="flex flex-col  bg-darkGray_10 ">
+    <div className="flex flex-col  ">
       <div className="w-full h-auto bg-darkGray_20 p-3">
         <div className="flex flex-row gap-3 items-center">
           <img
@@ -14,7 +14,7 @@ const CommentDiskusi = () => {
           />
           <input
             type="text"
-            className="py-1 px-2 rounded-lg border w-full"
+            className="py-2 px-3 text-lg rounded-full border w-full outline-0 focus:outline-0"
             placeholder="Tulis Komentar..."
           />
           <button>

@@ -130,7 +130,7 @@ const ForumDiskusi = () => {
                 {/*  */}
               </div>
 
-              <div className="">
+              <Link to="detail" className="">
                 <div className="rounded-xl bg-netral_10 flex flex-col gap-5 py-6 px-4">
                   {/* Profil */}
                   <div className="flex flex-row gap-4 items-center">
@@ -176,8 +176,7 @@ const ForumDiskusi = () => {
                     </div>
                   </div>
                 </div>
-                <CommentDiskusi />
-              </div>
+              </Link>
             </div>
           </div>
           <div className="bg-netral_10 col-span-2 shadow-md h-max  sticky top-32 ">
