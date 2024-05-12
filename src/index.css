@@ -13,7 +13,7 @@ html {
 }
 
 .searchable .searchable__controls {
-    background: #1A3D37;
+    background: #e1e1e1;
     border-radius: 100px;
 
     -webkit-border-radius: 100px;
@@ -25,12 +25,17 @@ html {
 
 
 .searchable .searchable__controls .searchable__controls__list-input .searchable__controls__input input {
-    color: #ffffff !important;
+
+    color: #000000 !important;
 
 }
 
+.searchable .searchable__controls .searchable__controls__list-input .searchable__controls__input input::placeholder {
+    color: #313131;
+}
+
 .searchable__controls__arrow .searchable__controls__arrow__inner svg {
-    fill: #ffffff;
+    fill: #000000;
 }
 
 

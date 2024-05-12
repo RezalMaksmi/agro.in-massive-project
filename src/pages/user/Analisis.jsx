@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import bgHero from "../../assets/bgHeroAnalisis.jpg";
 import Button from "../../components/atoms/Button";
 import Searchable from "react-searchable-dropdown";
 import { dataProvinsi } from "../../data";
+import { FormAnalisis } from "../../components/moleculs";
 
 const provinsi = dataProvinsi;
 
@@ -29,6 +30,8 @@ const kota = [
   },
 ];
 const Analisis = () => {
+  const [openModal, setOpenModal] = useState(false);
+  console.log(openModal);
   return (
     <div>
       <div
@@ -69,11 +72,17 @@ const Analisis = () => {
                 type="LongPrimaryButtonIconRow"
                 text="Selanjutnya"
                 className="hover:bg-[#357c70]"
+                onClick={() => setOpenModal(!openModal)}
               />
             </div>
           </div>
         </div>
       </div>
+      {openModal ? (
+        <FormAnalisis onClick={() => setOpenModal(!openModal)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

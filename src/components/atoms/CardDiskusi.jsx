@@ -142,7 +142,7 @@ const CardDiskusi = (props) => {
             <span>{description}</span>
             <div className="w-full">
               <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
-                {follow ? (
+                {follow == true ? (
                   <Button
                     onClick={onClick}
                     type="PrimaryButton"

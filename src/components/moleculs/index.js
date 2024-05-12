@@ -6,6 +6,7 @@ import TimKami from "./TimKami";
 import Fitur from "./Fitur";
 import HargaGrub from "./HargaGrub";
 import CommentDiskusi from "./CommentDiskusi";
+import FormAnalisis from "./FormAnalisis";
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   Fitur,
   HargaGrub,
   CommentDiskusi,
+  FormAnalisis,
 };
