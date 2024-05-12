@@ -1,6 +1,5 @@
 import React from "react";
 import { IoMdSend } from "react-icons/io";
-import { CommentCard } from "../atoms";
 
 const CommentDiskusi = () => {
   return (
@@ -10,7 +9,7 @@ const CommentDiskusi = () => {
           <img
             src="https://assets.dataindonesia.id/1693791366434_99_Muhaimin.png"
             alt=""
-            className="w-10 h-10 bg-pink-600 rounded-full object-cover "
+            className="w-10 h-10 bg-dark_20 rounded-full object-cover "
           />
           <input
             type="text"
@@ -22,8 +21,6 @@ const CommentDiskusi = () => {
           </button>
         </div>
       </div>
-
-      <CommentCard />
     </div>
   );
 };

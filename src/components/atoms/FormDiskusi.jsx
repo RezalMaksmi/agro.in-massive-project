@@ -10,12 +10,12 @@ const FormDiskusi = ({ type }) => {
           <textarea
             name=""
             id=""
-            className="w-full h-[80px] bg-white rounded-xl p-3"
+            className="w-full h-[80px] bg-white rounded-xl p-3 outline-0 focus:outline-0 text-lg"
             placeholder="Apa yang ingin anda tanyakan"
           ></textarea>
           <div className="text-end pt-2">
-            <button className="bg-secondary rounded-full py-1 px-5 w-max ">
-              Kirim
+            <button className="bg-secondary rounded-full py-1 px-5 w-max text-lg">
+              Cari
             </button>
           </div>
         </div>
@@ -27,7 +27,7 @@ const FormDiskusi = ({ type }) => {
           <textarea
             name=""
             id=""
-            className="w-full h-[80px] bg-white rounded-xl p-3"
+            className="w-full h-[80px] bg-white rounded-xl p-3 outline-0 focus:outline-0 text-lg"
             placeholder="Tulis Informasi..."
           ></textarea>
           <div className="flex justify-between items-center pt-2">
@@ -36,7 +36,7 @@ const FormDiskusi = ({ type }) => {
               <FaImage />
               <GrAttachment />
             </div>
-            <button className="bg-secondary rounded-full py-1 px-5 w-max ">
+            <button className="bg-secondary rounded-full py-1 px-5 w-max text-lg">
               Kirim
             </button>
           </div>

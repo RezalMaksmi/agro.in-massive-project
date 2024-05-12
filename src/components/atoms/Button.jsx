@@ -23,7 +23,15 @@ const Button = (props) => {
           {text} <IoArrowForward />
         </button>
       );
-
+    case "ButtonCsColor":
+      return (
+        <button
+          onClick={onClick}
+          className={` px-5 py-2 rounded-full ${className}`}
+        >
+          {text}
+        </button>
+      );
     default:
       return (
         <a

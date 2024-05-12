@@ -7,11 +7,14 @@ import {
   HargaPangan,
   Analisis,
   ForumDiskusi,
+  ForumDiskusiJelajahRuang,
+  ForumDiskusiCari,
+  ForumDiskusiDetail,
+  ForumDiskusiRuang,
 } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
 import HasilAnalisis from "./pages/user/HasilAnalisis";
-import ForumDiskusiDetail from "./pages/user/ForumDiskusiDetail";
 
 const Router = () => {
   return (
@@ -25,7 +28,14 @@ const Router = () => {
         <Route exact path="/analisis" element={<Analisis />} />
         <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
         <Route exact path="/diskusi" element={<ForumDiskusi />} />
+        <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
         <Route exact path="/diskusi/detail" element={<ForumDiskusiDetail />} />
+        <Route
+          exact
+          path="/diskusi/jelajah-ruang"
+          element={<ForumDiskusiJelajahRuang />}
+        />
+        <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
       </Routes>
       <Footer />
     </BrowserRouter>
