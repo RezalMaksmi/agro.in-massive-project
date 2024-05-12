@@ -6,6 +6,46 @@ html {
     scroll-behavior: smooth;
 }
 
+.searchable {
+    border: 3px !important;
+    width: 100%;
+    border-color: #f50d0d !important;
+}
+
+.searchable .searchable__controls {
+    background: #1A3D37;
+    border-radius: 100px;
+
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+
+
+.searchable .searchable__controls .searchable__controls__list-input .searchable__controls__input input {
+    color: #ffffff !important;
+
+}
+
+.searchable__controls__arrow .searchable__controls__arrow__inner svg {
+    fill: #ffffff;
+}
+
+
+.searchable--active .searchable__list {
+    background: #BAC5C3;
+}
+
+.searchable--active .searchable__list .searchable__list__item {
+    color: #000;
+}
+
+.searchable--active .searchable__list .searchable__list__item:hover {
+    background-color: #F6F6F6;
+}
+
 .land {
     fill: #e0e0e0;
     fill-opacity: 1;

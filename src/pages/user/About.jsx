@@ -3,10 +3,7 @@ import bgHero from "../../assets/bgHeroAbout.jpg";
 import logo1 from "../../assets/logo/Logo1_white.svg";
 import logoTextWhite from "../../assets/logo/logo-txt-putih.png";
 
-import { Artikel, Fitur, TimKami } from "../../components/moleculs";
-import CardHargaPangan from "../../components/atoms/CardHargaPangan";
-import Button from "../../components/atoms/Button";
-import { hargaPangan } from "../../data";
+import { Fitur, TimKami } from "../../components/moleculs";
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -22,7 +19,7 @@ const About = () => {
             <div className="flex flex-row gap-2 text-white relative -top-20 ">
               <Link to={"/home"}>Home</Link>
               <span>{">"}</span>
-              <span>About Us</span>
+              <span>Tentang Kami</span>
             </div>
             <img src={logoTextWhite} alt="" />
             <span className="text-white md:text-2xl text-lg">
