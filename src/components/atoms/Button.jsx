@@ -17,7 +17,7 @@ const Button = (props) => {
     case "LongPrimaryButtonIconRow":
       return (
         <button
-          href=""
+          onClick={onClick}
           className={`py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3 ${className}`}
         >
           {text} <IoArrowForward />

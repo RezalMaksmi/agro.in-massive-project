@@ -30,7 +30,7 @@ const HargaGrub = () => {
             onChange={(update) => {
               setDateRange(update);
             }}
-            className="border-2 border-dark_10 px-3 py-3 rounded-full w-full"
+            className="border-2  border-dark_10 px-3 py-3 rounded-full w-full"
             placeholderText="Pilih Tanggal"
             withPortal
           />
