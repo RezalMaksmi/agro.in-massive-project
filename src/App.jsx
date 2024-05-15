@@ -15,6 +15,7 @@ import {
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
 import HasilAnalisis from "./pages/user/HasilAnalisis";
+import ContactUs from "./pages/user/contact_us";
 
 const Router = () => {
   return (
@@ -36,6 +37,7 @@ const Router = () => {
           element={<ForumDiskusiJelajahRuang />}
         />
         <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
+        <Route exact path="/contact_us" element={<ContactUs />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,13 +1,12 @@
 import React from "react";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
-import { AiFillDownCircle, AiFillUpCircle } from "react-icons/ai";
-import { Button, CardDiskusi } from "../../components/atoms";
+import { CardDiskusi } from "../../components/atoms";
 
 const ForumDiskusiRuang = () => {
   return (
     <ForumDiskusiTemplate>
       <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl">
+        <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl bg-white">
           {/* Buat Ruang */}
           <h2 className="text-xl font-bold">Ruang Buat Anda</h2>
 
@@ -19,13 +18,13 @@ const ForumDiskusiRuang = () => {
               name="Marjuki"
               about="Petani"
               description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-              follow={true}
+              follow={"true"}
             />
           </div>
         </div>
 
         {/* ruang yang diikuti */}
-        <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl">
+        <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl bg-white">
           <h2 className="text-xl font-bold">Ruang yang anda ikuti</h2>
 
           {/* item card */}
@@ -36,7 +35,7 @@ const ForumDiskusiRuang = () => {
               name="Mega Lodon"
               about="Peternak Tikus"
               description="Irigasi merupakan usaha penyediaan, pengaturan, dan pembuangan air untuk menunjang pertanian yang jenisnya meliputi irigasi permukaan, irigasi rawa, irigasi air bawah tanah, irigasi pompa, dan irigasi tambak."
-              follow={false}
+              follow={"false"}
             />
             <CardDiskusi
               type="Ruang"
@@ -44,7 +43,7 @@ const ForumDiskusiRuang = () => {
               name="Rezal Nur Syaifudin"
               about="Peternak Paus"
               description="Saya seorang peternak paus besar dengan taring panjang dan bergizi"
-              follow={false}
+              follow={"false"}
             />
           </div>
         </div>

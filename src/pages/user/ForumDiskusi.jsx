@@ -37,14 +37,14 @@ const ForumDiskusi = () => {
             </div>
           </div>
           {/* pertanyaan */}
-          <div className="w-full border-2 border-dark_10 rounded-full p-1 grid grid-cols-2">
+          <div className="w-full border-2 border-dark_10 rounded-full md:p-1 p-[2px] grid grid-cols-2">
             <button
               onClick={() => handleMenuClick("pertanyaan")}
               className={` ${
                 selectedMenu === "pertanyaan"
                   ? "bg-white text-primary"
                   : "  text-white scale-95"
-              } rounded-full py-2 text-center font-semibold  text-lg transform transition-all duration-300`}
+              } rounded-full md:py-2 py-1 text-center font-semibold  text-lg transform transition-all duration-300`}
             >
               Pertanyaan
             </button>
@@ -54,7 +54,7 @@ const ForumDiskusi = () => {
                 selectedMenu === "buat-informasi"
                   ? "bg-white text-primary"
                   : "  text-white scale-95"
-              } rounded-full py-2 text-center font-semibold  text-lg transform transition-all duration-300`}
+              } rounded-full md:py-2 py-1 text-center font-semibold  text-lg transform transition-all duration-300`}
             >
               Buat Informasi
             </button>
@@ -65,7 +65,7 @@ const ForumDiskusi = () => {
           {/*  */}
         </div>
 
-        <Link to="detail" className="">
+        <Link to="detail" className="bg-white">
           <CardDiskusi
             type="Postingan"
             typePost="pertanyaan"
