@@ -5,6 +5,7 @@ import { Home, LandingPage, HargaPangan } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
 import ContactUs from "./pages/user/contact_us";
+import ProfilePage from "./pages/user/profile_page";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/harga-pangan" element={<HargaPangan />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
+        <Route exact path="profile_page" element={<ProfilePage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
