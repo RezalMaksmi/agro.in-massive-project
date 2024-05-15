@@ -1,6 +1,5 @@
 import React from "react";
 import { IoArrowForward } from "react-icons/io5";
-import { Link } from "react-router-dom";
 
 const Button = (props) => {
   const { onClick, className, type, children, to, icon, text } = props;
@@ -9,7 +8,11 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={` px-5 py-2 rounded-full hover:bg-primary hover:text-white bg-secondary ${className}`}
+          className={` px-5 py-2 rounded-full  ${
+            className
+              ? className
+              : "hover:bg-primary hover:text-white bg-secondary"
+          }`}
         >
           {text}
         </button>

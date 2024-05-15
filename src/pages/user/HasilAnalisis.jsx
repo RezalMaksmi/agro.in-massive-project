@@ -34,38 +34,38 @@ const HasilAnalisis = () => {
       <div
         className={`h-auto bg-[#fff] md:rounded-t-[120px] rounded-t-[25px] -top-28 relative bg-no-repeat  bg-right`}
       >
-        <div className="md:px-20 px-5 container mx-auto flex flex-col items-center  py-24 gap-20">
+        <div className="md:px-20 px-5 container mx-auto flex flex-col items-center  md:py-24 py-14 md:gap-20 gap-10">
           <h1 className="md:text-5xl text-xl font-semibold ">Prakira Cuaca</h1>
 
-          <div className="grid grid-rows-4 grid-flow-col gap-8 w-full">
-            <div className="row-span-4 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
+          <div className="grid grid-rows-4  grid-flow-col md:gap-8 gap-3 w-full">
+            <div className="md:row-span-4 row-span-2 col-span-8 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
               <img src={cuaca} alt="" className="w-[150px]" />
               <span className="text-xl">Cerah Berawan</span>
               <h1 className="md:text-5xl text-xl font-semibold ">84F</h1>
             </div>
-            <div className="row-span-2 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
+            <div className="md:row-span-2  col-span-4 w-full bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
               <span className="text-xl">Suhu</span>
               <h1 className="md:text-5xl text-xl font-semibold ">84F</h1>
             </div>
-            <div className="row-span-2 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
-              <span className="text-xl">Kelembapan Udara</span>
+            <div className="md:row-span-2  col-span-4 w-full bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
+              <span className="text-xl">Kelembapan</span>
               <h1 className="md:text-5xl text-xl font-semibold ">62%</h1>
             </div>
-            <div className="row-span-2 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
+            <div className="md:row-span-2  col-span-4 w-full bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
               <span className="text-xl">Angin TL</span>
               <h1 className="md:text-5xl text-xl font-semibold ">8 Km/jam</h1>
             </div>
-            <div className="row-span-2 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
+            <div className="md:row-span-2  col-span-4 w-full bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
               <span className="text-xl">Tekanan Udara</span>
               <h1 className="md:text-5xl text-xl font-semibold ">1.008 hPa</h1>
             </div>
           </div>
         </div>
 
-        <div className="md:px-20 px-5 container mx-auto flex flex-col items-center  py-24 gap-20">
+        <div className="md:px-20 px-5 container mx-auto flex flex-col items-center  md:py-24 py-14 md:gap-20 gap-10">
           <h1 className="md:text-5xl text-xl font-semibold ">Analisis Tanah</h1>
 
-          <div className="grid grid-cols-2 gap-8 w-full">
+          <div className="grid grid-cols-2 md:gap-8 gap-3 w-full">
             <div className="">
               <div className="row-span-2 bg-darkGray_10 rounded-xl shadow-md border-2 border-darkGray_10 flex flex-col justify-center items-center py-7 gap-4">
                 <span className="text-xl">PH Tanah</span>

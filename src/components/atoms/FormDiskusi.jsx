@@ -10,11 +10,11 @@ const FormDiskusi = ({ type }) => {
           <textarea
             name=""
             id=""
-            className="w-full h-[80px] bg-white rounded-xl p-3 outline-0 focus:outline-0 text-lg"
+            className="w-full md:h-[80px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-lg text-base"
             placeholder="Apa yang ingin anda tanyakan"
           ></textarea>
-          <div className="text-end pt-2">
-            <button className="bg-secondary rounded-full py-1 px-5 w-max text-lg">
+          <div className="text-end md:pt-2 pt-1">
+            <button className="bg-secondary rounded-full py-1 px-5 w-max md:text-lg text-base">
               Cari
             </button>
           </div>
@@ -27,16 +27,16 @@ const FormDiskusi = ({ type }) => {
           <textarea
             name=""
             id=""
-            className="w-full h-[80px] bg-white rounded-xl p-3 outline-0 focus:outline-0 text-lg"
+            className="w-full md:h-[80px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-lg text-base"
             placeholder="Tulis Informasi..."
           ></textarea>
-          <div className="flex justify-between items-center pt-2">
+          <div className="flex justify-between items-center md:pt-2 pt-1">
             <div className="flex gap-3 text-lg text-white ">
               <FaCamera />
               <FaImage />
               <GrAttachment />
             </div>
-            <button className="bg-secondary rounded-full py-1 px-5 w-max text-lg">
+            <button className="bg-secondary rounded-full py-1 px-5 w-max md:text-lg text-base">
               Kirim
             </button>
           </div>

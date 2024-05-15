@@ -142,12 +142,12 @@ const CardDiskusi = (props) => {
             <span>{description}</span>
             <div className="w-full">
               <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
-                {follow == true ? (
+                {follow == "true" ? (
                   <Button
                     onClick={onClick}
                     type="PrimaryButton"
                     text="Hapus Ruang"
-                    className="bg-[#D61B1B] hover:bg-[#9c2f2f] text-white"
+                    className=" text-white bg-[#ca3737] hover:bg-[#9c2f2f]"
                   />
                 ) : (
                   <Button
@@ -157,6 +157,56 @@ const CardDiskusi = (props) => {
                   />
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      );
+    case "pencarian":
+      return (
+        <div className="flex flex-row gap-4  w-full items-start border-t-2 py-4 ">
+          <img
+            src={imgProfil}
+            alt=""
+            className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
+          />
+          <div className="flex flex-col gap-4 w-full">
+            <div className="">
+              <h1 className="text-lg font-bold">{title}</h1>
+              <span>{description}</span>
+            </div>
+            <div className="w-full">
+              <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
+                <Button
+                  onClick={onClick}
+                  type="PrimaryButton"
+                  text="Hapus Ruang"
+                  className=" text-white bg-primary hover:bg-primary"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    case "jelajahRuang":
+      return (
+        <div className="flex flex-row gap-4  w-full items-start border-t-2 py-4 ">
+          <img
+            src={imgProfil}
+            alt=""
+            className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
+          />
+          <div className="flex flex-col gap-4 w-full">
+            <div className="">
+              <h1 className="text-lg font-bold">{title}</h1>
+              <span>{description}</span>
+            </div>
+            <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
+              <Button
+                onClick={onClick}
+                type="PrimaryButton"
+                text="Ikuti"
+                className=" text-white bg-primary hover:bg-dark_30"
+              />
             </div>
           </div>
         </div>
