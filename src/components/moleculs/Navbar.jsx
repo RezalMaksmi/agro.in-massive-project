@@ -199,7 +199,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to={"/artikel"} className={``}>
+              <Link to={"/artikel2"} className={``}>
                 Artikel
               </Link>
             </li>

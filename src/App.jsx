@@ -1,6 +1,9 @@
 import { store } from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components/moleculs";
+import Artikel from "./pages/user/Artikel";
+import Login from "./pages/user/Login";
+import Register from "./pages/user/Register";
 import {
   Home,
   LandingPage,
@@ -16,6 +19,7 @@ import { Provider } from "react-redux";
 import About from "./pages/user/About";
 import HasilAnalisis from "./pages/user/HasilAnalisis";
 import ContactUs from "./pages/user/contact_us";
+import { ArtikelDetail } from "./pages/user/ArtikelDetail";
 
 const Router = () => {
   return (
@@ -37,9 +41,17 @@ const Router = () => {
           element={<ForumDiskusiJelajahRuang />}
         />
         <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
+        <Route exact path="/artikel2" element={<Artikel />} />
+        <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
       </Routes>
       <Footer />
+
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+      </Routes>
+      
     </BrowserRouter>
   );
 };
