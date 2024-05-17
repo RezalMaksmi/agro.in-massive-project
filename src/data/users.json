@@ -1,0 +1,37 @@
+[
+    {
+        "email": "rezal@gmail.com",
+        "username": "rezal nur syaifudin",
+        "password": "rezal123",
+        "role": "user",
+        "token": "akmsdnfydtajaweweq8d9"
+    },
+    {
+        "email": "lintang@gmail.com",
+        "username": "Syufee Lintang",
+        "password": "lintang123",
+        "role": "user",
+        "token": "akmsdnfydtajatrtjeq8d9"
+    },
+    {
+        "email": "kiki@gmail.com",
+        "username": "Kiki",
+        "password": "kiki123",
+        "role": "user",
+        "token": "akmsdnfydtaja3kjtrq8d9"
+    },
+    {
+        "email": "hasyim@gmail.com",
+        "username": "Hasyim",
+        "password": "hasyim123",
+        "role": "user",
+        "token": "akmsdnfydtaja3kjtrq8d9"
+    },
+    {
+        "email": "admin@mindes.com",
+        "username": "kiki",
+        "password": "admin123",
+        "role": "admin",
+        "token": "akmsgfgfhghghgjhjhjkdsdkj"
+    }
+]

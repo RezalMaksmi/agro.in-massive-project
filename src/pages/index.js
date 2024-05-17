@@ -7,6 +7,7 @@ import ForumDiskusiJelajahRuang from "./user/ForumDiskusiJelajahRuang";
 import ForumDiskusiCari from "./user/ForumDiskusiCari";
 import ForumDiskusiDetail from "./user/ForumDiskusiDetail";
 import ForumDiskusiRuang from "./user/ForumDiskusiRuang";
+import Profil from "./user/Profil";
 
 export {
   LandingPage,
@@ -18,4 +19,5 @@ export {
   ForumDiskusiCari,
   ForumDiskusiDetail,
   ForumDiskusiRuang,
+  Profil,
 };

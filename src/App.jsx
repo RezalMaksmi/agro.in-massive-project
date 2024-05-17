@@ -14,6 +14,7 @@ import {
   ForumDiskusiCari,
   ForumDiskusiDetail,
   ForumDiskusiRuang,
+  Profil,
 } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
@@ -37,6 +38,7 @@ const Router = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
+          <Route exact path="/profil" element={<Profil />} />
           <Route exact path="/harga-pangan" element={<HargaPangan />} />
           <Route exact path="/analisis" element={<Analisis />} />
           <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />

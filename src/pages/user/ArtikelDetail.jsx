@@ -12,6 +12,7 @@ import Iklan1 from "./../../assets/artikel/iklan1.png";
 import Iklan2 from "./../../assets/artikel/iklan2.png";
 import { Link } from "react-router-dom";
 import { MainArtikel } from "./Artikel";
+import TemplateLogin from "../../template/TemplateLogin";
 
 const articles = [
   {
@@ -89,40 +90,42 @@ export const ArtikelDetail = () => {
     margin: "50px",
   };
   return (
-    <div className="py-32 min-h-dvh flex flex-wrap">
-      <div className="flex flex-col gap-y-4 ps-32 pe-20 w-[60%] ">
-        <img src={Artikel1} alt="" className="w-full h-72" />
-        <p className="text-[12px] text-[#807D7E]">07 Mei 2024 15:52 WIB</p>
-        <p className="text-sm text-justify leading-loose">
-          Kementerian Pertanian (Kementan) berencana untuk membangun klaster
-          pertanian modern. Klaster pertanian modern tersebut mengacu sistem
-          pertanian di negara-negara maju. Hal tersebut diungkapkan Mentan Andi
-          Amran Sulaiman saat mendatangi para petani Bojongemas, Kecamatan
-          Solokanjeruk, Kabupaten Bandung, Selasa (7/5/2024). Menurut Amran,
-          demi merealisasikan pertanian modern, pemerintah daerah perlu
-          menyediakan lahan.
-        </p>
-        <p className="text-sm text-justify leading-loose">
-          "Saya ingin ada kluster pertanian modern, ini sejajar dengan negara
-          maju, nanti kasih pupuk pake drone, lima atau sepuluh hektare di
-          sini," ujar Amran
-        </p>
-        <p className="text-sm text-justify leading-loose">
-          Amran mengungkapkan yang akan menggarap pertanian tersebut adalah para
-          petani milenial. Pasalnya berbagai alat-alat teknologi akan digunakan
-          dalam pertanian tersebut. "Saya ingin petani milenial turun ke
-          lapangan, pake drone, jadi bertani itu hanya di pinggir, karena mereka
-          ini generasi bonus demografi itu gak akan ke lapangan kalau gak
-          menguntungkan," pungkasnya.
-        </p>
-        <Line style={horizStyle} />
-        <h2 className="text-[48px] font-bold">Berita Lainnya</h2>
-        {/* <img src={Artikel2} alt="" className='w-2/3'/> */}
-        <MainArtikel />
+    <TemplateLogin>
+      <div className="py-32 min-h-dvh flex flex-wrap">
+        <div className="flex flex-col gap-y-4 ps-32 pe-20 w-[60%] ">
+          <img src={Artikel1} alt="" className="w-full h-72" />
+          <p className="text-[12px] text-[#807D7E]">07 Mei 2024 15:52 WIB</p>
+          <p className="text-sm text-justify leading-loose">
+            Kementerian Pertanian (Kementan) berencana untuk membangun klaster
+            pertanian modern. Klaster pertanian modern tersebut mengacu sistem
+            pertanian di negara-negara maju. Hal tersebut diungkapkan Mentan
+            Andi Amran Sulaiman saat mendatangi para petani Bojongemas,
+            Kecamatan Solokanjeruk, Kabupaten Bandung, Selasa (7/5/2024).
+            Menurut Amran, demi merealisasikan pertanian modern, pemerintah
+            daerah perlu menyediakan lahan.
+          </p>
+          <p className="text-sm text-justify leading-loose">
+            "Saya ingin ada kluster pertanian modern, ini sejajar dengan negara
+            maju, nanti kasih pupuk pake drone, lima atau sepuluh hektare di
+            sini," ujar Amran
+          </p>
+          <p className="text-sm text-justify leading-loose">
+            Amran mengungkapkan yang akan menggarap pertanian tersebut adalah
+            para petani milenial. Pasalnya berbagai alat-alat teknologi akan
+            digunakan dalam pertanian tersebut. "Saya ingin petani milenial
+            turun ke lapangan, pake drone, jadi bertani itu hanya di pinggir,
+            karena mereka ini generasi bonus demografi itu gak akan ke lapangan
+            kalau gak menguntungkan," pungkasnya.
+          </p>
+          <Line style={horizStyle} />
+          <h2 className="text-[48px] font-bold">Berita Lainnya</h2>
+          {/* <img src={Artikel2} alt="" className='w-2/3'/> */}
+          <MainArtikel />
+        </div>
+        <Line style={lineStyle} />
+        <ChildArtikel />
+        {/* <Line style={horizStyle}/> */}
       </div>
-      <Line style={lineStyle} />
-      <ChildArtikel />
-      {/* <Line style={horizStyle}/> */}
-    </div>
+    </TemplateLogin>
   );
 };

@@ -1,3 +1,3 @@
 import ForumDiskusiTemplate from "./ForumDiskusiTemplate";
-
-export { ForumDiskusiTemplate };
+import TemplateLogin from "./TemplateLogin";
+export { ForumDiskusiTemplate, TemplateLogin };
