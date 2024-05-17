@@ -1,6 +1,7 @@
 import { store } from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components/moleculs";
+
 import Artikel from "./pages/user/Artikel";
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
@@ -21,6 +22,13 @@ import HasilAnalisis from "./pages/user/HasilAnalisis";
 import ContactUs from "./pages/user/contact_us";
 import { ArtikelDetail } from "./pages/user/ArtikelDetail";
 
+import { Home, LandingPage, HargaPangan, Analisis, ForumDiskusi, ForumDiskusiJelajahRuang, ForumDiskusiCari, ForumDiskusiDetail, ForumDiskusiRuang } from "./pages";
+import { Provider } from "react-redux";
+import About from "./pages/user/About";
+import HasilAnalisis from "./pages/user/HasilAnalisis";
+import ProfilePage from "./pages/user/profile_page";
+
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -35,15 +43,14 @@ const Router = () => {
         <Route exact path="/diskusi" element={<ForumDiskusi />} />
         <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
         <Route exact path="/diskusi/detail" element={<ForumDiskusiDetail />} />
-        <Route
-          exact
-          path="/diskusi/jelajah-ruang"
-          element={<ForumDiskusiJelajahRuang />}
-        />
+        <Route exact path="/diskusi/jelajah-ruang" element={<ForumDiskusiJelajahRuang />} />
         <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
+
         <Route exact path="/artikel2" element={<Artikel />} />
         <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
+        <Route exact path="profile_page" element={<ProfilePage />} />
+
       </Routes>
       <Footer />
 
