@@ -3,5 +3,6 @@ import CardHargaPangan from "./CardHargaPangan";
 
 import FormDiskusi from "./FormDiskusi";
 import CardDiskusi from "./CardDiskusi";
-
-export { Button, CardHargaPangan, FormDiskusi, CardDiskusi };
+import ModalProfile from "./modal_edit_profile";
+import ConfirmModalProfile from "./ConfirmModalProfile";
+export { Button, CardHargaPangan, FormDiskusi, CardDiskusi, ModalProfile, ConfirmModalProfile };
