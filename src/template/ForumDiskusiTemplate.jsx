@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import bgLogo from "../assets/logo/bg-logo.svg";
 
@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import { BiChat, BiHomeAlt, BiSearchAlt } from "react-icons/bi";
 import logo from "../assets/logo/Logo1_white.svg";
 import { TbMessageSearch } from "react-icons/tb";
+import { FormAnalisis, FormTambahRuang } from "../components/moleculs";
 
 const ForumDiskusiTemplate = ({ children }) => {
+  const [openModal, setOpenModal] = useState(false);
+  console.log(openModal);
   return (
     <div>
       <div
@@ -62,13 +65,13 @@ const ForumDiskusiTemplate = ({ children }) => {
                     </Link>
                   </li>
                 </ul>
-                <Link
-                  to="beranda"
+                <button
+                  onClick={() => setOpenModal(!openModal)}
                   className=" flex w-full py-3 px-3 md:justify-start justify-center font-semibold text-white items-center gap-3"
                 >
                   <FaPlusCircle />
                   <span className="md:flex hidden ">Buat Ruang</span>
-                </Link>
+                </button>
               </div>
             </div>
             <div className=" md:col-span-3 col-span-5 h-auto">{children}</div>
@@ -80,6 +83,11 @@ const ForumDiskusiTemplate = ({ children }) => {
           </div>
         </div>
       </div>
+      {openModal ? (
+        <FormTambahRuang onClick={() => setOpenModal(!openModal)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
