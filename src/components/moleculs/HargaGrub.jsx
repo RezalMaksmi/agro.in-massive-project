@@ -21,7 +21,7 @@ const HargaGrub = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-1 justify-start">
+        <div className="flex flex-col md:col-span-1 col-span-3 gap-1 justify-start">
           <span className="font-semibold text-lg">Tanggal</span>
           <DatePicker
             selectsRange={true}

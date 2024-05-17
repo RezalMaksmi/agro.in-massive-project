@@ -20,8 +20,8 @@ const Home = () => {
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">
-            <div className="flex flex-col justify-center md:pl-20 px-5 gap-8">
-              <h1 className="md:text-6xl text-4xl text-white font-semibold tracking-wide">
+            <div className="flex flex-col justify-center md:pl-20 md:px-5 px-3 md:gap-8 gap-4">
+              <h1 className="md:text-6xl text-3xl text-white font-bold tracking-wide leading-10 ">
                 Bertani dengan optimal untuk hasil yang maksimal
               </h1>
               <span className="text-white md:text-2xl text-lg">
@@ -37,7 +37,7 @@ const Home = () => {
         >
           <div
             id="tentang"
-            className=" md:px-20 px-5 md:pt-36 pt-20 container mx-auto grid md:grid-cols-2 items-center md:gap-3 gap-10	"
+            className=" md:px-20 px-3 md:pt-36 pt-20 container mx-auto grid md:grid-cols-2 items-center md:gap-3 gap-10	"
           >
             <img
               src={logo1}
@@ -45,7 +45,7 @@ const Home = () => {
               className="md:w-[440px] w-[190px] mx-auto"
             />
             <div className="flex flex-col md:gap-10 gap-5 md:text-start text-center">
-              <h1 className="md:text-5xl text-xl font-semibold">
+              <h1 className="md:text-5xl text-2xl font-semibold">
                 Tentang Kami
               </h1>
               <p className="md:text-xl text-base ">
@@ -67,17 +67,19 @@ const Home = () => {
           {/* {  fitur Layanan  } */}
           <div
             id="hargaPangan"
-            className="relative z-10 h-auto md:px-20 md:pt-36 px-10 py-12 gap-14 container mx-auto flex flex-col justify-center items-center"
+            className="relative z-10 h-auto md:px-20 md:pt-36 px-3  py-12 gap-14 container mx-auto flex flex-col justify-center items-center"
           >
-            <div className="flex flex-col justify-center items-center gap-3">
-              <h1 className="text-5xl font-semibold">Rata-rata harga pangan</h1>
-              <span className="md:text-xl text-base">
+            <div className="md:flex flex-col justify-center items-center gap-3 hidden">
+              <h1 className="md:text-5xl text-2xl font-semibold">
+                Rata-rata harga pangan
+              </h1>
+              <span className="md:text-xl text-base text-center">
                 Rata-rata harga pangan yang ditampilkan merupakan data terbaru
                 dan real time
               </span>
             </div>
-            <div className="flex flex-col gap-10 w-full items-center">
-              <h1 className="text-3xl font-semibold text-start w-full">
+            <div className="flex flex-col md:gap-10 gap-5 w-full items-center">
+              <h1 className="md:text-3xl text-2xl font-semibold text-start w-full">
                 Harga Pangan
               </h1>
               <HargaGrub />
