@@ -22,40 +22,52 @@ import ContactUs from "./pages/user/contact_us";
 
 import ForumDiskusiDetailRuang from "./pages/user/ForumDiskusiDetailRuang";
 import { ArtikelDetail } from "./pages/user/ArtikelDetail";
+import TemplateLogin from "./template/TemplateLogin";
 
 const Router = () => {
+  const getUserDataFromLocalStorage = () => {
+    const user = localStorage.getItem("userData");
+    return user ? JSON.parse(user) : {};
+  };
+  const { token, role } = getUserDataFromLocalStorage();
+
   return (
     <BrowserRouter>
-      <Navbar />
+      {role && token ? (
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/harga-pangan" element={<HargaPangan />} />
+          <Route exact path="/analisis" element={<Analisis />} />
+          <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
+          <Route exact path="/diskusi" element={<ForumDiskusi />} />
+          <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
+          <Route
+            exact
+            path="/diskusi/detail"
+            element={<ForumDiskusiDetail />}
+          />
+          <Route
+            exact
+            path="/diskusi/jelajah-ruang"
+            element={<ForumDiskusiJelajahRuang />}
+          />
+          <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
+
+          <Route
+            exact
+            path="/diskusi/detail/ruang"
+            element={<ForumDiskusiDetailRuang />}
+          />
+        </Routes>
+      ) : (
+        <></>
+      )}
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/harga-pangan" element={<HargaPangan />} />
-        <Route exact path="/analisis" element={<Analisis />} />
-        <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
-        <Route exact path="/diskusi" element={<ForumDiskusi />} />
-        <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
-        <Route exact path="/diskusi/detail" element={<ForumDiskusiDetail />} />
-        <Route
-          exact
-          path="/diskusi/jelajah-ruang"
-          element={<ForumDiskusiJelajahRuang />}
-        />
-        <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
-
-        <Route
-          exact
-          path="/diskusi/detail/ruang"
-          element={<ForumDiskusiDetailRuang />}
-        />
-        <Route exact path="/artikel2" element={<Artikel />} />
+        <Route exact path="/artikel" element={<Artikel />} />
         <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
-      </Routes>
-      <Footer />
-
-      <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
       </Routes>
