@@ -14,24 +14,31 @@
         "token": "akmsdnfydtajatrtjeq8d9"
     },
     {
-        "email": "kiki@gmail.com",
-        "username": "Kiki",
-        "password": "kiki123",
+        "email": "ilham@gmail.com",
+        "username": "ilham",
+        "password": "ilham123",
         "role": "user",
         "token": "akmsdnfydtaja3kjtrq8d9"
     },
     {
-        "email": "hasyim@gmail.com",
-        "username": "Hasyim",
-        "password": "hasyim123",
+        "email": "ino@gmail.com",
+        "username": "ino",
+        "password": "ino123",
         "role": "user",
         "token": "akmsdnfydtaja3kjtrq8d9"
     },
     {
-        "email": "admin@mindes.com",
-        "username": "kiki",
-        "password": "admin123",
-        "role": "admin",
+        "email": "syifa@mindes.com",
+        "username": "syifa",
+        "password": "syifa123",
+        "role": "user",
+        "token": "akmsgfgfhghghgjhjhjkdsdkj"
+    },
+    {
+        "email": "hasna@mindes.com",
+        "username": "hasna",
+        "password": "hasna123",
+        "role": "user",
         "token": "akmsgfgfhghghgjhjhjkdsdkj"
     }
 ]

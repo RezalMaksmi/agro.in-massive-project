@@ -47,10 +47,7 @@ const HargaPangan = () => {
           id="hargaPangan"
           className="relative z-10 h-auto md:px-20  px-10 py-12 gap-14 container mx-auto flex flex-col justify-center items-center"
         >
-          <div className="flex flex-col gap-10 w-full items-center">
-            <h1 className="text-3xl font-semibold text-start w-full">
-              Harga Pangan
-            </h1>
+          <div className="flex flex-col gap-10 w-full items-center ">
             <HargaGrub />
           </div>
         </div>
