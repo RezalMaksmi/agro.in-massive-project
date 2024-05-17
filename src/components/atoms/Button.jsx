@@ -11,7 +11,7 @@ const Button = (props) => {
           className={` px-5 py-2 rounded-full  ${
             className
               ? className
-              : "hover:bg-primary hover:text-white bg-secondary"
+              : "hover:bg-primary hover:text-white bg-secondary w-max"
           }`}
         >
           {text}
@@ -21,7 +21,7 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={`py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3 ${className}`}
+          className={`py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3  ${className}`}
         >
           {text} <IoArrowForward />
         </button>

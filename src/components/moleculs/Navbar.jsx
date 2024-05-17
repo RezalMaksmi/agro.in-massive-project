@@ -179,7 +179,7 @@ const Navbar = () => {
 
               <div
                 className={`${
-                  openDropdown ? "h-[175px] " : "h-0 opacity-0"
+                  openDropdown ? "h-[140px] " : "h-0 opacity-0"
                 } absolute bg-white z-20 top-14 w-max overflow-hidden p-2 rounded-lg shadow-lg transform transition-all duration-300`}
               >
                 <ul>
@@ -187,10 +187,7 @@ const Navbar = () => {
                     <Link to={"/harga-pangan"}>Harga Pangan</Link>
                   </li>
                   <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
-                    <Link to={"/analisis"}>Analisis Tanah</Link>
-                  </li>
-                  <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
-                    <Link to={"/analisis"}>Analisis Cuaca</Link>
+                    <Link to={"/analisis"}>Analisis Cuaca & Tanah</Link>
                   </li>
                   <li className="px-8 py-2 hover:bg-darkGray_10 text-start rounded-md cursor-pointer">
                     <Link to={"/diskusi"}>Forum Diskusi</Link>

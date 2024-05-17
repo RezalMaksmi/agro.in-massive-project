@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillDownCircle, AiFillUpCircle } from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
+import { BiComment, BiCommentDetail } from "react-icons/bi";
 import Button from "./Button";
 
 const CardDiskusi = (props) => {
@@ -207,6 +207,26 @@ const CardDiskusi = (props) => {
                 text="Ikuti"
                 className=" text-white bg-primary hover:bg-dark_30"
               />
+            </div>
+          </div>
+        </div>
+      );
+    case "detailRuang":
+      return (
+        <div className="border-b-2 border-[#ececec] flex flex-col gap-8 py-3 ">
+          <div className="flex flex-col gap-9 py-3 px-2 ">
+            <h2 className="text-xl font-bold">
+              Apakah impor jagung menguntungkan atau merugikan petani jagung?
+            </h2>
+            <div className="flex flex-row gap-3 w-full justify-between">
+              <div className="flex flex-row gap-3">
+                <span>5 Mei 2024</span>
+                <span className="font-bold">Belum ada jawaban </span>
+              </div>
+              <div className="flex flex-row gap-3 items-center">
+                <BiComment className="text-2xl" />
+                <span className="font-bold">10 </span>
+              </div>
             </div>
           </div>
         </div>
