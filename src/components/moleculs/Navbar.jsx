@@ -62,7 +62,50 @@ const Navbar = () => {
   return role && token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
-        <img src={logoText} alt="" />
+        <div className="-mr-2 flex md:hidden">
+          <button
+            onClick={toggleNavbar}
+            type="button"
+            className="bg-darkGray_20 inline-flex items-center justify-center p-2 rounded-md text-primary hover:bg-[#abb9b6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark_10 focus:ring-white "
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className={`${isOpen ? "hidden" : "block"} h-6 w-6`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              className={`${isOpen ? "block" : "hidden"} h-6 w-6`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="md:w-max w-full flex justify-center items-center">
+          <img src={logoText} alt="" className="text-center  " />
+        </div>
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 md:py-2 py-3 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#eaeaea] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
@@ -116,14 +159,15 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+
         <div className=" relative " onClick={() => setOpenProfil(!openProfil)}>
           <div
-            className={`bg-white p-2 pl-4 flex flex-row gap-4 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
+            className={`bg-white md:w-auto md:h-auto w-8 h-8  md:p-2  md:pl-4 flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
           >
             {!openProfil ? (
-              <BsFillCaretDownFill className="text-dark_20" />
+              <BsFillCaretDownFill className="text-dark_20 md:contents hidden" />
             ) : (
-              <BsFillCaretUpFill className="text-dark_20" />
+              <BsFillCaretUpFill className="text-dark_20 md:contents hidden" />
             )}
             <img
               src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
@@ -154,47 +198,6 @@ const Navbar = () => {
               <img src={logoText} alt="" className="w-16" />
             </span>
           </div>
-        </div>
-        <div className="-mr-2 flex md:hidden">
-          <button
-            onClick={toggleNavbar}
-            type="button"
-            className="bg-darkGray_20 inline-flex items-center justify-center p-2 rounded-md text-primary hover:bg-[#abb9b6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark_10 focus:ring-white "
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className={`${isOpen ? "hidden" : "block"} h-6 w-6`}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-            <svg
-              className={`${isOpen ? "block" : "hidden"} h-6 w-6`}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </div>

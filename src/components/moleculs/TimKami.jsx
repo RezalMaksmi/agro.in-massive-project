@@ -48,9 +48,9 @@ const TimKami = ({ className }) => {
     <div className={`w-full ${className}`}>
       <div
         id="tim"
-        className={`h-auto md:px-20 px-10 py-20 gap-16 container mx-auto flex flex-col justify-center items-center `}
+        className={`h-auto md:px-20 px-10 md:py-20 py-14 md:gap-16 gap-10 container mx-auto flex flex-col justify-center items-center `}
       >
-        <h1 className="text-5xl font-semibold">Tim Kami</h1>
+        <h1 className="md:text-5xl text-2xl font-semibold">Tim Kami</h1>
         <div className=" w-full items-center px-3">
           <Swiper
             loop={true}

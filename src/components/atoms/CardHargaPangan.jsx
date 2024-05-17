@@ -9,7 +9,7 @@ const CardHargaPangan = ({ Img, Title, Price, Key }) => {
       <img
         src={Img}
         alt=""
-        className="w-full h-[270px] object-cover overflow-hidden rounded-lg"
+        className="w-full md:h-[270px] h-[150px] object-cover overflow-hidden rounded-lg"
       />
       <div className="flex flex-col gap-1 pt-3">
         <h1 className="text-xl">{Title}</h1>

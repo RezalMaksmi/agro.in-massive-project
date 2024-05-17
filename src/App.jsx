@@ -1,4 +1,7 @@
 import { store } from "./redux/store";
+import "@fontsource/poppins"; // Defaults to weight 400
+import "@fontsource/poppins/400.css"; // Specify weight
+import "@fontsource/poppins/400-italic.css"; // Specify weight and style
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components/moleculs";
 import Artikel from "./pages/user/Artikel";
@@ -63,10 +66,9 @@ const Router = () => {
           />
         </Routes>
       ) : (
-        <></>
+        <Route exact path="/" element={<LandingPage />} />
       )}
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/artikel" element={<Artikel />} />
         <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
