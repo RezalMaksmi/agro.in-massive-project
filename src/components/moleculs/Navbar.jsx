@@ -103,7 +103,7 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <div className="md:w-max w-full flex justify-center items-center">
+        <div className="md:w-max w-[275px] flex justify-center items-center">
           <img src={logoText} alt="" className="text-center  " />
         </div>
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
@@ -162,17 +162,17 @@ const Navbar = () => {
 
         <div className=" relative " onClick={() => setOpenProfil(!openProfil)}>
           <div
-            className={`bg-white md:w-auto md:h-auto w-8 h-8  md:p-2  md:pl-4 flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
+            className={`bg-white  md:p-2 p-0 md:pl-4  pl-0  flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
           >
             {!openProfil ? (
-              <BsFillCaretDownFill className="text-dark_20 md:contents hidden" />
+              <BsFillCaretDownFill className="text-dark_20 md:flex hidden" />
             ) : (
-              <BsFillCaretUpFill className="text-dark_20 md:contents hidden" />
+              <BsFillCaretUpFill className="text-dark_20 md:flex hidden" />
             )}
             <img
               src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
               alt=""
-              className="w-8 h-8 rounded-full overflow-hidden bg-slate-400 object-cover"
+              className="md:w-6 md:h-6 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
           </div>
 
