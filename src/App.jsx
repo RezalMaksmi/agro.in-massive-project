@@ -66,9 +66,10 @@ const Router = () => {
           />
         </Routes>
       ) : (
-        <Route exact path="/" element={<LandingPage />} />
+        <></>
       )}
       <Routes>
+        <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/artikel" element={<Artikel />} />
         <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />
