@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import gambarcontact from "../../assets/contact_us.png";
 import bgLogo from "../../assets/logo/bg-logo.svg";
+import PopupModal from "../../components/atoms/MdlConfKirimPesan";
+import { ConfirmationModal } from "../../components/atoms";
 
 const ContactUs = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+
+  const handleSend = () => {
+    setShowPopup(false);
+    setIsConfirmationOpen(true);
+  };
+
+  const handleCancel = () => {
+    setShowPopup(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowPopup(true);
+  };
+
+  const handleConfirmationClose = () => {
+    setIsConfirmationOpen(false);
+  };
+
   return (
     <div className="flex  justify-evenly mt-32 mb-36 max-sm:mb-10">
       {/* Form */}
@@ -63,7 +86,7 @@ const ContactUs = () => {
           </div>
           <div className="md:flex md:items-center">
             <div className="md:w-full max-sm:p-4">
-              <button className="shadow w-full bg-primary  hover:text-white focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-2xl " type="button">
+              <button className="shadow w-full bg-primary  hover:text-white focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-2xl " type="button" onClick={handleSubmit}>
                 Kirim Pesan
               </button>
             </div>
@@ -76,6 +99,8 @@ const ContactUs = () => {
         <img src={gambarcontact} alt="Contact Us" className="max-w-lg lg:max-w-lg md:h-5/6 md:max-w-sm sm:w-screen max-sm:w-full max-sm:h-full" />
       </div>
       <div className={`h-full w-full z-0 absolute lg:top-28  bg-no-repeat  bg-right-bottom scale-x-[-1] md:-top-80 max-sm:hidden`} style={{ backgroundImage: `URL(${bgLogo})`, backgroundSize: "17%" }}></div>
+      {showPopup && <PopupModal handleSend={handleSend} handleCancel={handleCancel} />}
+      {isConfirmationOpen && <ConfirmationModal handleClose={handleConfirmationClose} />}
     </div>
   );
 };

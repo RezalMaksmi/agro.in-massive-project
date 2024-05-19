@@ -1,4 +1,5 @@
 import Button from "./Button";
 import CardHargaPangan from "./CardHargaPangan";
-
-export { Button, CardHargaPangan };
+import PopupModal from "./MdlConfKirimPesan";
+import ConfirmationModal from "./ConfPesanTerkirim";
+export { Button, CardHargaPangan, PopupModal, ConfirmationModal };
