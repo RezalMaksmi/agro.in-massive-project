@@ -27,24 +27,39 @@ const Register = () => {
         account="Sudah punya akun?"
         direct="Masuk disini"
         opsi="Daftar"
-        className="h-auto md:h-[575px] inset-y-24 w-full max-w-md mx-4 md:mx-0 p-6 md:p-8"
+        className="h-auto w-full max-w-xs sm:max-w-sm mx-2 sm:mx-4 p-4 sm:p-6 md:p-8 mt-20"
         text="Daftar"
         to={"/login"}
         title={
-          <>
+          <div className="text-center text-lg sm:text-xl md:text-2xl font-bold">
             Bergabung Bersama
             <br />
             Agro.in
-          </>
+          </div>
         }
       >
-        <InputLabel type="text" htmlFor="username" id="username">
+        <InputLabel
+          type="text"
+          htmlFor="username"
+          id="username"
+          className="text-sm sm:text-base"
+        >
           Username
         </InputLabel>
-        <InputLabel type="email" htmlFor="email" id="email">
+        <InputLabel
+          type="email"
+          htmlFor="email"
+          id="email"
+          className="text-sm sm:text-base"
+        >
           Email
         </InputLabel>
-        <InputLabel type="password" htmlFor="password" id="password">
+        <InputLabel
+          type="password"
+          htmlFor="password"
+          id="password"
+          className="text-sm sm:text-base"
+        >
           Password
         </InputLabel>
       </Card>

@@ -117,8 +117,8 @@ const ChildArtikel = () => {
 const Artikel = (props) => {
   return (
     <TemplateLogin>
-      <div className="bg-white bg-gradient-to-b from-[rgba(14,27,25,0.2)] to-white">
-        <div className="pt-20 sm:pt-48 text-center">
+      <div className="bg-white bg-gradient-to-b from-[rgba(40, 70, 65, 0.2)] to-white">
+        <div className="pt-20 sm:pt-48 text-center mt-7">
           <p className="text-[32px] sm:text-[64px] text-[#1A3D37] font-bold">
             Majalah <span className="text-[#FAB737]">Agro.in</span>
           </p>

@@ -32,7 +32,6 @@ const Login = () => {
       const email = user.email;
       const userData = { token, name, role, email };
 
-     
       setError("");
       localStorage.setItem("userData", JSON.stringify(userData));
       navigate(token ? "/" : "/login");
@@ -49,7 +48,7 @@ const Login = () => {
     >
       <button
         onClick={goToLandingPage}
-        className="absolute top-8 left-4 md:top-[90px] md:left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full flex items-center gap-3"
+        className="absolute top-8 left-4 md:left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full flex items-center gap-3"
       >
         <IoIosArrowBack />
         Kembali
@@ -58,7 +57,7 @@ const Login = () => {
         account="Belum punya akun?"
         direct="Daftar disini"
         opsi="Masuk"
-        className="h-auto md:h-[490px] inset-y-24 w-full max-w-md mx-4 md:mx-0 p-6 md:p-8"
+        className="h-auto w-full max-w-sm mx-4 p-4 sm:p-6 md:p-7 mt-20 bg-white rounded-lg shadow-md"
         text="Masuk"
         onClick={handleLogin}
         to={"/register"}
