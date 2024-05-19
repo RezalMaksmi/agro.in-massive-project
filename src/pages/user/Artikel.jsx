@@ -45,7 +45,7 @@ const SampingArtikel = [
     image: Artikel6,
   },
   {
-    judulArtikel: `Stok Pupuk Bersubsidi Melimpah, Petani Diminta Menebus Kuota ynag Dimiliki`,
+    judulArtikel: `Stok Pupuk Bersubsidi Melimpah, Petani Diminta Menebus Kuota yang Dimiliki`,
     timestamps: "25 April 2024",
     image: Artikel7,
   },
@@ -62,86 +62,74 @@ const SampingArtikel = [
 ];
 
 const Line = (props) => {
-  return <div style={props.style}></div>;
+  return (
+    <div className="border-t border-gray-400 my-4" style={props.style}></div>
+  );
 };
 
 export const MainArtikel = (props) => {
-  const horizStyle = {
-    height: "2px",
-    width: "470px",
-    border: "1px solid #807D7E",
-    marginTop: "50px",
-  };
   return (
-    <div className="grid grid-rows-2 gap-y-16 mx-auto">
+    <div className="grid gap-y-8 mx-auto sm:mx-0">
       {DataArtikel.map((news, index) => (
         <div className={`flex flex-col ${props.className} gap-y-2`} key={index}>
-          <img src={news.image} alt="" className="w-[470px]" />
-          <p className="text-[12px] text-[#807D7E]">{news.timestamps}</p>
+          <img
+            src={news.image}
+            alt={news.title}
+            className="w-full sm:w-[470px]"
+          />
+          <p className="text-[12px] text-gray-500">{news.timestamps}</p>
           <Link
-            to={"/artikeldetail"}
-            className="text-[32px] font-semibold w-[430px]"
+            to="/artikeldetail"
+            className="text-[24px] sm:text-[32px] font-semibold w-full sm:w-[430px] hover:text-gray-700"
           >
             {news.title}
           </Link>
-          <p className="w-[430px] text-sm">{news.description}</p>
-          <Line style={horizStyle} />
+          <p className="w-full sm:w-[430px] text-sm">{news.description}</p>
+          <Line />
         </div>
       ))}
-      <div></div>
     </div>
   );
 };
 
 const ChildArtikel = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center sm:items-start sm:mx-8">
       {SampingArtikel.map((tes, index) => (
-        <div className="flex flex-row mx-32 gap-y-2 mb-7" key={index}>
-          <img src={tes.image} alt="" className="w-24 rounded-2xl" />
-          <div className="ms-3 w-40 flex flex-col justify-between">
-            <Link className="text-[12px] font-bold" to={"/"}>
+        <div className="flex flex-row w-full max-w-sm gap-x-4 mb-7" key={index}>
+          <img
+            src={tes.image}
+            alt={tes.judulArtikel}
+            className="w-24 h-24 object-cover rounded-2xl"
+          />
+          <div className="ml-3 flex flex-col justify-between">
+            <Link className="text-[12px] font-bold hover:text-gray-700" to="/">
               {tes.judulArtikel}
             </Link>
-            <p className="text-xs font-thin text-[#807D7E]">{tes.timestamps}</p>
+            <p className="text-xs font-thin text-gray-500">{tes.timestamps}</p>
           </div>
         </div>
       ))}
-      `
     </div>
   );
 };
 
 const Artikel = (props) => {
-  const lineStyle = {
-    height: "850px",
-    border: "1px solid #807D7E",
-    width: "2px",
-  };
-
   return (
     <TemplateLogin>
-      <div
-        style={{
-          backgroundColor: "#ffffff",
-          backgroundImage: "linear-gradient(#e6e6e6,#ffffff)",
-        }}
-      >
-        <div className="pt-48 text-center ">
-          <p className="text-[64px] text-green-950 font-bold">
+      <div className="bg-white bg-gradient-to-b from-[rgba(14,27,25,0.2)] to-white">
+        <div className="pt-20 sm:pt-48 text-center">
+          <p className="text-[32px] sm:text-[64px] text-[#1A3D37] font-bold">
             Majalah <span className="text-[#FAB737]">Agro.in</span>
           </p>
           <p className="text-[16px] mt-4">
-            Menyajikan Wawasan Terbaru dalam Dunia Pertanian{" "}
+            Menyajikan Wawasan Terbaru dalam Dunia Pertanian
           </p>
-
           <SearchBar />
         </div>
-        <div className="flex pt-48 pb-16">
-          <MainArtikel className="mx-32" />
-          <div>
-            <Line style={lineStyle} />
-          </div>
+        <div className="flex flex-col sm:flex-row pt-20 sm:pt-48 pb-16 justify-center items-center sm:items-start">
+          <MainArtikel className="mx-4 sm:mx-32" />
+          <div className="hidden sm:block border-l border-gray-400 h-full mx-8"></div>
           <ChildArtikel />
         </div>
       </div>
