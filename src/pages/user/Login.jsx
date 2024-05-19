@@ -17,7 +17,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleLogin = () => {
-    // Cek apakah data pengguna sesuai dengan data dummy json
+    // Check if the user's data matches the dummy data
     const user = Users.find(
       (user) =>
         user.email === email &&
@@ -26,48 +26,30 @@ const Login = () => {
     );
 
     if (user) {
-      console.log(user);
       const token = user.token;
       const name = user.username;
       const role = "user";
       const email = user.email;
       const userData = { token, name, role, email };
 
-      // Autentikasi berhasil
+     
       setError("");
       localStorage.setItem("userData", JSON.stringify(userData));
       navigate(token ? "/" : "/login");
       window.location.reload(false);
-
-      // Autentikasi berhasil
-      // setError("");
-      // const token = admin.token;
-      // const name = admin.username;
-      // const role = "admin";
-      // const email = admin.email;
-      // const userData = { token, name, role, email };
-      // localStorage.setItem("userData", JSON.stringify(userData));
-      // navigate(token ? "/" : "/login");
-      // window.location.reload(false);
     } else {
-      // Autentikasi gagal
       setError("Username atau password salah");
     }
   };
 
   return (
     <div
-      className="min-h-screen relative"
-      style={{
-        backgroundImage: `URL(${bgHero})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgHero})` }}
     >
       <button
         onClick={goToLandingPage}
-        className="relative top-[90px] left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3"
+        className="absolute top-8 left-4 md:top-[90px] md:left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full flex items-center gap-3"
       >
         <IoIosArrowBack />
         Kembali
@@ -76,7 +58,7 @@ const Login = () => {
         account="Belum punya akun?"
         direct="Daftar disini"
         opsi="Masuk"
-        className="h-[490px] inset-y-24"
+        className="h-auto md:h-[490px] inset-y-24 w-full max-w-md mx-4 md:mx-0 p-6 md:p-8"
         text="Masuk"
         onClick={handleLogin}
         to={"/register"}
@@ -104,6 +86,7 @@ const Login = () => {
         >
           Password
         </InputLabel>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </Card>
     </div>
   );
