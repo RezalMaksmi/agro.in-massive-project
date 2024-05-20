@@ -9,7 +9,9 @@ const ForumDiskusiJelajahRuang = () => {
       <ForumDiskusiTemplate>
         <div className="flex flex-col gap-5 ">
           <div className="flex flex-col gap-3 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl bg-white">
-            <h2 className="text-xl font-bold">Jelajahi Ruang yang ada</h2>
+            <h2 className="md:text-xl text-lg font-bold">
+              Jelajahi Ruang yang ada
+            </h2>
             <div className="flex flex-col gap-2">
               <CardDiskusi
                 type="jelajahRuang"

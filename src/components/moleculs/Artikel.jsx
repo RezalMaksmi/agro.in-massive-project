@@ -54,7 +54,7 @@ const Artikel = ({ className, TextColor }) => {
                       />
                     </div>
                     <div className="flex flex-col md:gap-2 gap-1 md:px-6 px-2 md:py-6 py-2 md:group-hover/item:absolute md:group-hover/item:w-full md:group-hover/item:bg-[#000000]  md:group-hover/item:bg-opacity-65 md:group-hover/item:text-[#fff] top-0 bottom-0 transform transition-all duration-300 md:group-hover/item:justify-center md:group-hover/item:h-full">
-                      <h1 className="md:text-2xl text-base md:font-bold font-semibold ">
+                      <h1 className="md:text-2xl text-sm leading-5 md:font-bold font-semibold ">
                         {item.title}
                       </h1>
                       <span className="md:text-base text-xs ">

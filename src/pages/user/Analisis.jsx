@@ -42,11 +42,11 @@ const Analisis = () => {
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">
-            <div className="flex flex-col justify-center md:pl-20 px-5 gap-8">
-              <h1 className="md:text-6xl text-4xl text-primary font-bold tracking-wide">
+            <div className="flex flex-col justify-center md:pl-20 px-5 md:gap-8 gap-4">
+              <h1 className="md:text-6xl text-3xl text-primary font-bold tracking-wide">
                 Pemetaan Cuaca dan Analisis Tanah
               </h1>
-              <span className="text-black md:text-2xl text-lg">
+              <span className="text-black md:text-xl text-base">
                 Menampilkan prakira cuaca dan analisis kecocokan tanaman dan
                 kondidi tanah di suatu daerah dengan aktual agar petani mampu
                 memprediksi langkah-langkah tepat untuk produk pertaniannya.

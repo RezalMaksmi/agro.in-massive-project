@@ -8,7 +8,7 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={` px-5 py-2 rounded-full  ${
+          className={` px-5 py-2 rounded-full md:text-lg text-sm ${
             className
               ? className
               : "hover:bg-primary hover:text-white bg-secondary w-max"
@@ -21,7 +21,7 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={`py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3  ${className}`}
+          className={`py-2 px-4 md:text-lg text-sm bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3  ${className}`}
         >
           {text} <IoArrowForward />
         </button>
@@ -30,7 +30,7 @@ const Button = (props) => {
       return (
         <button
           onClick={onClick}
-          className={` px-5 py-2 rounded-full ${className}`}
+          className={` px-5 py-2 md:text-lg text-sm rounded-full ${className}`}
         >
           {text}
         </button>
@@ -41,7 +41,7 @@ const Button = (props) => {
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className={`px-4 py-2 rounded-lg  font-semibold bg-white border text-black ${className} `}
+          className={`px-4 py-2 rounded-lg md:text-lg text-sm font-semibold bg-white border text-black ${className} `}
         >
           <span>{text}</span>
         </a>

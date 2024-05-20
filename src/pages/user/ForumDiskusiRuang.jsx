@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import { CardDiskusi } from "../../components/atoms";
 import TemplateLogin from "../../template/TemplateLogin";
+import PopUp from "../../components/atoms/PopUp";
 
 const ForumDiskusiRuang = () => {
+  const [popupBerhenti, setPopupBerhenti] = useState(false);
+  const [popupHapus, setPopupHapus] = useState(false);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -20,14 +23,17 @@ const ForumDiskusiRuang = () => {
                 name="Marjuki"
                 about="Petani"
                 description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-                follow={"true"}
+                follow={true}
+                onClick={() => setPopupHapus(!popupHapus)}
               />
             </div>
           </div>
 
           {/* ruang yang diikuti */}
           <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl bg-white">
-            <h2 className="text-xl font-bold">Ruang yang anda ikuti</h2>
+            <h2 className="md:text-xl text-lg font-bold">
+              Ruang yang anda ikuti
+            </h2>
 
             {/* item card */}
             <div>
@@ -37,7 +43,8 @@ const ForumDiskusiRuang = () => {
                 name="Mega Lodon"
                 about="Peternak Tikus"
                 description="Irigasi merupakan usaha penyediaan, pengaturan, dan pembuangan air untuk menunjang pertanian yang jenisnya meliputi irigasi permukaan, irigasi rawa, irigasi air bawah tanah, irigasi pompa, dan irigasi tambak."
-                follow={"false"}
+                follow={false}
+                onClick={() => setPopupBerhenti(!popupBerhenti)}
               />
               <CardDiskusi
                 type="Ruang"
@@ -45,11 +52,25 @@ const ForumDiskusiRuang = () => {
                 name="Rezal Nur Syaifudin"
                 about="Peternak Paus"
                 description="Saya seorang peternak paus besar dengan taring panjang dan bergizi"
-                follow={"false"}
+                follow={false}
+                onClick={() => setPopupBerhenti(!popupBerhenti)}
               />
             </div>
           </div>
         </div>
+        {popupBerhenti ? (
+          <PopUp
+            type="berhentiIkuti"
+            onClick={() => setPopupBerhenti(!popupBerhenti)}
+          />
+        ) : (
+          ""
+        )}
+        {popupHapus ? (
+          <PopUp type="hapusRuang" onClick={() => setPopupHapus(!popupHapus)} />
+        ) : (
+          ""
+        )}
       </ForumDiskusiTemplate>
     </TemplateLogin>
   );

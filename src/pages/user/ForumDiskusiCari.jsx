@@ -8,11 +8,11 @@ const ForumDiskusiCari = () => {
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="flex flex-col gap-5 bg-white rounded-2xl">
-          <div className="flex flex-col gap-3 border border-[#ececec] shadow-md py-3 px-4 ">
+          <div className="flex flex-col gap-3 border border-[#ececec] shadow-md py-3 md:px-4 px-2 ">
             {/* Buat Ruang */}
             <div className="flex flex-col gap-3">
-              <h2 className="text-xl font-bold">Cari Pertanyaan</h2>
-              <div className="flex flex-row gap-3">
+              <h2 className="md:text-xl text-lg font-bold">Cari Pertanyaan</h2>
+              <div className="flex flex-row md:gap-3 gap-2 md:text-base text-sm">
                 <input
                   type="text"
                   placeholder="Ketik Pertanyaan..."
@@ -20,7 +20,9 @@ const ForumDiskusiCari = () => {
                 />
                 <Button type="PrimaryButton" text="Cari" />
               </div>
-              <span>Hasil dari pencarian "irigasi"</span>
+              <span className="md:text-xl text-base">
+                Hasil dari pencarian "irigasi"
+              </span>
             </div>
 
             {/* item card */}

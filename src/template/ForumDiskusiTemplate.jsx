@@ -14,12 +14,12 @@ const ForumDiskusiTemplate = ({ children }) => {
   return (
     <div>
       <div
-        className="min-h-[120vh] h-auto pt-32 bg-no-repeat  bg-right-top "
+        className={`min-h-[120vh] h-auto md:pt-32 pt-28 bg-no-repeat  bg-right-top md:bg-auto bg-[length:0px_0px]`}
         style={{ backgroundImage: `URL(${bgLogo})` }}
       >
         <div className="container mx-auto md:px-10 px-3">
           <div className="grid grid-cols-6 md:gap-4 gap-2 h-max mb-12 ">
-            <div className="bg-primary rounded-2xl shadow-md h-max  sticky top-32">
+            <div className="bg-primary rounded-2xl shadow-md h-max  sticky md:top-32 top-28">
               <div className="flex flex-col gap-0 items-center ">
                 <div className="flex flex-col justify-center items-center my-3">
                   <img src={logo} alt="" className="md:w-20 w-10" />

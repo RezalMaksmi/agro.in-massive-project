@@ -38,17 +38,6 @@ const Login = () => {
       localStorage.setItem("userData", JSON.stringify(userData));
       navigate(token ? "/" : "/login");
       window.location.reload(false);
-
-      // Autentikasi berhasil
-      // setError("");
-      // const token = admin.token;
-      // const name = admin.username;
-      // const role = "admin";
-      // const email = admin.email;
-      // const userData = { token, name, role, email };
-      // localStorage.setItem("userData", JSON.stringify(userData));
-      // navigate(token ? "/" : "/login");
-      // window.location.reload(false);
     } else {
       // Autentikasi gagal
       setError("Username atau password salah");

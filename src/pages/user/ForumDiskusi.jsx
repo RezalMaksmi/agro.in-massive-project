@@ -25,17 +25,17 @@ const ForumDiskusi = () => {
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="flex flex-col w-full gap-6 ">
-          <div className="rounded-xl bg-primary flex flex-col gap-5 py-6 px-4">
+          <div className="rounded-xl bg-primary flex flex-col md:gap-5 gap-3 md:py-6 py-3 md:px-4 px-2">
             {/* Profil */}
-            <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-row md:gap-4 gap-2 items-center">
               <img
                 src="https://assets.dataindonesia.id/1693791366434_99_Muhaimin.png"
                 alt=""
                 className="w-10 h-10 bg-pink-600 rounded-full object-cover "
               />
               <div className="flex flex-col  text-white">
-                <h1 className="text-xl font-bold">Mulyadi</h1>
-                <span className="text-base">
+                <h1 className="md:text-xl text-base font-bold">Mulyadi</h1>
+                <span className="md:text-base text-xs">
                   Petani - Jawa Tengah, Indonesia
                 </span>
               </div>
@@ -48,7 +48,7 @@ const ForumDiskusi = () => {
                   selectedMenu === "pertanyaan"
                     ? "bg-white text-primary"
                     : "  text-white scale-95"
-                } rounded-full md:py-2 py-1 text-center font-semibold  text-lg transform transition-all duration-300`}
+                } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
               >
                 Pertanyaan
               </button>
@@ -58,7 +58,7 @@ const ForumDiskusi = () => {
                   selectedMenu === "buat-informasi"
                     ? "bg-white text-primary"
                     : "  text-white scale-95"
-                } rounded-full md:py-2 py-1 text-center font-semibold  text-lg transform transition-all duration-300`}
+                } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
               >
                 Buat Informasi
               </button>

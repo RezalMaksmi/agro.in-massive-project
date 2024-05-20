@@ -18,6 +18,7 @@ import {
   ForumDiskusiDetail,
   ForumDiskusiRuang,
   Profil,
+  NotFound,
 } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
@@ -26,7 +27,6 @@ import ContactUs from "./pages/user/contact_us";
 
 import ForumDiskusiDetailRuang from "./pages/user/ForumDiskusiDetailRuang";
 import { ArtikelDetail } from "./pages/user/ArtikelDetail";
-import TemplateLogin from "./template/TemplateLogin";
 
 const Router = () => {
   const getUserDataFromLocalStorage = () => {
@@ -39,7 +39,6 @@ const Router = () => {
     <BrowserRouter>
       {role && token ? (
         <Routes>
-          <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/profil" element={<Profil />} />
           <Route exact path="/harga-pangan" element={<HargaPangan />} />
@@ -58,7 +57,6 @@ const Router = () => {
             element={<ForumDiskusiJelajahRuang />}
           />
           <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
-
           <Route
             exact
             path="/diskusi/detail/ruang"
@@ -66,10 +64,11 @@ const Router = () => {
           />
         </Routes>
       ) : (
+        // <NotFound />
         <></>
       )}
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
+        <Route exact path="/" element={<Home />} />
         <Route exact path="/artikel" element={<Artikel />} />
         <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
         <Route exact path="/contact_us" element={<ContactUs />} />

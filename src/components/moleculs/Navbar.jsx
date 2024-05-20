@@ -3,12 +3,7 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 import logoText from "../../assets/logo/logo-txt-hijau.png";
 import Button from "../atoms/Button";
 
-import {
-  BsChevronDown,
-  BsChevronUp,
-  BsFillCaretDownFill,
-  BsFillCaretUpFill,
-} from "react-icons/bs";
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +57,7 @@ const Navbar = () => {
   return role && token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
-        <div className="-mr-2 flex md:hidden">
+        <div className="-mr-2 flex md:hidden z-10">
           <button
             onClick={toggleNavbar}
             type="button"
@@ -103,8 +98,8 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <div className="md:w-max w-[275px] flex justify-center items-center">
-          <img src={logoText} alt="" className="text-center  " />
+        <div className="md:w-max flex justify-center items-center md:relative absolute text-center left-0 right-0 z-0">
+          <img src={logoText} alt="" className="text-center " />
         </div>
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 md:py-2 py-3 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#eaeaea] rounded-lg w-full md:gap-10 gap-5 font-semibold">
@@ -162,7 +157,7 @@ const Navbar = () => {
 
         <div className=" relative " onClick={() => setOpenProfil(!openProfil)}>
           <div
-            className={`bg-white  md:p-2 p-0 md:pl-4  pl-0  flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
+            className={`bg-white  md:p-1 p-0 md:pl-4  pl-0  flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
           >
             {!openProfil ? (
               <BsFillCaretDownFill className="text-dark_20 md:flex hidden" />
@@ -172,7 +167,7 @@ const Navbar = () => {
             <img
               src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
               alt=""
-              className="md:w-6 md:h-6 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
+              className="md:w-8 md:h-8 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
           </div>
 
