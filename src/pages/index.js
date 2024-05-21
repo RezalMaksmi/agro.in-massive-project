@@ -4,11 +4,12 @@ import Analisis from "./user/Analisis";
 import ForumDiskusi from "./user/ForumDiskusi";
 import ForumDiskusiJelajahRuang from "./user/ForumDiskusiJelajahRuang";
 import ForumDiskusiCari from "./user/ForumDiskusiCari";
-import ForumDiskusiDetail from "./user/ForumDiskusiDetail";
+import ForumDiskusiDetailPostingan from "./user/ForumDiskusiDetailPostingan";
 import ForumDiskusiRuang from "./user/ForumDiskusiRuang";
 import Profil from "./user/Profil";
 import Home from "./user/Home";
 import NotFound from "./NotFound";
+import ForumDiskusiDetailPertanyaan from "./user/ForumDiskusiDetailPertanyaan";
 
 export {
   LandingPage,
@@ -18,8 +19,9 @@ export {
   ForumDiskusi,
   ForumDiskusiJelajahRuang,
   ForumDiskusiCari,
-  ForumDiskusiDetail,
+  ForumDiskusiDetailPostingan,
   ForumDiskusiRuang,
   Profil,
   NotFound,
+  ForumDiskusiDetailPertanyaan,
 };

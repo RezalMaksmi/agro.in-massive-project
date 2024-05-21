@@ -21,36 +21,34 @@ const CardForm = (props) => {
     <div
       className={`bg-white w-[330px] ${props.className} rounded-3xl absolute right-[20%] py-8 flex flex-col items-center`}
     >
-      <img src={Logo} alt="" />
-      <h1 className="text-2xl font-semibold text-center mt-2">{props.title}</h1>
-      <div className="flex flex-col items-start w-3/4 gap-y-3">
+      <img src={Logo} alt="" className="w-[100px]" />
+      <h1 className="text-xl font-semibold text-center mt-2">{props.title}</h1>
+      <div className="flex flex-col items-start w-auto gap-y-3">
         {props.children}
-        <div className="mt-4 flex gap-x-10">
-          <div className="flex w-full">
+        <div className="mt-3 flex gap-x-20 ">
+          <div className="flex flex-row w-full justify-center items-center  gap-1 pt-[9px]">
             <input type="checkbox" />
-            <p className="text-sm pt-[9px] font-semibold text-[#8D9E9B]">
+            <span className="text-xs  font-normal text-dark_30">
               Remember Me
-            </p>
+            </span>
           </div>
           <Button
             type="PrimaryButton"
             text={props.text}
             onClick={props.onClick}
-            className="w-28 h-10"
+            className="hover:bg-primary hover:text-white bg-secondary px-3 py-1 md:text-sm"
           />
         </div>
       </div>
       <button
         type="submit"
-        className="hover:bg-primary border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4"
+        className="hover:bg-primary hover:text-white border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4"
       >
         <GrGoogle />
         {props.opsi} Dengan Google
       </button>
-      <p className="text-xs font-semibold text-[#8D9E9B] my-2">
-        {props.account}
-      </p>
-      <Link to={props.to} className="font-semibold text-[#8D9E9B]">
+      <p className="text-xs font-normal text-dark_30 my-2">{props.account}</p>
+      <Link to={props.to} className="font-normal text-dark_30">
         {props.direct}
       </Link>
     </div>

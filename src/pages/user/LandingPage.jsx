@@ -3,11 +3,9 @@ import logo1 from "../../assets/logo/Logo1.png";
 import bgLogo from "../../assets/logo/bg-logo.svg";
 
 import bgHero from "../../assets/bg-hero.jpg";
-import logoPutih from "../../assets/logo/logoputih.svg";
 
 import { Artikel, Fitur, Info, TimKami } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
-import Home from "./HomeLogin";
 
 const LandingPage = () => {
   return (

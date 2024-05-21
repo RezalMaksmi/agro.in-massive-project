@@ -18,6 +18,10 @@ const CardDiskusi = (props) => {
     imgProfil,
     follow,
     typePost,
+    variant,
+    jawaban,
+    tanggal,
+    answer,
   } = props;
   switch (type) {
     case "Postingan":
@@ -35,24 +39,22 @@ const CardDiskusi = (props) => {
                 />
                 <div className="flex flex-col  text-black">
                   <h1 className="md:text-xl text-sm font-bold">{name}</h1>
-                  <span className="md:text-base text-sm">{about}</span>
+                  <span className="md:text-base text-sm">
+                    {about} - Diperbarui 3 Mei
+                  </span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-1">
                 <h1 className="md:text-lg text-sm font-bold">{title}</h1>
                 <div className="md:text-base text-xs">{description}</div>
-                <img
-                  src={imgPost}
-                  alt=""
-                  className="object-cover w-full rounded-md"
-                />
               </div>
               <div className="flex flex-row justify-between w-full">
-                <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
-                  <AiFillUpCircle className="text-xl" />
-                  <span className="md:text-xl text-base">{likeUp}</span>
-                  <AiFillDownCircle className="text-xl" />
+                <div className="flex flex-row md:gap-5 gap-3 items-center text-dark_30   px-2 ext-lg">
+                  <span className="md:text-base text-sm">10 Mei 2024</span>
+                  <span className="md:text-base text-sm font-bold">
+                    {answer ? answer : "Belum ada"} Jawaban
+                  </span>
                 </div>
                 <div className="flex flex-row gap-1 items-center">
                   <BiCommentDetail />
@@ -63,7 +65,6 @@ const CardDiskusi = (props) => {
           ) : (
             <div className="rounded-t-xl  flex flex-col gap-5 py-6 px-4">
               {/* Profil */}
-
               <div className="flex flex-row gap-4 items-center">
                 <img
                   src={imgProfil}
@@ -174,16 +175,6 @@ const CardDiskusi = (props) => {
             <div className="">
               <h1 className="md:text-lg text-sm font-bold">{title}</h1>
               <div className="md:text-base text-xs">{description}</div>
-            </div>
-            <div className="w-full">
-              <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
-                <Button
-                  onClick={onClick}
-                  type="PrimaryButton"
-                  text="Hapus Ruang"
-                  className="md:text-lg text-base text-white bg-primary hover:bg-primary"
-                />
-              </div>
             </div>
           </div>
         </div>

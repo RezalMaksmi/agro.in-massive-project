@@ -7,7 +7,7 @@ const CommentDiskusi = () => {
       <div className="w-full h-auto bg-darkGray_20 p-3">
         <div className="flex flex-row gap-3 items-center">
           <img
-            src="https://assets.dataindonesia.id/1693791366434_99_Muhaimin.png"
+            src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
             alt=""
             className="w-10 h-10 bg-dark_20 rounded-full object-cover "
           />

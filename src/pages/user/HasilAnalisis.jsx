@@ -22,7 +22,7 @@ const HasilAnalisis = () => {
                   Lokasi Anda
                 </h1>
                 <div className="grid grid-cols-2">
-                  <span className="md:text-xl text-base ">Profinsi</span>
+                  <span className="md:text-xl text-base ">Provinsi</span>
                   <span className="md:text-xl text-base"> : Jawa Timur</span>
                 </div>
                 <div className="grid grid-cols-2 ">

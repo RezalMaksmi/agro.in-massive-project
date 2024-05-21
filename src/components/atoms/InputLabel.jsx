@@ -5,7 +5,7 @@ const InputLabel = (props) => {
     <>
       <label
         htmlFor={props.htmlFor}
-        className="text-sm font-semibold text-[#8D9E9B] mt-5"
+        className="text-sm font-normal text-dark_30 mt-5"
       >
         {props.children}
       </label>
@@ -14,7 +14,7 @@ const InputLabel = (props) => {
         name="email"
         id={props.id}
         onChange={props.onChange}
-        className="focus:outline-none border-b-2 border-[#8D9E9B]"
+        className="focus:outline-none border-b-2 border-darktext-dark_30 w-full"
       />
     </>
   );

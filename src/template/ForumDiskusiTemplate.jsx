@@ -77,7 +77,7 @@ const ForumDiskusiTemplate = ({ children }) => {
             <div className=" md:col-span-3 col-span-5 h-auto">{children}</div>
             <div className="bg-netral_10 md:col-span-2 col-end-7 col-span-5 w-full shadow-md h-max  sticky top-32 ">
               <div className="flex py-3 flex-col justify-center items-center">
-                <span>Spase Iklan</span>
+                <span>Space Iklan</span>
               </div>
             </div>
           </div>

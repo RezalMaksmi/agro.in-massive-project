@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoText from "../../assets/logo/logo-txt-hijau.png";
 import Button from "../atoms/Button";
 
@@ -38,9 +38,6 @@ const Navbar = () => {
     const value = e.target.href.toLowerCase();
     setHover(value);
   };
-
-  console.log(hover);
-  console.log("isinya apa", pathname);
 
   const getUserDataFromLocalStorage = () => {
     const user = localStorage.getItem("userData");
@@ -165,7 +162,7 @@ const Navbar = () => {
               <BsFillCaretUpFill className="text-dark_20 md:flex hidden" />
             )}
             <img
-              src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
+              src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
               alt=""
               className="md:w-8 md:h-8 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
@@ -203,25 +200,14 @@ const Navbar = () => {
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
-              <a
-                href={"#home"}
-                className={
-                  pathname === "/"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
-              >
+              <a href={"#home"} className={pathname === "/" ? "" : ""}>
                 Home
               </a>
             </li>
             <li>
               <a
                 href={"#tentang"}
-                className={
-                  pathname === "#tentang"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#tentang" ? "" : ""}
               >
                 Tentang Kami
               </a>
@@ -229,11 +215,7 @@ const Navbar = () => {
             <li>
               <a
                 href={"#layanan"}
-                className={
-                  pathname === "#layanan"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#layanan" ? "" : ""}
               >
                 Layanan
               </a>
@@ -241,11 +223,7 @@ const Navbar = () => {
             <li>
               <a
                 href={"#artikel"}
-                className={
-                  pathname === "#artikel"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#artikel" ? "" : ""}
               >
                 Artikel
               </a>
@@ -300,6 +278,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    // border-solid border-b-[3px] border-[#FAB737]
   );
 };
 

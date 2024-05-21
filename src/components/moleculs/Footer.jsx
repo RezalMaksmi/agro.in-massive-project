@@ -1,11 +1,16 @@
 import React from "react";
 import logo from "../../assets/logo/logo-txt-putih.png";
 import { LuFacebook, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu";
+import { Link } from "react-router-dom";
+import bgFooter from "../../assets/Footer.jpg";
 
 const Footer = () => {
   return (
     <div className="bg-[#265c53] relative">
-      <div className="w-full  rounded-t-[35px] bg-[#265c53] text-white relative -top-7">
+      <div
+        className="w-full  rounded-t-[35px] bg-[#265c53] text-white relative -top-7 bg-cover bg-no-repeat"
+        style={{ backgroundImage: `URL(${bgFooter})` }}
+      >
         <div className="container lg:px-20 px-5 py-10 mx-auto grid md:grid-cols-4 gap-5">
           <div className="flex flex-col items-start ">
             <img src={logo} alt="" className="md:h-14 h-12 object-contain " />
@@ -27,6 +32,9 @@ const Footer = () => {
                 </li>
                 <li>
                   <a href="">Artikel</a>
+                </li>
+                <li>
+                  <Link to={"/contact_us"}>Kontak Kami</Link>
                 </li>
               </ul>
             </div>

@@ -1,23 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo/Logo1_white.svg";
-import petani from "../../assets/info-img.jpg";
-import { BiChat, BiHomeAlt, BiSearchAlt } from "react-icons/bi";
-import { TbMessageSearch } from "react-icons/tb";
-import { FaPlusCircle } from "react-icons/fa";
 import { CardDiskusi } from "../../components/atoms";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import { IoMdSend } from "react-icons/io";
 import TemplateLogin from "../../template/TemplateLogin";
 
-const ForumDiskusiDetail = () => {
+const ForumDiskusiDetailPostingan = () => {
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="bg-white">
           <CardDiskusi
             type="Postingan"
-            typePost="pertanyaan"
+            typePost="postingan"
             imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
             name="Marjuki"
             about="Petani"
@@ -62,4 +56,4 @@ const ForumDiskusiDetail = () => {
   );
 };
 
-export default ForumDiskusiDetail;
+export default ForumDiskusiDetailPostingan;

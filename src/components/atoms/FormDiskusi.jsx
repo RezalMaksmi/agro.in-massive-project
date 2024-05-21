@@ -6,16 +6,23 @@ const FormDiskusi = ({ type }) => {
   switch (type) {
     case "pertanyaan":
       return (
-        <div className="">
+        <div className="flex flex-col gap-2">
+          <input
+            type="text"
+            name=""
+            id=""
+            className="w-full md:h-[35px] h-[10px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-base text-sm"
+            placeholder="Apa yang ingin anda tanyakan?"
+          ></input>
           <textarea
             name=""
             id=""
-            className="w-full md:h-[80px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-lg text-base"
-            placeholder="Apa yang ingin anda tanyakan"
+            className="w-full md:h-[50px] h-[40px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-base text-sm"
+            placeholder="Tuliskan deskripsi dari pertanyaanmu"
           ></textarea>
           <div className="text-end md:pt-2 pt-1">
             <button className="bg-secondary rounded-full py-1 px-5 w-max md:text-lg text-base">
-              Cari
+              Kirim
             </button>
           </div>
         </div>
@@ -27,7 +34,7 @@ const FormDiskusi = ({ type }) => {
           <textarea
             name=""
             id=""
-            className="w-full md:h-[80px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-lg text-base"
+            className="w-full md:h-[95px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-base text-sm"
             placeholder="Tulis Informasi..."
           ></textarea>
           <div className="flex justify-between items-center md:pt-2 pt-1">

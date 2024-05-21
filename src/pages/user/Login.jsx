@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./../../components/atoms/CardForm";
 import InputLabel from "./../../components/atoms/InputLabel";
 import bgHero from "./../../assets/bgHeroLogin.png";
@@ -7,14 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { Users } from "../../data";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const goToLandingPage = () => {
     navigate("/");
   };
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const handleLogin = () => {
     // Cek apakah data pengguna sesuai dengan data dummy json

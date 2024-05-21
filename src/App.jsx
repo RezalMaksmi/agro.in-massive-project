@@ -3,22 +3,20 @@ import "@fontsource/poppins"; // Defaults to weight 400
 import "@fontsource/poppins/400.css"; // Specify weight
 import "@fontsource/poppins/400-italic.css"; // Specify weight and style
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Footer, Navbar } from "./components/moleculs";
 import Artikel from "./pages/user/Artikel";
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
 import {
   Home,
-  LandingPage,
   HargaPangan,
   Analisis,
   ForumDiskusi,
   ForumDiskusiJelajahRuang,
   ForumDiskusiCari,
-  ForumDiskusiDetail,
   ForumDiskusiRuang,
   Profil,
-  NotFound,
+  ForumDiskusiDetailPostingan,
+  ForumDiskusiDetailPertanyaan,
 } from "./pages";
 import { Provider } from "react-redux";
 import About from "./pages/user/About";
@@ -48,8 +46,13 @@ const Router = () => {
           <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
           <Route
             exact
-            path="/diskusi/detail"
-            element={<ForumDiskusiDetail />}
+            path="/diskusi/detail/postingan"
+            element={<ForumDiskusiDetailPostingan />}
+          />
+          <Route
+            exact
+            path="/diskusi/detail/pertanyaan"
+            element={<ForumDiskusiDetailPertanyaan />}
           />
           <Route
             exact

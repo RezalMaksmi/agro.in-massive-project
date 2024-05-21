@@ -29,7 +29,7 @@ const ForumDiskusi = () => {
             {/* Profil */}
             <div className="flex flex-row md:gap-4 gap-2 items-center">
               <img
-                src="https://assets.dataindonesia.id/1693791366434_99_Muhaimin.png"
+                src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
                 alt=""
                 className="w-10 h-10 bg-pink-600 rounded-full object-cover "
               />
@@ -69,7 +69,7 @@ const ForumDiskusi = () => {
             {/*  */}
           </div>
 
-          <Link to="detail" className="bg-white">
+          <Link to="detail/pertanyaan" className="bg-white">
             <CardDiskusi
               type="Postingan"
               typePost="pertanyaan"
@@ -81,18 +81,21 @@ const ForumDiskusi = () => {
               imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
               likeUp="200"
               comment="300"
+              answer={10}
             />
           </Link>
-          <CardDiskusi
-            type="Postingan"
-            imgProfil={hasna}
-            name="Hasna GJ"
-            about="Peternak Buaya"
-            description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-            imgPost="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFgb1KICWd9znve04WiiXT8qGdDCnQvVUvCA&usqp=CAU"
-            likeUp="200"
-            comment="300"
-          />
+          <Link to="detail/postingan" className="bg-white">
+            <CardDiskusi
+              type="Postingan"
+              imgProfil={hasna}
+              name="Hasna GJ"
+              about="Peternak Buaya"
+              description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
+              imgPost="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFgb1KICWd9znve04WiiXT8qGdDCnQvVUvCA&usqp=CAU"
+              likeUp="200"
+              comment="300"
+            />
+          </Link>
         </div>
       </ForumDiskusiTemplate>{" "}
     </TemplateLogin>
