@@ -1,13 +1,11 @@
 import React from "react";
-import logo1 from "../assets/logo/Logo1.png";
-import bgLogo from "../assets/logo/bg-logo.svg";
+import logo1 from "../../assets/logo/Logo1.png";
+import bgLogo from "../../assets/logo/bg-logo.svg";
 
-import bgHero from "../assets/bg-hero.jpg";
-import logoPutih from "../assets/logo/logoputih.svg";
+import bgHero from "../../assets/bg-hero.jpg";
 
-import { Artikel, Fitur, Info, TimKami } from "../components/moleculs";
-import TemplateLogin from "../template/TemplateLogin";
-import Home from "./user/Home";
+import { Artikel, Fitur, Info, TimKami } from "../../components/moleculs";
+import TemplateLogin from "../../template/TemplateLogin";
 
 const LandingPage = () => {
   return (
@@ -45,7 +43,7 @@ const LandingPage = () => {
             />
             <div className="flex flex-col md:gap-10 gap-5 md:text-start text-center">
               <h1 className="md:text-5xl text-2xl font-bold">Tentang Kami</h1>
-              <p className="md:text-lg text-base ">
+              <p className="md:text-lg text-sm ">
                 Berangkat dari permasalah yang sering dialami petani mengenai
                 kegagalan dalam pertanian, kesulitan mencari informasi karena
                 terpencarnya beberapa informasi yang dibutuhkan, dan kurangnya

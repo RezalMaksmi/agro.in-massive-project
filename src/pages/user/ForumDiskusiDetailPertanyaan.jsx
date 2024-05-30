@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo/Logo1_white.svg";
-import petani from "../../assets/info-img.jpg";
-import { BiChat, BiHomeAlt, BiSearchAlt } from "react-icons/bi";
-import { TbMessageSearch } from "react-icons/tb";
-import { FaPlusCircle } from "react-icons/fa";
+import React from "react";
 import { CardDiskusi } from "../../components/atoms";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import { IoMdSend } from "react-icons/io";
 import TemplateLogin from "../../template/TemplateLogin";
 
-const ForumDiskusiDetail = () => {
+const ForumDiskusiDetailPertanyaan = () => {
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="bg-white">
           <CardDiskusi
             type="Postingan"
+            variant="detail"
             typePost="pertanyaan"
             imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
             name="Marjuki"
@@ -31,14 +26,14 @@ const ForumDiskusiDetail = () => {
             <div className="w-full h-auto bg-darkGray_20 p-3">
               <div className="flex flex-row gap-3 items-center">
                 <img
-                  src="https://assets.dataindonesia.id/1693791366434_99_Muhaimin.png"
+                  src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
                   alt=""
                   className="w-10 h-10 bg-pink-600 rounded-full object-cover "
                 />
                 <input
                   type="text"
                   className="py-2 px-3 text-lg rounded-full border w-full outline-0 focus:outline-0"
-                  placeholder="Tulis Komentar..."
+                  placeholder="Tulis Jawaban..."
                 />
                 <button>
                   <IoMdSend className="text-4xl" />
@@ -62,4 +57,4 @@ const ForumDiskusiDetail = () => {
   );
 };
 
-export default ForumDiskusiDetail;
+export default ForumDiskusiDetailPertanyaan;

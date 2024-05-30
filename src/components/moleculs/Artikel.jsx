@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import artikel from "../../assets/layanan4.jpg";
+import { getArtikel } from "../../redux/get/getData";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../api/axiosInstance";
 
 const Artikel = ({ className, TextColor }) => {
   const [error, setError] = useState(false);
@@ -10,8 +12,8 @@ const Artikel = ({ className, TextColor }) => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const article = await axios(
-          `https://api.buttercms.com/v2/posts/?page=1&page_size=3&auth_token=33c1ecd6ea5a7bd37a873ea78302634597018be7`
+        const article = await axiosInstance.get(
+          `http://localhost:4000/artikel`
         );
         setArticle(article.data.data);
       } catch (error) {
@@ -26,7 +28,6 @@ const Artikel = ({ className, TextColor }) => {
   if (error) return <>eror</>;
   if (loader) return <>Loading...</>;
 
-  console.log(article);
   return (
     <div
       id="artikel"
@@ -48,13 +49,13 @@ const Artikel = ({ className, TextColor }) => {
                   <div className="group/item h-full flex md:flex-col flex-row rounded-lg bg-[#fff] overflow-hidden relative transform transition-all duration-500">
                     <div className="md:h-[99px] h-full md:group-hover/item:h-full w-full overflow-hidden transform transition-all duration-500 md:group-hover/item:relative">
                       <img
-                        src={item.featured_image}
+                        src={`http://localhost:4000/assets/images/${item.featured_image}`}
                         alt=""
                         className="object-cover w-full h-full transform transition-all duration-500 "
                       />
                     </div>
                     <div className="flex flex-col md:gap-2 gap-1 md:px-6 px-2 md:py-6 py-2 md:group-hover/item:absolute md:group-hover/item:w-full md:group-hover/item:bg-[#000000]  md:group-hover/item:bg-opacity-65 md:group-hover/item:text-[#fff] top-0 bottom-0 transform transition-all duration-300 md:group-hover/item:justify-center md:group-hover/item:h-full">
-                      <h1 className="md:text-2xl text-base md:font-bold font-semibold ">
+                      <h1 className="md:text-2xl text-sm leading-5 md:font-bold font-semibold ">
                         {item.title}
                       </h1>
                       <span className="md:text-base text-xs ">

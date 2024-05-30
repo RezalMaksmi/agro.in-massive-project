@@ -52,7 +52,7 @@ const Fitur = ({ Title }) => {
             <Link
               to={item.link}
               className="md:p-3 p-0  md:h-[355px] w-full "
-              key={i}
+              key={i + 1}
             >
               <div className="group/item w-full md:h-[355px]  h-[120px]  rounded-xl transform transition duration-500 hover:scale-110 overflow-hidden relative cursor-pointer   ">
                 <img src={item.img} alt="" className="object-cover w-full  " />
@@ -65,10 +65,10 @@ const Fitur = ({ Title }) => {
                     />
 
                     <h6 className="md:text-4xl text-base leading-5 font-bold md:group-hover/item:hidden transform transition-all duration-500 ">
-                      {item.title.split("\n").map((line) => (
-                        <>
+                      {item.title.split("\n").map((line, i) => (
+                        <div key={i}>
                           {line} <br />
-                        </>
+                        </div>
                       ))}
                     </h6>
                     <div className="md:flex hidden text-center p-3 opacity-0 bg-opacity-15 md:group-hover/item:flex md:group-hover/item:opacity-100 flex-col transform transition duration-500 w-full h-full text-sm font-normal">

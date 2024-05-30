@@ -3,10 +3,26 @@ import { hargaPangan } from "../../data";
 import CardHargaPangan from "../atoms/CardHargaPangan";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Searchable from "react-searchable-dropdown";
 
 const HargaGrub = () => {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
+
+  const jenisData = [
+    {
+      value: "pedagang eceran",
+      label: "Pedagang Eceran",
+    },
+    {
+      value: "pedagang grosir",
+      label: "Pedagang Grosir",
+    },
+    {
+      value: "produsen",
+      label: "Produsen",
+    },
+  ];
 
   console.log(dateRange);
   return (
@@ -14,10 +30,14 @@ const HargaGrub = () => {
       <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full">
         <div className="flex flex-col md:col-span-1 col-span-3 gap-1 justify-start">
           <span className="font-semibold text-lg">Jenis Data</span>
-          <input
-            type="text"
-            placeholder="Jenis data..."
-            className="border-2 border-dark_10 px-3 py-3 rounded-full"
+          <Searchable
+            placeholder="Pilih Jenis Data"
+            value={["popular"]}
+            hideSelected
+            options={jenisData}
+            onSelect={(value) => {
+              console.log(value);
+            }}
           />
         </div>
 
@@ -30,7 +50,7 @@ const HargaGrub = () => {
             onChange={(update) => {
               setDateRange(update);
             }}
-            className="border-2  border-dark_10 px-3 py-3 rounded-full w-full"
+            className=" px-3 py-3 rounded-full w-full bg-[#dddddd]"
             placeholderText="Pilih Tanggal"
             withPortal
           />

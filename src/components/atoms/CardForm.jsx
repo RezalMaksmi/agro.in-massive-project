@@ -15,30 +15,28 @@ const CardForm = (props) => {
       </h1>
       <div className="flex flex-col items-start w-full gap-y-2 mt-4">
         {props.children}
-        <div className="mt-4 flex flex-col md:flex-row md:gap-x-4 w-full">
+        <div className="mt-4 flex flex-col md:flex-row md:gap-x-4 w-full justify-between">
           <div className="flex items-center w-full md:w-auto">
             <input type="checkbox" className="mr-2" />
-            <p className="text-sm font-semibold text-[#8D9E9B]">Remember Me</p>
+            <p className="text-sm text-dark_30">Remember Me</p>
           </div>
           <Button
             type="PrimaryButton"
             text={props.text}
             onClick={props.onClick}
-            className="w-full md:w-28 h-10 mt-2 md:mt-0"
+            className="hover:bg-primary hover:text-white bg-secondary w-max px-3 py-1 "
           />
         </div>
       </div>
       <button
         type="submit"
-        className="hover:bg-primary border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4 w-full md:w-auto"
+        className="hover:bg-primary hover:text-white border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4 w-full md:w-auto"
       >
         <GrGoogle />
         {props.opsi} Dengan Google
       </button>
-      <p className="text-xs font-semibold text-[#8D9E9B] my-2">
-        {props.account}
-      </p>
-      <Link to={props.to} className="font-semibold text-[#8D9E9B]">
+      <p className="text-xs font-normal text-dark_30 my-2">{props.account}</p>
+      <Link to={props.to} className="font-normal text-dark_30">
         {props.direct}
       </Link>
     </div>

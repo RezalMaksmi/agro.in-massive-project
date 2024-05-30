@@ -14,12 +14,12 @@ const ForumDiskusiTemplate = ({ children }) => {
   return (
     <div>
       <div
-        className="min-h-[120vh] h-auto pt-32 bg-no-repeat  bg-right-top "
+        className={`min-h-[120vh] h-auto md:pt-32 pt-28 bg-no-repeat  bg-right-top md:bg-auto bg-[length:0px_0px]`}
         style={{ backgroundImage: `URL(${bgLogo})` }}
       >
         <div className="container mx-auto md:px-10 px-3">
           <div className="grid grid-cols-6 md:gap-4 gap-2 h-max mb-12 ">
-            <div className="bg-primary rounded-2xl shadow-md h-max  sticky top-32">
+            <div className="bg-primary rounded-2xl shadow-md h-max  sticky md:top-32 top-28">
               <div className="flex flex-col gap-0 items-center ">
                 <div className="flex flex-col justify-center items-center my-3">
                   <img src={logo} alt="" className="md:w-20 w-10" />
@@ -75,9 +75,14 @@ const ForumDiskusiTemplate = ({ children }) => {
               </div>
             </div>
             <div className=" md:col-span-3 col-span-5 h-auto">{children}</div>
-            <div className="bg-netral_10 md:col-span-2 col-end-7 col-span-5 w-full shadow-md h-max  sticky top-32 ">
+            <div className="bg-netral_10 md:col-span-2 col-end-7 col-span-5 w-full shadow-md   sticky top-32 h-max overflow-hidden">
               <div className="flex py-3 flex-col justify-center items-center">
-                <span>Spase Iklan</span>
+                <span className="pb-2"> Advertisement</span>
+                <img
+                  src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/425630251_803126335194979_2005575607683777784_n.jpg?stp=c0.5000x0.5000f_dst-jpg_e15_p695x870_q60_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsub8-1.fna&_nc_cat=102&_nc_ohc=-_Adx3H0nC8Q7kNvgE5Pyu-&ccb=1-7&_nc_sid=5f2048&oh=00_AYC6w1s4yPxgeSi0GgEo1_pu_lKMwGly3atnM7PGieP4_w&oe=66535601"
+                  alt=""
+                  className="w-[95%] object-cover "
+                />
               </div>
             </div>
           </div>

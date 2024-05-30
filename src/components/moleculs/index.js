@@ -8,6 +8,7 @@ import HargaGrub from "./HargaGrub";
 import CommentDiskusi from "./CommentDiskusi";
 import FormAnalisis from "./FormAnalisis";
 import FormTambahRuang from "./FormTambahRuang";
+import FormPostingan from "./FormPostingan";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   CommentDiskusi,
   FormAnalisis,
   FormTambahRuang,
+  FormPostingan,
 };

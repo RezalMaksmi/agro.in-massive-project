@@ -13,21 +13,23 @@ const HasilAnalisis = () => {
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">
-            <div className="flex flex-col justify-center md:pl-20 px-5 gap-8">
-              <h1 className="md:text-4xl text-4xl text-white font-bold tracking-wide">
+            <div className="flex flex-col justify-center md:pl-20 md:px-5 px-4 gap-4">
+              <h1 className="md:text-4xl text-3xl text-white font-bold tracking-wide">
                 Hasil Prediksi Cuaca dan Tanah
               </h1>
-              <div className="flex flex-col gap-2 text-white bg-[#ffffff49] backdrop-blur-sm rounded-xl px-6 py-5 ">
+              <div className="flex flex-col md:gap-2 gap-1 text-white bg-[#ffffff49] backdrop-blur-sm rounded-xl md:px-6 px-3 py-5 ">
                 <h1 className="md:text-3xl text-xl font-semibold mb-3">
                   Lokasi Anda
                 </h1>
                 <div className="grid grid-cols-2">
-                  <span className="text-xl ">Profinsi</span>
-                  <span className="text-xl">: Jawa Timur</span>
+                  <span className="md:text-xl text-base ">Provinsi</span>
+                  <span className="md:text-xl text-base"> : Jawa Timur</span>
                 </div>
                 <div className="grid grid-cols-2 ">
-                  <span className="text-xl ">Kota / Kabupaten</span>
-                  <span className="text-xl">: Blitar</span>
+                  <span className="md:text-xl text-base ">
+                    Kota / Kabupaten
+                  </span>
+                  <span className="md:text-xl text-base"> : Blitar</span>
                 </div>
               </div>
             </div>

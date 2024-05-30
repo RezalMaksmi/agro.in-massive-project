@@ -1,19 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoText from "../../assets/logo/logo-txt-hijau.png";
 import Button from "../atoms/Button";
-
-import {
-  BsChevronDown,
-  BsChevronUp,
-  BsFillCaretDownFill,
-  BsFillCaretUpFill,
-} from "react-icons/bs";
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hover, setHover] = useState("");
   const [openProfil, setOpenProfil] = useState(false);
+  const dispatch = useDispatch();
+
   const { pathname } = location;
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -44,25 +42,29 @@ const Navbar = () => {
     setHover(value);
   };
 
-  console.log(hover);
-  console.log("isinya apa", pathname);
-
-  const getUserDataFromLocalStorage = () => {
-    const user = localStorage.getItem("userData");
-    return user ? JSON.parse(user) : {};
-  };
-  const { token, role } = getUserDataFromLocalStorage();
-
   const handleLogout = () => {
-    localStorage.removeItem("userData");
-    navigate("/");
-    window.location.reload(false);
+    dispatch(logout());
   };
+  // const getUserDataFromLocalStorage = () => {
+  //   const user = localStorage.getItem("token");
+  //   return user ? JSON.parse(user) : {};
+  // };
 
-  return role && token ? (
+  // const { token } = getUserDataFromLocalStorage();
+  const { token } = useSelector((state) => state.auth);
+  console.log(token);
+  // const tokenData = localStorage.getItem("token");
+  // const token = tokenData ? JSON.parse(tokenData) : null;
+
+  const userData = localStorage.getItem("dataUser");
+  const userCheck = userData ? JSON.parse(userData) : null;
+  const user = userCheck ? userCheck.auth.user : "";
+
+  console.log("user", token);
+  return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
-        <div className="-mr-2 flex md:hidden">
+        <div className="-mr-2 flex md:hidden z-10">
           <button
             onClick={toggleNavbar}
             type="button"
@@ -103,8 +105,8 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <div className="md:w-max w-[275px] flex justify-center items-center">
-          <img src={logoText} alt="" className="text-center  " />
+        <div className="md:w-max flex justify-center items-center md:relative absolute text-center left-0 right-0 z-0">
+          <img src={logoText} alt="" className="text-center " />
         </div>
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 md:py-2 py-3 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#eaeaea] rounded-lg w-full md:gap-10 gap-5 font-semibold">
@@ -162,7 +164,7 @@ const Navbar = () => {
 
         <div className=" relative " onClick={() => setOpenProfil(!openProfil)}>
           <div
-            className={`bg-white  md:p-2 p-0 md:pl-4  pl-0  flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
+            className={`bg-white  md:p-1 p-0 md:pl-4  pl-0  flex flex-row md:gap-4 gap-2 rounded-full justify-center items-center z-10 relative transform transition-all duration-300`}
           >
             {!openProfil ? (
               <BsFillCaretDownFill className="text-dark_20 md:flex hidden" />
@@ -170,9 +172,11 @@ const Navbar = () => {
               <BsFillCaretUpFill className="text-dark_20 md:flex hidden" />
             )}
             <img
-              src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
+              src={`http://localhost:4000/assets/images/${
+                user ? user.profile_image : ""
+              }`}
               alt=""
-              className="md:w-6 md:h-6 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
+              className="md:w-8 md:h-8 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
           </div>
 
@@ -181,7 +185,7 @@ const Navbar = () => {
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
             }  bg-white rounded-[24px] absolute shadow-lg right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
-            <span className="p-2 font-semibold">Mulyadi</span>
+            <span className="p-2 font-semibold">{user ? user.name : ""}</span>
             <Link
               to={"/profil"}
               className="hover:bg-netral_20 px-2 rounded-md py-2"
@@ -208,25 +212,14 @@ const Navbar = () => {
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
           <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
-              <a
-                href={"#home"}
-                className={
-                  pathname === "/"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
-              >
+              <a href={"#home"} className={pathname === "/" ? "" : ""}>
                 Home
               </a>
             </li>
             <li>
               <a
                 href={"#tentang"}
-                className={
-                  pathname === "#tentang"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#tentang" ? "" : ""}
               >
                 Tentang Kami
               </a>
@@ -234,11 +227,7 @@ const Navbar = () => {
             <li>
               <a
                 href={"#layanan"}
-                className={
-                  pathname === "#layanan"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#layanan" ? "" : ""}
               >
                 Layanan
               </a>
@@ -246,11 +235,7 @@ const Navbar = () => {
             <li>
               <a
                 href={"#artikel"}
-                className={
-                  pathname === "#artikel"
-                    ? "border-solid border-b-[3px] border-[#FAB737]"
-                    : ""
-                }
+                className={pathname === "#artikel" ? "" : ""}
               >
                 Artikel
               </a>
@@ -305,6 +290,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    // border-solid border-b-[3px] border-[#FAB737]
   );
 };
 

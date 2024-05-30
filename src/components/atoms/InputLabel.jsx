@@ -5,7 +5,7 @@ const InputLabel = (props) => {
     <div className="w-full flex flex-col items-start gap-y-2">
       <label
         htmlFor={props.htmlFor}
-        className="text-sm font-semibold text-[#8D9E9B] mt-5"
+        className="text-sm font-normal text-dark_30 mt-5"
       >
         {props.children}
       </label>
