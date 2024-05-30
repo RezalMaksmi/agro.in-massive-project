@@ -88,10 +88,10 @@ const ForumDiskusi = () => {
             <CardDiskusi
               type="Postingan"
               imgProfil={hasna}
-              name="Hasna GJ"
-              about="Peternak Buaya"
+              name="Hasna"
+              about="Peternak Sapi"
               description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-              imgPost="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFgb1KICWd9znve04WiiXT8qGdDCnQvVUvCA&usqp=CAU"
+              imgPost="https://awsimages.detik.net.id/community/media/visual/2021/07/19/sapi-limosin.jpeg?w=1200"
               likeUp="200"
               comment="300"
             />

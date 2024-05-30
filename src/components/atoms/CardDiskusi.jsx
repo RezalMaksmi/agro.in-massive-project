@@ -56,10 +56,6 @@ const CardDiskusi = (props) => {
                     {answer ? answer : "Belum ada"} Jawaban
                   </span>
                 </div>
-                <div className="flex flex-row gap-1 items-center">
-                  <BiCommentDetail />
-                  <span className="md:text-xl text-base">{comment}</span>
-                </div>
               </div>
             </div>
           ) : (

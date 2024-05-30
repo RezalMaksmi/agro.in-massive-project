@@ -1,15 +1,19 @@
 import React from "react";
 import HomeLogin from "./HomeLogin";
 import LandingPage from "./LandingPage";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const getUserDataFromLocalStorage = () => {
-    const user = localStorage.getItem("userData");
-    return user ? JSON.parse(user) : {};
-  };
-  const { token, role } = getUserDataFromLocalStorage();
+  // const getUserDataFromLocalStorage = () => {
+  //   const user = localStorage.getItem("userData");
+  //   return user ? JSON.parse(user) : {};
+  // };
 
-  return <>{role && token ? <HomeLogin /> : <LandingPage />}</>;
+  // const { token } = getUserDataFromLocalStorage();
+
+  const { token } = useSelector((state) => state.auth);
+
+  return token ? <HomeLogin /> : <LandingPage />;
 };
 
 export default Home;

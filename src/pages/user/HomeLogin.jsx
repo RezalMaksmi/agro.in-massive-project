@@ -1,16 +1,15 @@
 import React from "react";
 import logo1 from "../../assets/logo/Logo1.png";
 import bgLogo from "../../assets/logo/bg-logo.svg";
-
-import { hargaPangan } from "../../data";
-
 import bgHero from "../../assets/bg-hero.jpg";
-
 import { Artikel, Fitur, HargaGrub } from "../../components/moleculs";
 import Button from "../../components/atoms/Button";
 import TemplateLogin from "../../template/TemplateLogin";
+import { useSelector } from "react-redux";
 
 const HomeLogin = () => {
+  const { user } = useSelector((state) => state.auth);
+  console.log("usernya", user);
   return (
     <TemplateLogin>
       <div className=" ">

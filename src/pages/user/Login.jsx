@@ -4,57 +4,35 @@ import InputLabel from "./../../components/atoms/InputLabel";
 import bgHero from "./../../assets/bgHeroLogin.png";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { Users } from "../../data";
+import { login } from "../../redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const goToLandingPage = () => {
-    navigate("/");
+  const { user, status, error, token } = useSelector((state) => state.auth);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
   };
 
-  const handleLogin = () => {
-    // Cek apakah data pengguna sesuai dengan data dummy json
-    const user = Users.find(
-      (user) =>
-        user.email === email &&
-        user.password === password &&
-        user.role === "user"
-    );
-
-    if (user) {
-      console.log(user);
-      const token = user.token;
-      const name = user.username;
-      const role = "user";
-      const email = user.email;
-      const userData = { token, name, role, email };
-
-      // Autentikasi berhasil
-      setError("");
-      localStorage.setItem("userData", JSON.stringify(userData));
-      navigate(token ? "/" : "/login");
-      window.location.reload(false);
-    } else {
-      // Autentikasi gagal
-      setError("Username atau password salah");
+  useEffect(() => {
+    if (status === "succeeded" && user) {
+      navigate("/");
     }
-  };
+  }, [status]);
 
   return (
     <div
-      className="min-h-screen relative"
-      style={{
-        backgroundImage: `URL(${bgHero})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgHero})` }}
     >
       <button
-        onClick={goToLandingPage}
-        className="relative top-[90px] left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full w-max flex flex-row justify-center items-center gap-3"
+        onClick={() => navigate("/")}
+        className="absolute top-8 left-4 md:left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full flex items-center gap-3"
       >
         <IoIosArrowBack />
         Kembali
@@ -63,9 +41,9 @@ const Login = () => {
         account="Belum punya akun?"
         direct="Daftar disini"
         opsi="Masuk"
-        className="h-[490px] inset-y-24"
+        className="h-auto w-full max-w-sm mx-4 p-4 sm:p-6 md:p-7 mt-20 bg-white md:rounded-3xl shadow-md"
         text="Masuk"
-        onClick={handleLogin}
+        onClick={handleSubmit}
         to={"/register"}
         title={
           <>
@@ -79,7 +57,7 @@ const Login = () => {
           type="email"
           htmlFor="email"
           id="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         >
           Email
         </InputLabel>
@@ -91,6 +69,8 @@ const Login = () => {
         >
           Password
         </InputLabel>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {status === "loading" && <p>Loading...</p>}
       </Card>
     </div>
   );

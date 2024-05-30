@@ -1,8 +1,9 @@
 import React from "react";
 import InfoImg from "../../assets/info-img.jpg";
 import Button from "../atoms/Button";
-
+import { useNavigate } from "react-router-dom";
 const Artikel = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-auto   md:px-20 px-5 pb-36 gap-16 py-24 container mx-auto flex flex-col justify-center items-start  ">
       <div className="grid md:grid-cols-2 gap-6 w-auto mx-auto items-center">
@@ -19,6 +20,7 @@ const Artikel = () => {
             petani yang akan membantu petani meningkatkan hasil pertanian.
           </span>
           <Button
+            onClick={() => navigate("/login")}
             type="LongPrimaryButtonIconRow"
             text="Bergabung Dengan Kami"
           />

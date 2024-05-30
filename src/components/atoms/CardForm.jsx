@@ -1,48 +1,36 @@
 import React from "react";
 import Logo from "./../../assets/logo/logo-txt-hijau.png";
-// import InputLabel from './../atoms/InputLabel';
 import Button from "./../atoms/Button";
-import Goggle from "./../../assets/logo/google.png";
 import { Link } from "react-router-dom";
 import { GrGoogle } from "react-icons/gr";
-import InputLabel from "./../atoms/InputLabel";
-
-// const InputLabel = (props) => {
-//   return (
-//     <form className='flex flex-col border-b-2 border-[#8D9E9B] items-start w-3/4 gap-y-3'>
-//       	<label htmlFor={props.htmlFor} className='text-sm font-semibold text-[#8D9E9B] mt-5'>{props.children}</label>
-//       	<input type={props.type} name='email' id={props.id} className='focus:outline-none focus:ring-0'/>
-//     </form>
-//   )
-// }
 
 const CardForm = (props) => {
   return (
     <div
-      className={`bg-white w-[330px] ${props.className} rounded-3xl absolute right-[20%] py-8 flex flex-col items-center`}
+      className={`bg-white w-full max-w-[330px] ${props.className} rounded-3xl md:absolute md:right-[20%] py-8 flex flex-col items-center px-6 md:px-8`}
     >
-      <img src={Logo} alt="" className="w-[100px]" />
-      <h1 className="text-xl font-semibold text-center mt-2">{props.title}</h1>
-      <div className="flex flex-col items-start w-auto gap-y-3">
+      <img src={Logo} alt="Logo" className="w-16 h-auto" />
+      <h1 className="text-xl md:text-2xl font-semibold text-center mt-2">
+        {props.title}
+      </h1>
+      <div className="flex flex-col items-start w-full gap-y-2 mt-4">
         {props.children}
-        <div className="mt-3 flex gap-x-20 ">
-          <div className="flex flex-row w-full justify-center items-center  gap-1 pt-[9px]">
-            <input type="checkbox" />
-            <span className="text-xs  font-normal text-dark_30">
-              Remember Me
-            </span>
+        <div className="mt-4 flex flex-col md:flex-row md:gap-x-4 w-full justify-between">
+          <div className="flex items-center w-full md:w-auto">
+            <input type="checkbox" className="mr-2" />
+            <p className="text-sm text-dark_30">Remember Me</p>
           </div>
           <Button
             type="PrimaryButton"
             text={props.text}
             onClick={props.onClick}
-            className="hover:bg-primary hover:text-white bg-secondary px-3 py-1 md:text-sm"
+            className="hover:bg-primary hover:text-white bg-secondary w-max px-3 py-1 "
           />
         </div>
       </div>
       <button
         type="submit"
-        className="hover:bg-primary hover:text-white border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4"
+        className="hover:bg-primary hover:text-white border-2 border-gray-400 text-sm rounded-full flex items-center gap-x-2 py-1 mt-4 px-4 w-full md:w-auto"
       >
         <GrGoogle />
         {props.opsi} Dengan Google

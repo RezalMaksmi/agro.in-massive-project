@@ -3,26 +3,209 @@ import { CgClose } from "react-icons/cg";
 import Searchable from "react-searchable-dropdown";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
-const jenisTanah = [
+const jenistanaman = [
   {
-    value: "blitar",
-    label: "blitar",
+    value: "padi",
+    label: "padi",
   },
   {
-    value: "magelang",
-    label: "magelang",
+    value: "jagung",
+    label: "jagung",
   },
   {
-    value: "surabaya",
-    label: "surabaya",
+    value: "palawija",
+    label: "palawija",
   },
   {
-    value: "bali",
-    label: "bali",
+    value: "cabai",
+    label: "cabai",
   },
   {
-    value: "malang",
-    label: "malang",
+    value: "bawang merah",
+    label: "bawang merah",
+  },
+  {
+    value: "bawang putih",
+    label: "bawang putih",
+  },
+  {
+    value: "Umbi-Umbian",
+    label: "Umbi-Umbian",
+  },
+  {
+    value: "kacang-kacangan",
+    label: "kacang-kacangan",
+  },
+  {
+    value: "tanaman rimpang",
+    label: "tanaman rimpang",
+  },
+];
+
+const phTanah = [
+  {
+    value: "4-7",
+    label: "4-7",
+  },
+  {
+    value: "5,6-7,5",
+    label: "5,6-7,5",
+  },
+  {
+    value: "4,5-6,5",
+    label: "4,5-6,5",
+  },
+  {
+    value: "6-7",
+    label: "6-7",
+  },
+  {
+    value: " 5,6-6,5",
+    label: " 5,6-6,5",
+  },
+  {
+    value: "5,5-7,5",
+    label: "5,5-7,5",
+  },
+  {
+    value: "5-7",
+    label: "5-7",
+  },
+  {
+    value: "6,5-7",
+    label: "6,5-7",
+  },
+  {
+    value: "5,5-6,5",
+    label: "5,5-6,5",
+  },
+];
+
+const tekstur = [
+  {
+    value: "Pasir",
+    label: "Pasir",
+  },
+  {
+    value: "Pasir berlempung",
+    label: "Pasir berlempung",
+  },
+  {
+    value: "Lempung berpasir",
+    label: "Lempung berpasir",
+  },
+  {
+    value: "Lempung",
+    label: "Lempung",
+  },
+  {
+    value: "Lempung berdebu",
+    label: "Lempung berdebu",
+  },
+  {
+    value: "Debu",
+    label: "Debu",
+  },
+  {
+    value: "Lempung berliat",
+    label: "Lempung berliat",
+  },
+  {
+    value: "Lempung liat berpasir",
+    label: "Lempung liat berpasir",
+  },
+  {
+    value: "Lempung berliat berdebu",
+    label: "Lempung berliat berdebu",
+  },
+  {
+    value: "Liat berpasir",
+    label: "Liat berpasir",
+  },
+  {
+    value: "Liat berdebu",
+    label: "Liat berdebu",
+  },
+  {
+    value: "Liat",
+    label: "Liat",
+  },
+];
+
+const struktur = [
+  {
+    value: "Struktur Butir",
+    label: "Struktur Butir",
+  },
+  {
+    value: "Struktur Blok",
+    label: "Struktur Blok",
+  },
+  {
+    value: "Struktur Prisma",
+    label: "Struktur Prisma",
+  },
+  {
+    value: "Struktur Columnar",
+    label: "Struktur Columnar",
+  },
+  {
+    value: "Struktur Lempengan",
+    label: "Struktur Lempengan",
+  },
+  {
+    value: "Struktur Serbuk",
+    label: "Struktur Serbuk",
+  },
+  {
+    value: "Struktur Crumb",
+    label: "Struktur Crumb",
+  },
+];
+
+const warna = [
+  {
+    value: "coklat",
+    label: "coklat",
+  },
+  {
+    value: "hitam",
+    label: "hitam",
+  },
+  {
+    value: "coklat kehitaman",
+    label: "coklat kehitaman",
+  },
+  {
+    value: "coklat gelap kuning kemerahan",
+    label: "coklat gelap kuning kemerahan",
+  },
+  {
+    value: "hitam kekuningan",
+    label: "hitam kekuningan",
+  },
+];
+
+const kondisi = [
+  {
+    value: "Halus",
+    label: "Halus",
+  },
+  {
+    value: "Agak halus",
+    label: "Agak halus",
+  },
+  {
+    value: "Sedang",
+    label: "Sedang",
+  },
+  {
+    value: "Agak kasar",
+    label: "Agak kasar",
+  },
+  {
+    value: "Kasar",
+    label: "Kasar",
   },
 ];
 const FormAnalisis = (props) => {
@@ -44,7 +227,7 @@ const FormAnalisis = (props) => {
             placeholder="Pilih Tanaman"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={jenistanaman}
             onSelect={(value) => {
               console.log(value);
             }}
@@ -57,7 +240,7 @@ const FormAnalisis = (props) => {
             placeholder="Masukkan PH Tanah"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={phTanah}
             onSelect={(value) => {
               console.log(value);
             }}
@@ -70,7 +253,7 @@ const FormAnalisis = (props) => {
             placeholder="Masukkan Tekstur"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={tekstur}
             onSelect={(value) => {
               console.log(value);
             }}
@@ -83,7 +266,7 @@ const FormAnalisis = (props) => {
             placeholder="Masukkan Struktur"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={struktur}
             onSelect={(value) => {
               console.log(value);
             }}
@@ -96,7 +279,7 @@ const FormAnalisis = (props) => {
             placeholder="Masukkan Warna"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={warna}
             onSelect={(value) => {
               console.log(value);
             }}
@@ -109,7 +292,7 @@ const FormAnalisis = (props) => {
             placeholder="Masukkan Kondisi Fisik"
             value={["popular"]}
             hideSelected
-            options={jenisTanah}
+            options={kondisi}
             onSelect={(value) => {
               console.log(value);
             }}

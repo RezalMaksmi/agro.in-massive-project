@@ -13,7 +13,7 @@ const ForumDiskusiRuang = () => {
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2 border border-[#ececec] shadow-md py-3 px-4 rounded-2xl bg-white">
             {/* Buat Ruang */}
-            <h2 className="text-xl font-bold">Ruang Buat Anda</h2>
+            <h2 className="text-xl font-bold">Ruang Anda</h2>
 
             {/* item card */}
             <div className="">

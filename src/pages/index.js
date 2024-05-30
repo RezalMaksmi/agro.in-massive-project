@@ -10,7 +10,7 @@ import Profil from "./user/Profil";
 import Home from "./user/Home";
 import NotFound from "./NotFound";
 import ForumDiskusiDetailPertanyaan from "./user/ForumDiskusiDetailPertanyaan";
-
+import Dashboard from "./admin/Dashboard";
 export {
   LandingPage,
   Home,
@@ -24,4 +24,5 @@ export {
   Profil,
   NotFound,
   ForumDiskusiDetailPertanyaan,
+  Dashboard,
 };

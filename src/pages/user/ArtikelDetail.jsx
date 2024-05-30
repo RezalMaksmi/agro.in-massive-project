@@ -1,7 +1,5 @@
 import React from "react";
 import Artikel1 from "./../../assets/artikel/artikel1.png";
-import Artikel2 from "./../../assets/artikel/artikel2.png";
-import Line from "./../../components/atoms/Line";
 import Artikel3 from "./../../assets/artikel/artikel3.jpg";
 import Artikel4 from "./../../assets/artikel/artikel4.png";
 import Artikel6 from "./../../assets/artikel/artikel6.png";
@@ -13,6 +11,7 @@ import Iklan2 from "./../../assets/artikel/iklan2.png";
 import { Link } from "react-router-dom";
 import { MainArtikel } from "./Artikel";
 import TemplateLogin from "../../template/TemplateLogin";
+import Line from "./../../components/atoms/Line";
 
 const articles = [
   {
@@ -51,28 +50,31 @@ const articles = [
 
 const ChildArtikel = () => {
   return (
-    <div className="mx-10">
+    <div className="flex flex-col items-center sm:items-start sm:mx-8 mt-8 sm:mt-0">
       {articles.map((tes, index) => (
-        <div className="flex flex-row gap-y-2 mb-7" key={index}>
-          <img src={tes.image} alt="" className="w-24 rounded-2xl" />
-          <div className="ms-3 w-40 flex flex-col justify-between">
-            <Link className="text-[12px] font-bold" to={"/"}>
+        <div className="flex flex-row w-full max-w-sm gap-x-4 mb-7" key={index}>
+          <img
+            src={tes.image}
+            alt={tes.title}
+            className="w-24 h-24 object-cover rounded-2xl"
+          />
+          <div className="ml-3 flex flex-col justify-between">
+            <Link className="text-[12px] font-bold hover:text-gray-700" to="/">
               {tes.title}
             </Link>
-            <p className="text-xs font-thin text-[#807D7E]">{tes.date}</p>
+            <p className="text-xs font-thin text-gray-500">{tes.date}</p>
           </div>
         </div>
       ))}
-      <div className="w-full h-max bg-gray-300 rounded-md">
-        <p className="text-[20px] font-light text-[#807D7E] text-center py-3">
+      <div className="w-full h-max bg-gray-300 rounded-md p-3">
+        <p className="text-[20px] font-light text-gray-500 text-center py-3">
           ADVERTISEMENT
         </p>
         <div className="w-full">
-          <img src={Iklan1} alt="" />
-          <img src={Iklan2} alt="" />
+          <img src={Iklan1} alt="Advertisement 1" className="w-full" />
+          <img src={Iklan2} alt="Advertisement 2" className="w-full mt-3" />
         </div>
       </div>
-      `
     </div>
   );
 };
@@ -85,16 +87,21 @@ export const ArtikelDetail = () => {
   };
   const horizStyle = {
     height: "2px",
-    width: "470px",
+    width: "100%",
     border: "1px solid #807D7E",
-    margin: "50px",
+    marginTop: "50px",
   };
+
   return (
     <TemplateLogin>
-      <div className="py-32 min-h-dvh flex flex-wrap">
-        <div className="flex flex-col gap-y-4 ps-32 pe-20 w-[60%] ">
-          <img src={Artikel1} alt="" className="w-full h-72" />
-          <p className="text-[12px] text-[#807D7E]">07 Mei 2024 15:52 WIB</p>
+      <div className="py-32 min-h-screen flex flex-col sm:flex-row justify-center items-start">
+        <div className="flex flex-col gap-y-4 px-4 sm:px-32 w-full sm:w-[60%]">
+          <img
+            src={Artikel1}
+            alt="Artikel 1"
+            className="w-full h-72 object-cover"
+          />
+          <p className="text-[12px] text-gray-500">07 Mei 2024 15:52 WIB</p>
           <p className="text-sm text-justify leading-loose">
             Kementerian Pertanian (Kementan) berencana untuk membangun klaster
             pertanian modern. Klaster pertanian modern tersebut mengacu sistem
@@ -107,7 +114,7 @@ export const ArtikelDetail = () => {
           <p className="text-sm text-justify leading-loose">
             "Saya ingin ada kluster pertanian modern, ini sejajar dengan negara
             maju, nanti kasih pupuk pake drone, lima atau sepuluh hektare di
-            sini," ujar Amran
+            sini," ujar Amran.
           </p>
           <p className="text-sm text-justify leading-loose">
             Amran mengungkapkan yang akan menggarap pertanian tersebut adalah
@@ -118,13 +125,15 @@ export const ArtikelDetail = () => {
             kalau gak menguntungkan," pungkasnya.
           </p>
           <Line style={horizStyle} />
-          <h2 className="text-[48px] font-bold">Berita Lainnya</h2>
-          {/* <img src={Artikel2} alt="" className='w-2/3'/> */}
-          <MainArtikel />
+          <h2 className="text-[32px] sm:text-[48px] font-bold mt-8">
+            Berita Lainnya
+          </h2>
+          <MainArtikel className="mt-4" />
         </div>
-        <Line style={lineStyle} />
+        <div className="hidden sm:block">
+          <Line style={lineStyle} />
+        </div>
         <ChildArtikel />
-        {/* <Line style={horizStyle}/> */}
       </div>
     </TemplateLogin>
   );

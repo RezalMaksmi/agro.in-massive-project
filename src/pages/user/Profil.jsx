@@ -4,34 +4,35 @@ import bgProfile from "../../assets/bg_profile.png";
 import Modal from "../../components/atoms/modal_edit_profile";
 import { ConfirmModalProfile } from "../../components/atoms";
 import TemplateLogin from "../../template/TemplateLogin";
+import { useSelector } from "react-redux";
 
 const Profil = () => {
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    job: "",
-    phone: "",
-    password: "",
-  });
+  // const [userData, setUserData] = useState({
+  //   name: "",
+  //   email: "",
+  //   job: "",
+  //   phone: "",
+  //   password: "",
+  // });
 
   const [showModal, setShowModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = {
-        name: "Mulyadi",
-        email: "mulyadi@example.com",
-        job: "Petani",
-        phone: "+123 456 7890",
-        password: "*********",
-      };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = {
+  //       name: "user",
+  //       email: "mulyadi@example.com",
+  //       job: "Petani",
+  //       phone: "+123 456 7890",
+  //       password: "*********",
+  //     };
 
-      setUserData(data);
-    };
+  //     setUserData(data);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const handleEditProfile = () => {
     setShowModal(true);
@@ -45,36 +46,19 @@ const Profil = () => {
     setShowConfirmModal(false);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
-
-  const handleSaveChanges = async () => {
-    // Implementasi logika untuk menyimpan perubahan ke backend
-    const response = await fetch("https://api.example.com/update-profile", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
-
-    if (response.ok) {
-      // Implementasi logika setelah perubahan berhasil disimpan
-      handleCloseModal();
-      handleCloseConfirmModal();
-    } else {
-      // Implementasi logika jika terjadi kesalahan
-      console.error("Failed to update profile");
-    }
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setUserData({ ...userData, [name]: value });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowConfirmModal(true);
   };
 
+  const userData = localStorage.getItem("dataUser");
+  const userCheck = userData ? JSON.parse(userData) : null;
+  const user = userCheck.auth.user;
   return (
     <TemplateLogin>
       <div
@@ -92,7 +76,7 @@ const Profil = () => {
               <div className="text-center md:text-left">
                 <div className="  border-solid border-l-8 border-primary max-sm:border-hidden">
                   <h1 className=" mx-4 text-2xl text-white font-semibold ">
-                    Halo {userData.name}!
+                    Halo {user ? user.name : "aa"} !
                   </h1>
                 </div>
                 <p className="text-white text-sm">
@@ -108,25 +92,27 @@ const Profil = () => {
                   <label className="block px-4 text-sm font-bold text-[#141414]">
                     Nama:
                   </label>
-                  <p className="text-[#141414] px-4 ">{userData.name}</p>
+                  <p className="text-[#141414] px-4 ">
+                    {user ? user.name : ""}
+                  </p>
                 </div>
                 <div className="mb-2  bg-slate-200 py-2 rounded-full">
                   <label className="block  px-4 text-sm font-bold text-[#141414]">
                     Email:
                   </label>
-                  <p className="text-gray-900 px-4">{userData.email}</p>
+                  <p className="text-gray-900 px-4">{user ? user.email : ""}</p>
                 </div>
                 <div className="mb-2  bg-slate-200 py-2 rounded-full">
                   <label className="block  px-4 text-sm font-bold text-[#141414]">
                     Pekerjaan:
                   </label>
-                  <p className="text-gray-900 px-4">{userData.job}</p>
+                  <p className="text-gray-900 px-4">{user ? user.job : ""}</p>
                 </div>
                 <div className="mb-2  bg-slate-200 py-2 rounded-full">
                   <label className="block  px-4 text-sm font-bold text-[#141414]">
                     No Telepon:
                   </label>
-                  <p className="text-gray-900 px-4">{userData.phone}</p>
+                  <p className="text-gray-900 px-4">{"0888888"}</p>
                 </div>
                 <div className="mb-4  bg-slate-200 py-2 rounded-full">
                   <label className="block  px-4 text-sm font-bold text-[#141414]">
@@ -171,7 +157,7 @@ const Profil = () => {
                 name="name"
                 className="mt-1 p-2 rounded-full bg-slate-200 w-full"
                 value={userData.name}
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div className="mb-4">
@@ -183,7 +169,7 @@ const Profil = () => {
                 name="email"
                 className="mt-1 p-2 rounded-full bg-slate-200 w-full"
                 value={userData.email}
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div className="mb-4">
@@ -195,7 +181,7 @@ const Profil = () => {
                 name="phone"
                 className="mt-1 p-2 rounded-full bg-slate-200 w-full"
                 value={userData.phone}
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div className="mb-4">
@@ -207,7 +193,7 @@ const Profil = () => {
                 name="newPassword"
                 className="mt-1 p-2 rounded-full bg-slate-200 w-full"
                 value={userData.newPassword || ""}
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div className="mb-4">
@@ -219,7 +205,7 @@ const Profil = () => {
                 name="confirmNewPassword"
                 className="mt-1 p-2 rounded-full bg-slate-200 w-full"
                 value={userData.confirmNewPassword || ""}
-                onChange={handleInputChange}
+                onChange={""}
               />
             </div>
             <div className="flex justify-end">
@@ -235,7 +221,7 @@ const Profil = () => {
         <ConfirmModalProfile
           showModal={showConfirmModal}
           onClose={handleCloseConfirmModal}
-          onConfirm={handleSaveChanges}
+          onConfirm={""}
         />
       </div>
     </TemplateLogin>

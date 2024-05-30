@@ -87,8 +87,6 @@ const TimKami = ({ className }) => {
                 spaceBetween: 0,
               },
             }}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
             className="mySwiper mx-auto"
           >
             {dataProfile.map((item, i) => {

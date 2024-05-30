@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoText from "../../assets/logo/logo-txt-hijau.png";
 import Button from "../atoms/Button";
-
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hover, setHover] = useState("");
   const [openProfil, setOpenProfil] = useState(false);
+  const dispatch = useDispatch();
+
   const { pathname } = location;
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -39,19 +42,26 @@ const Navbar = () => {
     setHover(value);
   };
 
-  const getUserDataFromLocalStorage = () => {
-    const user = localStorage.getItem("userData");
-    return user ? JSON.parse(user) : {};
-  };
-  const { token, role } = getUserDataFromLocalStorage();
-
   const handleLogout = () => {
-    localStorage.removeItem("userData");
-    navigate("/");
-    window.location.reload(false);
+    dispatch(logout());
   };
+  // const getUserDataFromLocalStorage = () => {
+  //   const user = localStorage.getItem("token");
+  //   return user ? JSON.parse(user) : {};
+  // };
 
-  return role && token ? (
+  // const { token } = getUserDataFromLocalStorage();
+  const { token } = useSelector((state) => state.auth);
+  console.log(token);
+  // const tokenData = localStorage.getItem("token");
+  // const token = tokenData ? JSON.parse(tokenData) : null;
+
+  const userData = localStorage.getItem("dataUser");
+  const userCheck = userData ? JSON.parse(userData) : null;
+  const user = userCheck ? userCheck.auth.user : "";
+
+  console.log("user", token);
+  return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
         <div className="-mr-2 flex md:hidden z-10">
@@ -162,7 +172,9 @@ const Navbar = () => {
               <BsFillCaretUpFill className="text-dark_20 md:flex hidden" />
             )}
             <img
-              src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
+              src={`http://localhost:4000/assets/images/${
+                user ? user.profile_image : ""
+              }`}
               alt=""
               className="md:w-8 md:h-8 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
@@ -173,7 +185,7 @@ const Navbar = () => {
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
             }  bg-white rounded-[24px] absolute shadow-lg right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
-            <span className="p-2 font-semibold">Mulyadi</span>
+            <span className="p-2 font-semibold">{user ? user.name : ""}</span>
             <Link
               to={"/profil"}
               className="hover:bg-netral_20 px-2 rounded-md py-2"
