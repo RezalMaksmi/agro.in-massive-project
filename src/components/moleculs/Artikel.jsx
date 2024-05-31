@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { getArtikel } from "../../redux/get/getData";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { getAPIAct } from "../../redux/featch/getData";
+import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../../api/axiosInstance";
 
 const Artikel = ({ className, TextColor }) => {
-  const [error, setError] = useState(false);
-  const [loader, setLoader] = useState(true);
-  const [article, setArticle] = useState();
+  // const [error, setError] = useState(false);
+  // const [loader, setLoader] = useState(true);
+  // const [article, setArticle] = useState();
+  const dispatch = useDispatch();
+  const { data, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const article = await axiosInstance.get(
-          `http://localhost:4000/artikel`
-        );
-        setArticle(article.data.data);
-      } catch (error) {
-        setError(true);
-      }
-      setLoader(false);
-    };
-
-    loadData();
+    dispatch(getAPIAct(`http://localhost:4000/artikel`));
   }, []);
 
-  if (error) return <>eror</>;
-  if (loader) return <>Loading...</>;
+  console.log("apa isinya?", data);
+
+  // if (error) return <>eror</>;
+  // if (loader) return <>Loading...</>;
 
   return (
     <div
@@ -39,8 +30,8 @@ const Artikel = ({ className, TextColor }) => {
           <span>Kumpulan berita terbaru di sekitar Pertanian</span>
         </div>
         <div className="grid md:grid-cols-3 md:gap-6 gap-4 w-auto mx-auto ">
-          {article ? (
-            article.map((item, i) => {
+          {data ? (
+            data.map((item, i) => {
               return (
                 <div
                   key={i + 1}

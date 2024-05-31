@@ -6,7 +6,6 @@ import bgHero from "../../assets/bg-hero.jpg";
 
 import { Artikel, Fitur, Info, TimKami } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
-
 const LandingPage = () => {
   return (
     <TemplateLogin>

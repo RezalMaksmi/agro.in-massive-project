@@ -6,7 +6,6 @@ import { Artikel, Fitur, HargaGrub } from "../../components/moleculs";
 import Button from "../../components/atoms/Button";
 import TemplateLogin from "../../template/TemplateLogin";
 import { useSelector } from "react-redux";
-
 const HomeLogin = () => {
   const { user } = useSelector((state) => state.auth);
   console.log("usernya", user);

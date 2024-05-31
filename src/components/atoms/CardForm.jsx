@@ -16,10 +16,15 @@ const CardForm = (props) => {
       <div className="flex flex-col items-start w-full gap-y-2 mt-4">
         {props.children}
         <div className="mt-4 flex flex-col md:flex-row md:gap-x-4 w-full justify-between">
-          <div className="flex items-center w-full md:w-auto">
-            <input type="checkbox" className="mr-2" />
+          <label className="flex items-center w-full md:w-auto">
+            <input
+              type="checkbox"
+              className="mr-2"
+              onChange={props.handleCheckboxChange}
+              checked={props.check}
+            />
             <p className="text-sm text-dark_30">Remember Me</p>
-          </div>
+          </label>
           <Button
             type="PrimaryButton"
             text={props.text}

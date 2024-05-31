@@ -6,25 +6,37 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BiLoaderAlt } from "react-icons/bi";
 const Login = () => {
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [check, setCheck] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, status, error, token } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    if (check === true) {
+      dispatch(login({ email, password }));
+      if (status === "succeeded" && user) {
+        navigate("/");
+      }
+    } else {
+      console.log("checked dulu bos");
+    }
   };
 
   useEffect(() => {
-    if (status === "succeeded" && user) {
+    if (token) {
       navigate("/");
     }
-  }, [status]);
-
+  });
+  const handleCheckboxChange = (event) => {
+    setCheck(event.target.checked);
+  };
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
@@ -41,8 +53,20 @@ const Login = () => {
         account="Belum punya akun?"
         direct="Daftar disini"
         opsi="Masuk"
+        handleCheckboxChange={handleCheckboxChange}
+        check={check}
         className="h-auto w-full max-w-sm mx-4 p-4 sm:p-6 md:p-7 mt-20 bg-white md:rounded-3xl shadow-md"
-        text="Masuk"
+        text={
+          status === "loading" ? (
+            <>
+              <div className="animate-spin">
+                <BiLoaderAlt />
+              </div>
+            </>
+          ) : (
+            "Masuk"
+          )
+        }
         onClick={handleSubmit}
         to={"/register"}
         title={
@@ -70,7 +94,6 @@ const Login = () => {
           Password
         </InputLabel>
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-        {status === "loading" && <p>Loading...</p>}
       </Card>
     </div>
   );
