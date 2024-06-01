@@ -60,7 +60,7 @@ const Navbar = () => {
   const userCheck = userData ? JSON.parse(userData) : null;
   const user = userCheck ? userCheck.auth.user : "";
 
-  console.log("user", token);
+  // console.log("user", user.name);
   return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">

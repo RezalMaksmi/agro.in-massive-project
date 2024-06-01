@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import bgHero from "./../../assets/bgHeroLogin.png";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import Card from "./../../components/atoms/CardForm";
 import InputLabel from "./../../components/atoms/InputLabel";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/slices/authSlice";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,35 +16,51 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [check, setCheck] = useState(false);
-  // const goToLandingPage = () => {
-  //   navigate("/");
-  // };
 
   const addData = { name: name, email: email, password: password };
-  // console.log(addData);
+  const { user, status, error, message } = useSelector((state) => state.auth);
 
-  const { user, status, error, token } = useSelector((state) => state.auth);
+  const validateEmail = (email) => {
+    return email.includes("@");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      toast.error("data tidak boleh kosong!", {
+        position: "bottom-right",
+      });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error("Email tidak valid! Harus mengandung simbol @.", {
+        position: "bottom-right",
+      });
+      return;
+    }
+
     if (check === true) {
-      dispatch(register(addData));
-      navigate("/login");
+      dispatch(register(addData))
+        .unwrap()
+        .then((response) => {
+          if (response.status !== 500) {
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          return error;
+        });
     } else {
       console.log("checked dulu bos");
     }
   };
 
-  // useEffect(() => {
-  //   if (status === "succeeded") {
-  //     navigate("/login");
-  //   }
-  // });
   const handleCheckboxChange = (event) => {
     setCheck(event.target.checked);
   };
 
-  console.log(user);
-  console.log(addData);
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
@@ -57,6 +74,7 @@ const Register = () => {
         Kembali
       </button>
       <Card
+        variant="register"
         account="Sudah punya akun?"
         direct="Masuk disini"
         opsi="Daftar"

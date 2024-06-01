@@ -17,6 +17,7 @@ import {
   Profil,
   ForumDiskusiDetailPostingan,
   ForumDiskusiDetailPertanyaan,
+  NotFound,
 } from "./pages";
 import { Provider, useSelector } from "react-redux";
 import About from "./pages/user/About";
@@ -33,40 +34,56 @@ const Router = () => {
     const user = localStorage.getItem("userData");
     return user ? JSON.parse(user) : {};
   };
-  const { token, role } = getUserDataFromLocalStorage();
+  // const { token, role } = getUserDataFromLocalStorage();
+  const { user, token } = useSelector((state) => state.auth);
+
   return (
     <>
       <ToastContainer />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/profil" element={<Profil />} />
-          <Route exact path="/harga-pangan" element={<HargaPangan />} />
-          <Route exact path="/analisis" element={<Analisis />} />
-          <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
-          <Route exact path="/diskusi" element={<ForumDiskusi />} />
-          <Route exact path="/diskusi/cari" element={<ForumDiskusiCari />} />
-          <Route
-            exact
-            path="/diskusi/detail/postingan"
-            element={<ForumDiskusiDetailPostingan />}
-          />
-          <Route
-            exact
-            path="/diskusi/detail/pertanyaan"
-            element={<ForumDiskusiDetailPertanyaan />}
-          />
-          <Route
-            exact
-            path="/diskusi/jelajah-ruang"
-            element={<ForumDiskusiJelajahRuang />}
-          />
-          <Route exact path="/diskusi/ruang" element={<ForumDiskusiRuang />} />
-          <Route
-            exact
-            path="/diskusi/detail/ruang"
-            element={<ForumDiskusiDetailRuang />}
-          />
+          {user && token ? (
+            <>
+              <Route exact path="/about" element={<About />} />
+              <Route exact path="/profil" element={<Profil />} />
+              <Route exact path="/harga-pangan" element={<HargaPangan />} />
+              <Route exact path="/analisis" element={<Analisis />} />
+              <Route exact path="/hasil-analisis" element={<HasilAnalisis />} />
+              <Route exact path="/diskusi" element={<ForumDiskusi />} />
+              <Route
+                exact
+                path="/diskusi/cari"
+                element={<ForumDiskusiCari />}
+              />
+              <Route
+                exact
+                path="/diskusi/detail/postingan"
+                element={<ForumDiskusiDetailPostingan />}
+              />
+              <Route
+                exact
+                path="/diskusi/detail/pertanyaan"
+                element={<ForumDiskusiDetailPertanyaan />}
+              />
+              <Route
+                exact
+                path="/diskusi/jelajah-ruang"
+                element={<ForumDiskusiJelajahRuang />}
+              />
+              <Route
+                exact
+                path="/diskusi/ruang"
+                element={<ForumDiskusiRuang />}
+              />
+              <Route
+                exact
+                path="/diskusi/detail/ruang"
+                element={<ForumDiskusiDetailRuang />}
+              />
+            </>
+          ) : (
+            <Route exact path="*" element={<NotFound />} />
+          )}
 
           <Route exact path="/" element={<Home />} />
           <Route exact path="/artikel" element={<Artikel />} />

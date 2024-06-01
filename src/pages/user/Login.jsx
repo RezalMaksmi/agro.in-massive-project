@@ -12,31 +12,43 @@ import { BiLoaderAlt } from "react-icons/bi";
 const Login = () => {
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [check, setCheck] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, status, error, token } = useSelector((state) => state.auth);
 
+  const validateEmail = (email) => {
+    return email.includes("@");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (check === true) {
-      dispatch(login({ email, password }));
-      if (status === "succeeded" && user) {
-        navigate("/");
-      }
-    } else {
-      console.log("checked dulu bos");
+
+    if (!email || !password) {
+      toast.error("Email dan password tidak boleh kosong!", {
+        position: "bottom-right",
+      });
+      return;
     }
+
+    if (!validateEmail(email)) {
+      toast.error("Email tidak valid! Harus mengandung simbol @.", {
+        position: "bottom-right",
+      });
+      return;
+    }
+
+    dispatch(login({ email, password }));
   };
 
   useEffect(() => {
-    if (token) {
+    if (user && token) {
+      toast.success("Berhasil Masuk!", {
+        position: "bottom-right",
+      });
       navigate("/");
     }
-  });
-  const handleCheckboxChange = (event) => {
-    setCheck(event.target.checked);
-  };
+  }, [user, token, status]);
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
@@ -53,8 +65,6 @@ const Login = () => {
         account="Belum punya akun?"
         direct="Daftar disini"
         opsi="Masuk"
-        handleCheckboxChange={handleCheckboxChange}
-        check={check}
         className="h-auto w-full max-w-sm mx-4 p-4 sm:p-6 md:p-7 mt-20 bg-white md:rounded-3xl shadow-md"
         text={
           status === "loading" ? (
