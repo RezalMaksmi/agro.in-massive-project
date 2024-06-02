@@ -87,7 +87,8 @@ const Router = () => {
 
           <Route exact path="/" element={<Home />} />
           <Route exact path="/artikel" element={<Artikel />} />
-          <Route exact path="/artikeldetail" element={<ArtikelDetail />} />
+          <Route exact path="/*" element={<NotFound />} />
+          <Route exact path="/artikel/:slug" element={<ArtikelDetail />} />
           <Route exact path="/contact_us" element={<ContactUs />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />

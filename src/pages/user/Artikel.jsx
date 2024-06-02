@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Artikel1 from "./../../assets/artikel/artikel1.png";
 import Artikel2 from "./../../assets/artikel/artikel2.png";
 import Artikel3 from "./../../assets/artikel/artikel3.jpg";
@@ -10,6 +10,8 @@ import Artikel9 from "./../../assets/artikel/artikel9.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/atoms/SearchBar";
 import TemplateLogin from "../../template/TemplateLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPIAct, getAPIActDetail } from "../../redux/featch/getData";
 
 const DataArtikel = [
   {
@@ -68,53 +70,91 @@ const Line = (props) => {
 };
 
 export const MainArtikel = (props) => {
+  const dispatch = useDispatch();
+  const { data, status, error } = useSelector((state) => state.get);
+
+  useEffect(() => {
+    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+  }, []);
+
   return (
     <div className="grid gap-y-8 mx-auto sm:mx-0">
-      {DataArtikel.map((news, index) => (
-        <div className={`flex flex-col ${props.className} gap-y-2`} key={index}>
-          <img
-            src={news.image}
-            alt={news.title}
-            className="w-full sm:w-[470px]"
-          />
-          <p className="text-[12px] text-gray-500">{news.timestamps}</p>
-          <Link
-            to="/artikeldetail"
-            className="text-[24px] sm:text-[32px] font-semibold w-full sm:w-[430px] hover:text-gray-700"
-          >
-            {news.title}
-          </Link>
-          <p className="w-full sm:w-[430px] text-sm">{news.description}</p>
-          <Line />
-        </div>
-      ))}
+      {data ? (
+        data.map((news, i) => (
+          <div className={`flex flex-col ${props.className} gap-y-2`} key={i}>
+            <img
+              src={`http://localhost:4000/assets/images/${news.featured_image}`}
+              alt={news.title}
+              className="w-full sm:w-[470px] rounded-lg"
+            />
+            <p className="text-[12px] text-gray-500">{news.created}</p>
+            <Link
+              to={`/artikel/${news.slug}`}
+              className="text-[24px] sm:text-[32px] font-semibold w-full sm:w-[430px] hover:text-gray-700"
+            >
+              {news.title}
+            </Link>
+            <p className="w-full sm:w-[430px] text-sm">{news.summary}</p>
+            <Line />
+          </div>
+        ))
+      ) : (
+        <>Loading...</>
+      )}
     </div>
   );
 };
 
 const ChildArtikel = () => {
+  const dispatch = useDispatch();
+  const { data, status, error } = useSelector((state) => state.get);
+
+  useEffect(() => {
+    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+  }, []);
+
   return (
     <div className="flex flex-col items-center sm:items-start sm:mx-8">
-      {SampingArtikel.map((tes, index) => (
-        <div className="flex flex-row w-full max-w-sm gap-x-4 mb-7" key={index}>
-          <img
-            src={tes.image}
-            alt={tes.judulArtikel}
-            className="w-24 h-24 object-cover rounded-2xl"
-          />
-          <div className="ml-3 flex flex-col justify-between">
-            <Link className="text-[12px] font-bold hover:text-gray-700" to="/">
-              {tes.judulArtikel}
-            </Link>
-            <p className="text-xs font-thin text-gray-500">{tes.timestamps}</p>
-          </div>
-        </div>
-      ))}
+      {data ? (
+        data.map((news, i) => (
+          <Link
+            to={`/artikel/${news.slug}`}
+            className="flex flex-row w-full max-w-sm gap-x-4 mb-7"
+            key={i}
+          >
+            <img
+              src={`http://localhost:4000/assets/images/${news.featured_image}`}
+              alt={news.title}
+              className="w-24 h-24 object-cover rounded-2xl"
+            />
+            <div className="ml-3 flex flex-col justify-between">
+              <div className="text-[12px] font-bold hover:text-gray-700">
+                {news.title}
+              </div>
+              <p className="  text-[9px]">{news.summary}</p>
+              <p className="text-xs font-thin text-gray-500">{news.created}</p>
+            </div>
+          </Link>
+        ))
+      ) : (
+        <>Loading...</>
+      )}
     </div>
   );
 };
 
 const Artikel = (props) => {
+  const [search, setSearch] = useState("");
+  console.log(search);
+  const dispatch = useDispatch();
+  const { data, status, error } = useSelector((state) => state.get);
+
+  useEffect(() => {
+    const formattedSlug = search.replace(/\s+/g, "-");
+    dispatch(
+      getAPIAct(`http://localhost:4000/artikel/search?q=${formattedSlug}`)
+    );
+  }, [search]);
   return (
     <TemplateLogin>
       <div className="bg-white bg-gradient-to-b from-[rgba(40, 70, 65, 0.2)] to-white">
@@ -125,12 +165,47 @@ const Artikel = (props) => {
           <p className="text-[16px] mt-4">
             Menyajikan Wawasan Terbaru dalam Dunia Pertanian
           </p>
-          <SearchBar />
+          <SearchBar onChange={(e) => setSearch(e.target.value)} />
         </div>
-        <div className="flex flex-col sm:flex-row pt-20 sm:pt-48 pb-16 justify-center items-center sm:items-start">
-          <MainArtikel className="mx-4 sm:mx-32" />
-          <div className="hidden sm:block border-l border-gray-400 h-full mx-8"></div>
-          <ChildArtikel />
+        <div className="container px-3 mx-auto flex flex-col sm:flex-row pt-20 sm:pt-48 pb-16 justify-center items-center sm:items-start">
+          {!search ? (
+            <>
+              <MainArtikel className="mx-4 sm:mx-32" />
+              <div className="hidden sm:block border-l border-gray-400 h-full mx-8"></div>
+              <ChildArtikel />
+            </>
+          ) : (
+            <div className="grid gap-3 grid-cols-3">
+              {data ? (
+                data.map((news, i) => (
+                  <div
+                    className={`flex flex-col ${props.className} gap-y-2 rounded-lg bg-white shadow-xl`}
+                    key={i}
+                  >
+                    <div className="flex flex-col p-3 gap-1">
+                      <img
+                        src={`http://localhost:4000/assets/images/${news.featured_image}`}
+                        alt={news.title}
+                        className="w-full h-[250px] rounded-lg object-cover"
+                      />
+                      <p className="text-[12px] text-gray-500 ">
+                        {news.created}
+                      </p>
+                      <Link
+                        to={`/artikel/${news.slug}`}
+                        className="text-[24px]  sm:text-[20px] font-semibold   hover:text-gray-700"
+                      >
+                        {news.title}
+                      </Link>
+                      <p className="w-full  pb-5  text-sm">{news.summary}</p>{" "}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <>Loading...</>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </TemplateLogin>
