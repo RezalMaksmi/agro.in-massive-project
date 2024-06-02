@@ -18,33 +18,20 @@ export const login = createAsyncThunk(
 
       const newToken = `${response.data.token}`;
       Cookies.set("token", newToken, { expires: 1 });
-      toast.success("Login berhasil!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
       const data = response.data;
+      localStorage.setItem("user", JSON.stringify(data.data));
       return data;
     } catch (error) {
-      toast.error("Email/password salah!", {
+      toast.error(`${error.response.data.message}`, {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
       });
-      return error.response.data;
+      return error.response;
     }
   }
 );
 
 // Async thunk untuk register
+
 export const register = createAsyncThunk(
   "auth/register",
   async ({ name, email, password }) => {
@@ -54,47 +41,44 @@ export const register = createAsyncThunk(
         email,
         password,
       });
-
       toast.success("register berhasil!", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
       });
       const data = response.data;
-      console.log(response);
+      console.log("apa responnya", response.data);
+
       return data;
     } catch (error) {
-      return error.response.data;
+      toast.error(`${error.response.data.message}`, {
+        position: "bottom-right",
+      });
+      return error.response;
     }
   }
 );
 
+const localData = JSON.stringify(localStorage.getItem("user"));
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: localStorage.getItem("dataUser") || null,
+    user: JSON.parse(localStorage.getItem("user") || null),
+    // user: null,
     token: Cookies.get("token") || null,
     status: "idle",
+    message: null,
     error: null,
   },
   reducers: {
     logout: (state) => {
       state.user = null;
       state.token = null;
+      state.error = null;
+      state.status = null;
       Cookies.remove("token");
       localStorage.removeItem("dataUser");
+      localStorage.removeItem("user");
       toast.info("Logged out successfully!", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
       });
     },
   },
@@ -107,42 +91,26 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.user = action.payload.data;
+        state.message = action.payload.data;
         state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
-        toast.error("Error !", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        state.error = action.payload.data.message;
       })
 
+      // Register
       .addCase(register.pending, (state) => {
         state.status = "loading";
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = action.payload.status;
         state.user = action.payload.data;
-        state.token = action.payload.token;
       })
       .addCase(register.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
-        toast.error("Error !", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        state.error = action.payload.data.message;
+        console.log("apa erornya", action.error);
       });
   },
 });

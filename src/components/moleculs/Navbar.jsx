@@ -60,7 +60,8 @@ const Navbar = () => {
   const userCheck = userData ? JSON.parse(userData) : null;
   const user = userCheck ? userCheck.auth.user : "";
 
-  console.log("user", token);
+  // console.log("user", user.name);
+  const firstLetter = user ? user.name.split(" ")[0] : "";
   return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
@@ -172,9 +173,12 @@ const Navbar = () => {
               <BsFillCaretUpFill className="text-dark_20 md:flex hidden" />
             )}
             <img
-              src={`http://localhost:4000/assets/images/${
-                user ? user.profile_image : ""
-              }`}
+              src={`
+               ${
+                 user
+                   ? `http://localhost:4000/assets/images/${user.profile_image}`
+                   : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
+               }`}
               alt=""
               className="md:w-8 md:h-8 w-10 h-10 m-1 rounded-full overflow-hidden bg-slate-700 object-cover"
             />
@@ -185,7 +189,7 @@ const Navbar = () => {
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
             }  bg-white rounded-[24px] absolute shadow-lg right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
-            <span className="p-2 font-semibold">{user ? user.name : ""}</span>
+            <span className="p-2 font-semibold">{firstLetter}</span>
             <Link
               to={"/profil"}
               className="hover:bg-netral_20 px-2 rounded-md py-2"

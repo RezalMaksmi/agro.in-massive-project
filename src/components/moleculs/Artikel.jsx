@@ -31,7 +31,7 @@ const Artikel = ({ className, TextColor }) => {
         </div>
         <div className="grid md:grid-cols-3 md:gap-6 gap-4 w-auto mx-auto ">
           {data ? (
-            data.map((item, i) => {
+            data.slice(0, 3).map((item, i) => {
               return (
                 <div
                   key={i + 1}
@@ -50,9 +50,7 @@ const Artikel = ({ className, TextColor }) => {
                         {item.title}
                       </h1>
                       <span className="md:text-base text-xs ">
-                        Pemerintah Aceh melalui Dinas Pertanian dan Perkebunan
-                        Aceh kembali menggelar pasar tani pada tahun ini.
-                        Ratusan...
+                        {item.summary}
                       </span>
                       <a
                         href=""
