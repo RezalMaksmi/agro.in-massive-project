@@ -61,7 +61,7 @@ const HargaGrub = () => {
         {hargaPangan.map((items, i) => {
           return (
             <CardHargaPangan
-              Key={i + 1}
+              Key={i}
               Title={items.nama}
               Img={items.img}
               Price={items.price}

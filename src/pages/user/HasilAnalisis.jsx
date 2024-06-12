@@ -9,7 +9,7 @@ const HasilAnalisis = () => {
       <div>
         <div
           id="home"
-          className="h-[100vh] bg-blue-300 bg-cover  "
+          className="h-[100vh]  bg-cover  "
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">

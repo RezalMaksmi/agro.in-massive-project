@@ -44,6 +44,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
   // const getUserDataFromLocalStorage = () => {
   //   const user = localStorage.getItem("token");
@@ -52,16 +53,12 @@ const Navbar = () => {
 
   // const { token } = getUserDataFromLocalStorage();
   const { token } = useSelector((state) => state.auth);
-  console.log(token);
-  // const tokenData = localStorage.getItem("token");
-  // const token = tokenData ? JSON.parse(tokenData) : null;
 
-  const userData = localStorage.getItem("dataUser");
+  const userData = localStorage.getItem("user");
   const userCheck = userData ? JSON.parse(userData) : null;
-  const user = userCheck ? userCheck.auth.user : "";
+  const user = userCheck ? userCheck : "";
 
-  // console.log("user", user.name);
-  const firstLetter = user ? user.name.split(" ")[0] : "";
+  const firstLetter = user ? user.username.split(" ")[0] : "";
   return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] shadow-lg relative rounded-full flex justify-between px-6 items-center">
@@ -175,8 +172,8 @@ const Navbar = () => {
             <img
               src={`
                ${
-                 user
-                   ? `http://localhost:4000/assets/images/${user.profile_image}`
+                 user.img != null
+                   ? `http://localhost:4000/assets/images/${user.img}`
                    : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                }`}
               alt=""
@@ -189,7 +186,10 @@ const Navbar = () => {
               openProfil ? "h-[170px] w-[200px]" : "h-0 w-0 right-3 top-1"
             }  bg-white rounded-[24px] absolute shadow-lg right-0 top-0 transform transition-all duration-300 overflow-hidden flex flex-col px-2 py-2 justify-start`}
           >
-            <span className="p-2 font-semibold">{firstLetter}</span>
+            <span className="p-2 font-semibold">
+              {firstLetter ? firstLetter : ""}
+              {/* {user ? user.name : ""} */}
+            </span>
             <Link
               to={"/profil"}
               className="hover:bg-netral_20 px-2 rounded-md py-2"

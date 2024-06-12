@@ -5,16 +5,19 @@ import bgHero from "../../assets/bg-hero.jpg";
 import { Artikel, Fitur, HargaGrub } from "../../components/moleculs";
 import Button from "../../components/atoms/Button";
 import TemplateLogin from "../../template/TemplateLogin";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 const HomeLogin = () => {
   const { user } = useSelector((state) => state.auth);
   console.log("usernya", user);
+  const dispatch = useDispatch();
+
   return (
     <TemplateLogin>
       <div className=" ">
         <div
           id="home"
-          className="h-[120vh] bg-blue-300 bg-cover  "
+          className="h-[120vh]  bg-cover  "
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">

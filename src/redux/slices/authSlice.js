@@ -34,10 +34,10 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "auth/register",
-  async ({ name, email, password }) => {
+  async ({ username, email, password }) => {
     try {
       const response = await axios.post(`http://localhost:4000/auth/register`, {
-        name,
+        username,
         email,
         password,
       });
@@ -49,7 +49,10 @@ export const register = createAsyncThunk(
 
       return data;
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
+      // toast.error(`${error.response.data.message}`, {
+      //   position: "bottom-right",
+      // });
+      toast.error(`Email sudah terdaftar!`, {
         position: "bottom-right",
       });
       return error.response;

@@ -1,33 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import Searchable from "react-searchable-dropdown";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
-const jenisTanah = [
-  {
-    value: "blitar",
-    label: "blitar",
-  },
-  {
-    value: "magelang",
-    label: "magelang",
-  },
-  {
-    value: "surabaya",
-    label: "surabaya",
-  },
-  {
-    value: "bali",
-    label: "bali",
-  },
-  {
-    value: "malang",
-    label: "malang",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { postSpaceAPIAct } from "../../redux/featch/Spaces";
+
 const FormTambahRuang = (props) => {
   const { onClick } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  //localhost:4000/spaces
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!title || !description) {
+      toast.error("Data tidak boleh kosong!", {
+        position: "bottom-right",
+      });
+      return;
+    }
+    dispatch(postSpaceAPIAct({ title, description }));
+
+    navigate("/diskusi/ruang");
+  };
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 h-100% bg-[#1414149c] flex justify-center items-center z-50 ">
       <div className="px-10 py-8 rounded-3xl bg-white relative max-w-[700px] w-full flex flex-col gap-5 ">
@@ -50,6 +49,7 @@ const FormTambahRuang = (props) => {
             type="text"
             placeholder="Nama Ruang"
             className="border-2 border-dark_10 px-3 py-3 rounded-lg"
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
@@ -63,13 +63,15 @@ const FormTambahRuang = (props) => {
             type="text"
             placeholder="Nama Ruang"
             className="border-2 border-dark_10 px-3 py-3 rounded-lg"
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="text-end">
           <Button
-            onClick={() => navigate("")}
+            // onClick={() => navigate("")}
             type="PrimaryButton"
             text="Buat"
+            onClick={handleSubmit}
           />
         </div>
       </div>

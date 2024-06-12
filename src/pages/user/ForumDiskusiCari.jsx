@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import { Button, CardDiskusi } from "../../components/atoms";
 import TemplateLogin from "../../template/TemplateLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { searchPostsAPIAct } from "../../redux/featch/Posts";
+import { Link } from "react-router-dom";
 
 const ForumDiskusiCari = () => {
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const { searching } = useSelector((state) => state.posts);
+
+  console.log(search);
+  const handleSearch = () => {
+    dispatch(searchPostsAPIAct(`posts/search?q=${search}`));
+  };
+
+  console.log("apa ini su ================", searching);
+  useEffect(() => {
+    dispatch(searchPostsAPIAct(`posts/search?q=""`));
+    setSearch("");
+  }, []);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -16,32 +33,59 @@ const ForumDiskusiCari = () => {
                 <input
                   type="text"
                   placeholder="Ketik Pertanyaan..."
+                  onChange={(e) => setSearch(e.target.value)}
                   className="py-2 px-3 border-2 border-dark_20 w-full rounded-full"
                 />
-                <Button type="PrimaryButton" text="Cari" />
+                <Button
+                  type="PrimaryButton"
+                  text="Cari"
+                  onClick={handleSearch}
+                />
               </div>
-              <span className="md:text-xl text-base">
-                Hasil dari pencarian "irigasi"
-              </span>
+              {search ? (
+                <span className="md:text-xl text-base">
+                  Hasil dari pencarian "{search}"
+                </span>
+              ) : (
+                <span></span>
+              )}
             </div>
 
             {/* item card */}
             <div className="">
-              <CardDiskusi
-                type="pencarian"
-                imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
-                title="Apa Itu Jagung?"
-                description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-                follow={"true"}
-              />
+              {searching ? (
+                searching.map((item, i) => {
+                  return (
+                    <Link
+                      to={`/diskusi/detail/${item.type}/${item.id}`}
+                      key={i}
+                    >
+                      <CardDiskusi
+                        type="pencarian"
+                        imgProfil={`
+                      ${
+                        item.author_img
+                          ? `http://localhost:4000/assets/images/${item.author_img}`
+                          : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
+                      }`}
+                        // title="Apa Itu Jagung?"
+                        description={item.title}
+                        follow={"true"}
+                      />
+                    </Link>
+                  );
+                })
+              ) : (
+                <></>
+              )}
 
-              <CardDiskusi
+              {/* <CardDiskusi
                 type="pencarian"
                 imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
                 title="Shomat"
                 description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
                 follow={"true"}
-              />
+              /> */}
             </div>
           </div>
         </div>

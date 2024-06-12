@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import bgLogo from "../assets/logo/bg-logo.svg";
 
@@ -6,11 +6,17 @@ import { Link } from "react-router-dom";
 import { BiChat, BiHomeAlt, BiSearchAlt } from "react-icons/bi";
 import logo from "../assets/logo/Logo1_white.svg";
 import { TbMessageSearch } from "react-icons/tb";
-import { FormAnalisis, FormTambahRuang } from "../components/moleculs";
+import { FormTambahRuang } from "../components/moleculs";
+import { useSelector } from "react-redux";
 
 const ForumDiskusiTemplate = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
   console.log(openModal);
+
+  const { data } = useSelector((state) => state.spaces);
+  useEffect(() => {
+    setOpenModal(false);
+  }, [location.pathname, data]);
   return (
     <div>
       <div

@@ -85,7 +85,7 @@ export const MainArtikel = (props) => {
             <img
               src={`http://localhost:4000/assets/images/${news.featured_image}`}
               alt={news.title}
-              className="w-full sm:w-[470px] rounded-lg"
+              className="w-full sm:max-w-[580px] sm:w-full rounded-lg"
             />
             <p className="text-[12px] text-gray-500">{news.created}</p>
             <Link
@@ -114,7 +114,7 @@ const ChildArtikel = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center sm:items-start sm:mx-8">
+    <div className="flex flex-col items-center sm:items-start sm:mx-8 border-l-0 sm:border-l-2 border-dark_10 px-4 h-max">
       {data ? (
         data.map((news, i) => (
           <Link
@@ -158,7 +158,7 @@ const Artikel = (props) => {
   return (
     <TemplateLogin>
       <div className="bg-white bg-gradient-to-b from-[rgba(40, 70, 65, 0.2)] to-white">
-        <div className="pt-20 sm:pt-48 text-center mt-7">
+        <div className="pt-20 sm:pt-32 text-center mt-7">
           <p className="text-[32px] sm:text-[64px] text-[#1A3D37] font-bold">
             Majalah <span className="text-[#FAB737]">Agro.in</span>
           </p>
@@ -167,13 +167,12 @@ const Artikel = (props) => {
           </p>
           <SearchBar onChange={(e) => setSearch(e.target.value)} />
         </div>
-        <div className="container px-3 mx-auto flex flex-col sm:flex-row pt-20 sm:pt-48 pb-16 justify-center items-center sm:items-start">
+        <div className="container px-3 mx-auto flex flex-col sm:flex-row pt-20 sm:pt-32 pb-16 justify-center items-center sm:items-start">
           {!search ? (
-            <>
-              <MainArtikel className="mx-4 sm:mx-32" />
-              <div className="hidden sm:block border-l border-gray-400 h-full mx-8"></div>
+            <div className="h-full flex flex-col gap-10 sm:flex-row  w-auto">
+              <MainArtikel className="mx-4 " />
               <ChildArtikel />
-            </>
+            </div>
           ) : (
             <div className="grid gap-3 grid-cols-3">
               {data ? (

@@ -4,7 +4,7 @@ import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
 
 const PopUp = (props) => {
-  const { onClick, type } = props;
+  const { onClick, type, submit, cancel } = props;
   const navigate = useNavigate();
   switch (type) {
     case "berhentiIkuti":
@@ -13,7 +13,7 @@ const PopUp = (props) => {
           <div className="px-10 py-8 rounded-3xl bg-white relative max-w-[700px] w-full flex flex-col gap-5 ">
             <button
               className="absolute top-3 right-3 p-2 bg-[#dfdfdf] hover:bg-[#cecece]  rounded-full"
-              onClick={onClick}
+              onClick={cancel}
             >
               <CgClose />
             </button>
@@ -26,13 +26,13 @@ const PopUp = (props) => {
 
             <div className="flex flex-row gap-3 mx-auto">
               <Button
-                onClick={() => navigate("")}
+                onClick={submit}
                 type="PrimaryButton"
                 text="Lanjutkan"
                 className="bg-primary text-white hover:bg-[#16332e]"
               />
               <Button
-                onClick={() => navigate("")}
+                onClick={cancel}
                 type="PrimaryButton"
                 text="Batalkan"
                 className="bg-secondary hover:bg-[#c7912d]"
@@ -48,7 +48,7 @@ const PopUp = (props) => {
           <div className="px-10 py-8 rounded-3xl bg-white relative max-w-[700px] w-full flex flex-col gap-5 ">
             <button
               className="absolute top-3 right-3 p-2 bg-[#dfdfdf] hover:bg-[#cecece]  rounded-full"
-              onClick={onClick}
+              onClick={cancel}
             >
               <CgClose />
             </button>
@@ -61,13 +61,13 @@ const PopUp = (props) => {
 
             <div className="flex flex-row gap-3 mx-auto ">
               <Button
-                onClick={() => navigate("")}
+                onClick={submit}
                 type="PrimaryButton"
                 text="Lanjutkan"
                 className="bg-primary text-white hover:bg-[#16332e]"
               />
               <Button
-                onClick={() => navigate("")}
+                onClick={cancel}
                 type="PrimaryButton"
                 text="Batalkan"
                 className="bg-secondary hover:bg-[#c7912d]"

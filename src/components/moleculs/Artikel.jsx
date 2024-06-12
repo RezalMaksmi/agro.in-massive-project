@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getAPIAct } from "../../redux/featch/getData";
+import { getArtikelAPIAct } from "../../redux/featch/getData";
 import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../../api/axiosInstance";
+import Loading from "./Loading";
 
 const Artikel = ({ className, TextColor }) => {
   // const [error, setError] = useState(false);
   // const [loader, setLoader] = useState(true);
   // const [article, setArticle] = useState();
   const dispatch = useDispatch();
-  const { data, status, error } = useSelector((state) => state.get);
+  const { artikel, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+    dispatch(getArtikelAPIAct(`http://localhost:4000/artikel`));
   }, []);
 
-  console.log("apa isinya?", data);
+  console.log("apa isinya?", artikel);
 
   // if (error) return <>eror</>;
   // if (loader) return <>Loading...</>;
@@ -30,8 +31,8 @@ const Artikel = ({ className, TextColor }) => {
           <span>Kumpulan berita terbaru di sekitar Pertanian</span>
         </div>
         <div className="grid md:grid-cols-3 md:gap-6 gap-4 w-auto mx-auto ">
-          {data ? (
-            data.slice(0, 3).map((item, i) => {
+          {artikel ? (
+            artikel.slice(0, 3).map((item, i) => {
               return (
                 <div
                   key={i + 1}
@@ -45,7 +46,7 @@ const Artikel = ({ className, TextColor }) => {
                         className="object-cover w-full h-full transform transition-all duration-500 "
                       />
                     </div>
-                    <div className="flex flex-col md:gap-2 gap-1 md:px-6 px-2 md:py-6 py-2 md:group-hover/item:absolute md:group-hover/item:w-full md:group-hover/item:bg-[#000000]  md:group-hover/item:bg-opacity-65 md:group-hover/item:text-[#fff] top-0 bottom-0 transform transition-all duration-300 md:group-hover/item:justify-center md:group-hover/item:h-full">
+                    <div className="flex flex-col md:gap-2 gap-1 md:px-6 px-2 md:py-6 py-2 md:group-hover/item:absolute md:group-hover/item:w-full md:group-hover/item:bg-[#000000] md:group-hover/item:backdrop-blur-sm  md:group-hover/item:bg-opacity-65 md:group-hover/item:text-[#fff] top-0 bottom-0 transform transition-all duration-300 md:group-hover/item:justify-center md:group-hover/item:h-full">
                       <h1 className="md:text-2xl text-sm leading-5 md:font-bold font-semibold ">
                         {item.title}
                       </h1>
@@ -64,7 +65,7 @@ const Artikel = ({ className, TextColor }) => {
               );
             })
           ) : (
-            <>Mengambil data...</>
+            <Loading />
           )}
 
           {/* <div className=" flex flex-col rounded-lg bg-[#fff] overflow-hidden">

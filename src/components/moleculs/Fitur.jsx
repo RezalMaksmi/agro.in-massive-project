@@ -38,7 +38,7 @@ const dataFitur = [
       "Menjadi wadah berukar informasi antar petani hingga para ahli dibidang pertanian untuk membagi pengalaman sebutar pertanian sebagai upaya meningkatkan hasil pertanian.",
   },
 ];
-const Fitur = ({ Title }) => {
+const Fitur = ({ Title, path }) => {
   return (
     <div
       id="layanan"
@@ -50,7 +50,7 @@ const Fitur = ({ Title }) => {
         {dataFitur.map((item, i) => {
           return (
             <Link
-              to={item.link}
+              to={path ? path : item.link}
               className="md:p-3 p-0  md:h-[355px] w-full "
               key={i + 1}
             >
