@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
+import { toast } from "react-toastify";
 
 // const backendURL = "http://localhost:4000";
 
@@ -18,6 +19,23 @@ export const getAPIAct = createAsyncThunk("get/api", async (url) => {
   }
 });
 
+export const getArtikelAPIAct = createAsyncThunk(
+  "get/artikel/api",
+  async (url) => {
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        console.log(response.data.data);
+
+        return response.data.data;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
 export const getAPIActDetail = createAsyncThunk(
   "get/apiDetail",
   async (url) => {
@@ -35,11 +53,90 @@ export const getAPIActDetail = createAsyncThunk(
   }
 );
 
+export const getAPIActDiskusiSpacesOwned = createAsyncThunk(
+  "get/api/owned",
+  async (path) => {
+    try {
+      const response = await axiosInstance.get(`http://localhost:4000/${path}`);
+      if (response) {
+        console.log(response.data.data);
+
+        return response.data.data.spaces;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
+// export const deleteAPIActDiskusiSpacesOwned = createAsyncThunk(
+//   "delete/api/owned",
+//   async (path) => {
+//     console.log("apa ini");
+//     try {
+//       const response = await axiosInstance.delete(
+//         `http://localhost:4000/${path}`
+//       );
+//       if (response) {
+//         toast.success(`${response.data.message}`, {
+//           position: "bottom-right",
+//         });
+
+//         return response.data.data.spaces;
+//       }
+//     } catch (error) {
+//       console.log(error);
+
+//       throw error;
+//     }
+//   }
+// );
+
+export const getAPIActDiskusiSpacesfollowing = createAsyncThunk(
+  "get/api/following",
+  async (path) => {
+    try {
+      const response = await axiosInstance.get(`http://localhost:4000/${path}`);
+      if (response) {
+        console.log(response.data.data);
+
+        return response.data.data.spaces;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
+export const getAPIActDiskusiSpacesFollow = createAsyncThunk(
+  "get/api/follow",
+  async (path) => {
+    try {
+      const response = await axiosInstance.post(
+        `http://localhost:4000/${path}`
+      );
+      if (response) {
+        console.log(response.data.data);
+
+        return response.data.data.spaces;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
 const getData = createSlice({
   name: "get",
   initialState: {
     data: null,
+    owned: null,
+    following: null,
     detail: null,
+    artikel: null,
     status: "idle",
     error: null,
   },
@@ -58,6 +155,19 @@ const getData = createSlice({
         state.error = action.error.message;
       })
 
+      // artikel
+      .addCase(getArtikelAPIAct.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getArtikelAPIAct.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.artikel = action.payload;
+      })
+      .addCase(getArtikelAPIAct.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
       .addCase(getAPIActDetail.pending, (state) => {
         state.status = "loading";
       })
@@ -66,6 +176,32 @@ const getData = createSlice({
         state.detail = action.payload;
       })
       .addCase(getAPIActDetail.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      // diskusi owned
+      .addCase(getAPIActDiskusiSpacesOwned.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAPIActDiskusiSpacesOwned.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.owned = action.payload;
+      })
+      .addCase(getAPIActDiskusiSpacesOwned.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      // diskusi owned
+      .addCase(getAPIActDiskusiSpacesfollowing.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAPIActDiskusiSpacesfollowing.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.following = action.payload;
+      })
+      .addCase(getAPIActDiskusiSpacesfollowing.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

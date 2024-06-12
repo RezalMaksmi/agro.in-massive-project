@@ -6,9 +6,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BiLoaderAlt } from "react-icons/bi";
+
 const Login = () => {
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +47,14 @@ const Login = () => {
         position: "bottom-right",
       });
       navigate("/");
+
+      user.job == null || user.phone_number == null
+        ? setTimeout(() => {
+            toast.info("Lengkapi data diri anda!", {
+              position: "bottom-right",
+            });
+          }, 9000)
+        : "";
     }
   }, [user, token, status]);
 

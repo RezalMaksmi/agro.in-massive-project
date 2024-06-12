@@ -12,7 +12,7 @@ const LandingPage = () => {
       <div className="">
         <div
           id="home"
-          className="h-[120vh] bg-blue-300 bg-cover  "
+          className="h-[120vh]  bg-cover  "
           style={{ backgroundImage: `URL(${bgHero})` }}
         >
           <div className="container h-full grid md:grid-cols-2  mx-auto">
@@ -59,7 +59,7 @@ const LandingPage = () => {
           </div>
 
           {/* {  fitur Layanan  } */}
-          <Fitur Title="Layanan" />
+          <Fitur Title="Layanan" path="/login" />
         </div>
         {/* Tim kami */}
         <TimKami className={`bg-darkGray_10`} />

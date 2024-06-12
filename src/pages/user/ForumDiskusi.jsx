@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import petani from "../../assets/info-img.jpg";
 import { BiCommentDetail } from "react-icons/bi";
 import { AiFillDownCircle, AiFillUpCircle } from "react-icons/ai";
@@ -7,20 +7,52 @@ import { CardDiskusi, FormDiskusi } from "../../components/atoms";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import hasna from "../../assets/tim/hasna.png";
 import TemplateLogin from "../../template/TemplateLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPIAct } from "../../redux/featch/getData";
+import {
+  getPostsAPIAct,
+  getPostsAPIActDetail,
+  postPostsAPIAct,
+} from "../../redux/featch/Posts";
+import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const ForumDiskusi = () => {
   const [showTable, setShowTable] = React.useState(10);
-  const [selectedMenu, setSelectedMenu] = useState("pertanyaan");
+  const [selectedMenu, setSelectedMenu] = useState("question");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
+  const [img, setImg] = useState("");
+  const [space_id, setSpace_id] = useState(null);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
-    if (menu === "pertanyaan") {
-      setSelectedMenu("pertanyaan");
+    if (menu === "question") {
+      setType("question");
+      setSelectedMenu("question");
     } else {
-      setSelectedMenu("buat-informasi");
+      setType("information");
+      setSelectedMenu("information");
     }
   };
 
+  const { user } = useSelector((state) => state.auth);
+  const { data } = useSelector((state) => state.posts);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
+    setTitle("");
+    setDescription("");
+  };
+
+  useEffect(() => {
+    dispatch(getPostsAPIAct(`posts`));
+  }, [id]);
+  console.log("apa ini", data);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -29,23 +61,30 @@ const ForumDiskusi = () => {
             {/* Profil */}
             <div className="flex flex-row md:gap-4 gap-2 items-center">
               <img
-                src="https://cdn-2.tstatic.net/trends/foto/bank/images/mulyadi-pencipta-goyang-derago-viral.jpg"
-                alt=""
+                src={`
+                ${
+                  user && user.img != null
+                    ? `http://localhost:4000/assets/images/${user.img}`
+                    : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
+                }`}
+                alt="profil"
                 className="w-10 h-10 bg-pink-600 rounded-full object-cover "
               />
               <div className="flex flex-col  text-white">
-                <h1 className="md:text-xl text-base font-bold">Mulyadi</h1>
+                <h1 className="md:text-xl text-base font-bold">
+                  {user ? user.username : ""}
+                </h1>
                 <span className="md:text-base text-xs">
-                  Petani - Jawa Tengah, Indonesia
+                  {user ? user.job : ""}
                 </span>
               </div>
             </div>
             {/* pertanyaan */}
             <div className="w-full border-2 border-dark_10 rounded-full md:p-1 p-[2px] grid grid-cols-2">
               <button
-                onClick={() => handleMenuClick("pertanyaan")}
+                onClick={() => handleMenuClick("question")}
                 className={` ${
-                  selectedMenu === "pertanyaan"
+                  selectedMenu === "question"
                     ? "bg-white text-primary"
                     : "  text-white scale-95"
                 } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
@@ -53,9 +92,9 @@ const ForumDiskusi = () => {
                 Pertanyaan
               </button>
               <button
-                onClick={() => handleMenuClick("buat-informasi")}
+                onClick={() => handleMenuClick("information")}
                 className={` ${
-                  selectedMenu === "buat-informasi"
+                  selectedMenu === "information"
                     ? "bg-white text-primary"
                     : "  text-white scale-95"
                 } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
@@ -65,25 +104,52 @@ const ForumDiskusi = () => {
             </div>
             {/* form */}
 
-            <FormDiskusi type={selectedMenu} />
+            <FormDiskusi
+              type={selectedMenu}
+              title={(e) => setTitle(e.target.value)}
+              titleValue={title}
+              description={(e) => setDescription(e.target.value)}
+              descriptionValue={description}
+              submit={handleSubmit}
+            />
             {/*  */}
           </div>
 
-          <Link to="detail/pertanyaan" className="bg-white">
-            <CardDiskusi
-              type="Postingan"
-              typePost="pertanyaan"
-              imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
-              name="Marjuki"
-              about="Petani"
-              title="Bagaimana cara supaya petani indonesia bisa maju?"
-              description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-              imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
-              likeUp="200"
-              comment="300"
-              answer={10}
-            />
-          </Link>
+          {data &&
+            data.map((item, i) => {
+              return (
+                <Link
+                  key={i}
+                  // to={`detail/pertanyaan/${item.id}`}
+                  to={`/diskusi/detail/${item.type}/${item.id}`}
+                  className="bg-white"
+                >
+                  <CardDiskusi
+                    type="Postingan"
+                    typePost="pertanyaan"
+                    imgProfil={`
+                    ${
+                      item.author_image !== null
+                        ? `http://localhost:4000/assets/images/${item.author_image}`
+                        : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
+                    }`}
+                    name={item.username}
+                    about={item.job}
+                    title={item.title}
+                    description={item.description}
+                    imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
+                    date={
+                      item
+                        ? format(new Date(item.created_at), "yyyy-MM-dd")
+                        : ""
+                    }
+                    likeUp="200"
+                    comment="300"
+                    answer={item.comment_count}
+                  />
+                </Link>
+              );
+            })}
           <Link to="detail/postingan" className="bg-white">
             <CardDiskusi
               type="Postingan"

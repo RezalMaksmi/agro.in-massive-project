@@ -12,12 +12,12 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [check, setCheck] = useState(false);
 
-  const addData = { name: name, email: email, password: password };
+  const addData = { username: username, email: email, password: password };
   const { user, status, error, message } = useSelector((state) => state.auth);
 
   const validateEmail = (email) => {
@@ -27,7 +27,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
       toast.error("data tidak boleh kosong!", {
         position: "bottom-right",
       });
@@ -67,7 +67,7 @@ const Register = () => {
       style={{ backgroundImage: `url(${bgHero})` }}
     >
       <button
-        onClick={""}
+        onClick={() => navigate("/login")}
         className="absolute top-8 left-4 md:top-[90px] md:left-24 py-2 px-4 bg-[#FAB737] hover:bg-primary hover:text-white rounded-full flex items-center gap-3"
       >
         <IoIosArrowBack />
@@ -97,7 +97,7 @@ const Register = () => {
           htmlFor="username"
           id="username"
           className="text-sm sm:text-base"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         >
           Username
         </InputLabel>

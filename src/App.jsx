@@ -57,12 +57,12 @@ const Router = () => {
               />
               <Route
                 exact
-                path="/diskusi/detail/postingan"
+                path="/diskusi/detail/information/:id"
                 element={<ForumDiskusiDetailPostingan />}
               />
               <Route
                 exact
-                path="/diskusi/detail/pertanyaan"
+                path="/diskusi/detail/question/:id"
                 element={<ForumDiskusiDetailPertanyaan />}
               />
               <Route
@@ -77,7 +77,7 @@ const Router = () => {
               />
               <Route
                 exact
-                path="/diskusi/detail/ruang"
+                path="/diskusi/detail/:id"
                 element={<ForumDiskusiDetailRuang />}
               />
             </>
