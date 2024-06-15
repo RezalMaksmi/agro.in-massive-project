@@ -5,6 +5,7 @@ import getData from "./featch/getData";
 import Spaces from "./featch/Spaces";
 import Profil from "./featch/Profil";
 import Posts from "./featch/Posts";
+import Analisis from "./featch/Analisis";
 
 const preloadedState = loadState();
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
     profil: Profil,
     spaces: Spaces,
     posts: Posts,
+    analisis: Analisis,
   },
   preloadedState,
 });

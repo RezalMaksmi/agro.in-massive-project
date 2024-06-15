@@ -46,21 +46,28 @@ const ForumDiskusiDetailPertanyaan = () => {
 
     dispatch(commentPostsAPIAct({ id, text }));
     setText("");
+    fetchData();
   };
 
   const likeUp = (idComment) => {
     console.log(idComment);
     dispatch(likeUpPostsAPIAct({ id, idComment }));
+    fetchData();
   };
 
   const likeDown = (idComment) => {
     console.log(idComment);
     dispatch(likeDownPostsAPIAct({ id, idComment }));
+    fetchData();
+  };
+
+  const fetchData = () => {
+    dispatch(getPostsAPIActDetail(`posts/${id}`));
+    dispatch(getPostsAPIActComments(id));
   };
 
   useEffect(() => {
-    dispatch(getPostsAPIActDetail(`posts/${id}`));
-    dispatch(getPostsAPIActComments(id));
+    fetchData();
   }, [id, idP, text]);
   return (
     <TemplateLogin>
@@ -69,7 +76,7 @@ const ForumDiskusiDetailPertanyaan = () => {
           <CardDiskusi
             type="Postingan"
             variant="detail"
-            typePost="pertanyaan"
+            typePost="question"
             imgProfil={`
             ${
               detail && detail.author.img

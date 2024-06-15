@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import Searchable from "react-searchable-dropdown";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
+import plantsData from "../../data/plantsData.json";
+import { AnalisisAct } from "../../redux/featch/Analisis";
+import { useDispatch, useSelector } from "react-redux";
+
 const jenistanaman = [
   {
     value: "padi",
@@ -44,141 +48,129 @@ const jenistanaman = [
 
 const phTanah = [
   {
-    value: "4-7",
-    label: "4-7",
+    value: 4,
+    label: 4,
   },
   {
-    value: "5,6-7,5",
-    label: "5,6-7,5",
+    value: 5,
+    label: 5,
   },
   {
-    value: "4,5-6,5",
-    label: "4,5-6,5",
+    value: 6,
+    label: 6,
   },
   {
-    value: "6-7",
-    label: "6-7",
+    value: 7,
+    label: 7,
   },
   {
-    value: " 5,6-6,5",
-    label: " 5,6-6,5",
+    value: 8,
+    label: 8,
   },
   {
-    value: "5,5-7,5",
-    label: "5,5-7,5",
-  },
-  {
-    value: "5-7",
-    label: "5-7",
-  },
-  {
-    value: "6,5-7",
-    label: "6,5-7",
-  },
-  {
-    value: "5,5-6,5",
-    label: "5,5-6,5",
+    value: 9,
+    label: 9,
   },
 ];
 
 const tekstur = [
   {
-    value: "Pasir",
-    label: "Pasir",
+    value: "pasir",
+    label: "pasir",
   },
   {
-    value: "Pasir berlempung",
-    label: "Pasir berlempung",
+    value: "pasir berlempung",
+    label: "pasir berlempung",
   },
   {
-    value: "Lempung berpasir",
-    label: "Lempung berpasir",
+    value: "lempung berpasir",
+    label: "lempung berpasir",
   },
   {
-    value: "Lempung",
-    label: "Lempung",
+    value: "lempung",
+    label: "lempung",
   },
   {
-    value: "Lempung berdebu",
-    label: "Lempung berdebu",
+    value: "lempung berdebu",
+    label: "lempung berdebu",
   },
   {
-    value: "Debu",
-    label: "Debu",
+    value: "debu",
+    label: "debu",
   },
   {
-    value: "Lempung berliat",
-    label: "Lempung berliat",
+    value: "lempung berliat",
+    label: "lempung berliat",
   },
   {
-    value: "Lempung liat berpasir",
-    label: "Lempung liat berpasir",
+    value: "lempung liat berpasir",
+    label: "lempung liat berpasir",
   },
   {
-    value: "Lempung berliat berdebu",
-    label: "Lempung berliat berdebu",
+    value: "lempung berliat berdebu",
+    label: "lempung berliat berdebu",
   },
   {
-    value: "Liat berpasir",
-    label: "Liat berpasir",
+    value: "liat berpasir",
+    label: "liat berpasir",
   },
   {
-    value: "Liat berdebu",
-    label: "Liat berdebu",
+    value: "liat berdebu",
+    label: "liat berdebu",
   },
   {
-    value: "Liat",
-    label: "Liat",
+    value: "liat",
+    label: "liat",
   },
 ];
 
 const struktur = [
   {
-    value: "Struktur Butir",
-    label: "Struktur Butir",
+    value: "struktur butir",
+    label: "struktur butir",
   },
   {
-    value: "Struktur Blok",
-    label: "Struktur Blok",
+    value: "struktur blok",
+    label: "struktur blok",
   },
   {
-    value: "Struktur Prisma",
-    label: "Struktur Prisma",
+    value: "struktur prisma",
+    label: "struktur prisma",
   },
   {
-    value: "Struktur Columnar",
-    label: "Struktur Columnar",
+    value: "struktur columnar",
+    label: "struktur columnar",
   },
   {
-    value: "Struktur Lempengan",
-    label: "Struktur Lempengan",
+    value: "struktur lempengan",
+    label: "struktur lempengan",
   },
   {
-    value: "Struktur Serbuk",
-    label: "Struktur Serbuk",
+    value: "struktur serbuk",
+    label: "struktur serbuk",
   },
   {
-    value: "Struktur Crumb",
-    label: "Struktur Crumb",
+    value: "struktur crumb",
+    label: "struktur crumb",
   },
 ];
 
 const warna = [
   {
-    value: "coklat",
-    label: "coklat",
+    value: "cokelat",
+    label: "cokelat",
   },
   {
     value: "hitam",
     label: "hitam",
   },
   {
-    value: "coklat kehitaman",
-    label: "coklat kehitaman",
+    value: "cokelat kehitaman",
+    label: "cokelat kehitaman",
   },
   {
-    value: "coklat gelap kuning kemerahan",
-    label: "coklat gelap kuning kemerahan",
+    value: "cokelat gelap kuning kemerahan",
+    label: "cokelat gelap kuning kemerahan",
   },
   {
     value: "hitam kekuningan",
@@ -188,29 +180,108 @@ const warna = [
 
 const kondisi = [
   {
-    value: "Halus",
-    label: "Halus",
+    value: "halus",
+    label: "halus",
   },
   {
-    value: "Agak halus",
-    label: "Agak halus",
+    value: "agak halus",
+    label: "agak halus",
   },
   {
-    value: "Sedang",
-    label: "Sedang",
+    value: "sedang",
+    label: "sedang",
   },
   {
-    value: "Agak kasar",
-    label: "Agak kasar",
+    value: "agak kasar",
+    label: "agak kasar",
   },
   {
-    value: "Kasar",
-    label: "Kasar",
+    value: "kasar",
+    label: "kasar",
   },
 ];
 const FormAnalisis = (props) => {
   const { onClick } = props;
+  const [jenisTanaman, setJenisTanaman] = useState("");
+  const [PhTanah, setPhTanah] = useState("");
+  const [teksturTanah, setTeksturTanah] = useState("");
+  const [strukturTanah, setStrukturTanah] = useState("");
+  const [warnaTanah, setWarnaTanah] = useState("");
+  const [kondisiTanah, setKondisiTanah] = useState("");
   const navigate = useNavigate();
+  // console.log(jenisTanaman);
+  const [analysisResult, setAnalysisResult] = useState([]);
+  const [result, setResult] = useState("");
+
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.analisis);
+
+  const analyzeSoil = () => {
+    // const result = plantsData.filter((plant) => {
+    //   const isPhMatch =
+    //     PhTanah >= plant.ph_tanah.min && PhTanah <= plant.ph_tanah.max;
+    //   const isTeksturMatch =
+    //     teksturTanah.toLowerCase() === plant.tekstur.toLowerCase();
+    //   const isStrukturMatch =
+    //     strukturTanah.toLowerCase() === plant.struktur.toLowerCase();
+    //   const isWarnaMatch =
+    //     warnaTanah.toLowerCase() === plant.warna.toLowerCase();
+    //   const isKondisiFisikMatch =
+    //     kondisiTanah.toLowerCase() === plant.kondisi_fisik.toLowerCase();
+    //   return (
+    //     isPhMatch &&
+    //     isTeksturMatch &&
+    //     isStrukturMatch &&
+    //     isWarnaMatch &&
+    //     isKondisiFisikMatch
+    //   );
+    // });
+    // setAnalysisResult(result);
+
+    switch (jenisTanaman) {
+      case "padi":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("cocok")
+          : setResult("Tidak Cocok");
+
+        break;
+      case "jagung":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("cocok")
+          : setResult("Tidak Cocok");
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    dispatch(AnalisisAct(result));
+  }, [result]);
+
+  console.log("Hasilnya adalah", result);
+  console.log("Datanya adalah", data);
+  console.log(
+    "ini isinya apa",
+    jenisTanaman,
+    PhTanah,
+    teksturTanah,
+    strukturTanah,
+    warnaTanah,
+    kondisiTanah
+  );
+  console.log(plantsData);
+  console.log(analysisResult);
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 h-100% bg-[#1414149c] flex justify-center items-center z-50 ">
       <div className="px-10 py-8 rounded-3xl bg-white relative max-w-[600px] w-full flex flex-col gap-3 ">
@@ -220,6 +291,7 @@ const FormAnalisis = (props) => {
         >
           <CgClose />
         </button>
+
         <h1 className="text-2xl font-bold">Form Pengecekan Tanah</h1>
         <div className="flex flex-col gap-1 ">
           <span>Nama Tanaman</span>
@@ -229,6 +301,7 @@ const FormAnalisis = (props) => {
             hideSelected
             options={jenistanaman}
             onSelect={(value) => {
+              setJenisTanaman(value);
               console.log(value);
             }}
           />
@@ -242,6 +315,7 @@ const FormAnalisis = (props) => {
             hideSelected
             options={phTanah}
             onSelect={(value) => {
+              setPhTanah(value);
               console.log(value);
             }}
           />
@@ -255,6 +329,7 @@ const FormAnalisis = (props) => {
             hideSelected
             options={tekstur}
             onSelect={(value) => {
+              setTeksturTanah(value);
               console.log(value);
             }}
           />
@@ -268,6 +343,7 @@ const FormAnalisis = (props) => {
             hideSelected
             options={struktur}
             onSelect={(value) => {
+              setStrukturTanah(value);
               console.log(value);
             }}
           />
@@ -281,6 +357,7 @@ const FormAnalisis = (props) => {
             hideSelected
             options={warna}
             onSelect={(value) => {
+              setWarnaTanah(value);
               console.log(value);
             }}
           />
@@ -294,12 +371,14 @@ const FormAnalisis = (props) => {
             hideSelected
             options={kondisi}
             onSelect={(value) => {
+              setKondisiTanah(value);
               console.log(value);
             }}
           />
         </div>
         <Button
-          onClick={() => navigate("/hasil-analisis")}
+          // onClick={() => navigate("/hasil-analisis") analyzeSoil}
+          onClick={analyzeSoil}
           type="LongPrimaryButtonIconRow"
           text="Lihat Hasil"
           className="mt-3"
