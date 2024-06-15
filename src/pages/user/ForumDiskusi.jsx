@@ -9,22 +9,21 @@ import hasna from "../../assets/tim/hasna.png";
 import TemplateLogin from "../../template/TemplateLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIAct } from "../../redux/featch/getData";
-import {
-  getPostsAPIAct,
-  getPostsAPIActDetail,
-  postPostsAPIAct,
-} from "../../redux/featch/Posts";
+import { getPostsAPIAct, postPostsAPIAct } from "../../redux/featch/Posts";
 import { format } from "date-fns";
+import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
 const ForumDiskusi = () => {
-  const [showTable, setShowTable] = React.useState(10);
+  const [showTable, setShowTable] = useState(10);
   const [selectedMenu, setSelectedMenu] = useState("question");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
-  const [img, setImg] = useState("");
+  const [type, setType] = useState("question");
+  const [img, setImg] = useState(null);
   const [space_id, setSpace_id] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("null");
+
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -41,17 +40,46 @@ const ForumDiskusi = () => {
 
   const { user } = useSelector((state) => state.auth);
   const { data } = useSelector((state) => state.posts);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
-    dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
+
+    console.log(img);
+    try {
+      const response = await axiosInstance.post(
+        "http://localhost:4000/utils/image-upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setImg(selectedFile.name);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error uploading the image:", error);
+    }
+    const newData = { title, description, type, img, space_id };
+    dispatch(postPostsAPIAct(newData));
+    fetchData();
     setTitle("");
     setDescription("");
   };
 
-  useEffect(() => {
+  const fetchData = () => {
     dispatch(getPostsAPIAct(`posts`));
-  }, [id]);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   console.log("apa ini", data);
   return (
     <TemplateLogin>
@@ -111,6 +139,7 @@ const ForumDiskusi = () => {
               description={(e) => setDescription(e.target.value)}
               descriptionValue={description}
               submit={handleSubmit}
+              selectFile={handleFileChange}
             />
             {/*  */}
           </div>
@@ -126,7 +155,7 @@ const ForumDiskusi = () => {
                 >
                   <CardDiskusi
                     type="Postingan"
-                    typePost="pertanyaan"
+                    typePost={item.type}
                     imgProfil={`
                     ${
                       item.author_image !== null
@@ -137,7 +166,7 @@ const ForumDiskusi = () => {
                     about={item.job}
                     title={item.title}
                     description={item.description}
-                    imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
+                    imgPost={`http://localhost:4000/assets/images/${item.img}`}
                     date={
                       item
                         ? format(new Date(item.created_at), "yyyy-MM-dd")
@@ -150,7 +179,7 @@ const ForumDiskusi = () => {
                 </Link>
               );
             })}
-          <Link to="detail/postingan" className="bg-white">
+          {/* <Link to="detail/postingan" className="bg-white">
             <CardDiskusi
               type="Postingan"
               imgProfil={hasna}
@@ -161,9 +190,9 @@ const ForumDiskusi = () => {
               likeUp="200"
               comment="300"
             />
-          </Link>
+          </Link> */}
         </div>
-      </ForumDiskusiTemplate>{" "}
+      </ForumDiskusiTemplate>
     </TemplateLogin>
   );
 };

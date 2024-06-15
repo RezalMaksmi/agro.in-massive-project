@@ -31,7 +31,8 @@ const ForumDiskusiRuang = () => {
 
   const confirmDelete = () => {
     dispatch(deleteAPIActDiskusiSpaces(`spaces/${id}`));
-    closeModal();
+    fetchData();
+    setPopupHapus(false);
   };
 
   const openModalFollow = (item) => {
@@ -49,25 +50,25 @@ const ForumDiskusiRuang = () => {
     console.log(`Follow item: ${id}`);
 
     dispatch(deleteAPIActDiskusiSpaces(`spaces/${id}/followers`));
+    fetchData();
     closeModalFollow();
   };
 
-  useEffect(() => {
+  const fetchData = () => {
     dispatch(getAPIActDiskusiSpacesOwned(`spaces?filter=owned`));
     dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-  }, [id, data, dispatch]);
+  };
 
   useEffect(() => {
-    dispatch(getAPIActDiskusiSpacesOwned(`spaces?filter=owned`));
-    dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-    console.log("Data diupdate:", data);
-  }, [id, data, dispatch]);
+    fetchData();
+  }, [data, id]);
 
   const userData = localStorage.getItem("user");
   const userCheck = userData ? JSON.parse(userData) : null;
   const user = userCheck ? userCheck : "";
 
-  console.log("ruangku", owned);
+  console.log("follow", following);
+
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -121,8 +122,8 @@ const ForumDiskusiRuang = () => {
                       id={items.id}
                       imgProfil={`
                       ${
-                        user && user.author_image != null
-                          ? `http://localhost:4000/assets/images/${user.author_image}`
+                        items.author_image !== null
+                          ? `http://localhost:4000/assets/images/${items.author_image}`
                           : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                       }`}
                       // name="Mega Lodon"

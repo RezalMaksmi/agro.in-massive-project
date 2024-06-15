@@ -107,9 +107,9 @@ export const deleteAPIActDiskusiSpaces = createAsyncThunk(
         return response.data.data.spaces;
       }
     } catch (error) {
-      // toast.success(`${error.response}`, {
-      //   position: "bottom-right",
-      // });
+      toast.error(`${error.response.data.message}`, {
+        position: "bottom-right",
+      });
       console.log(error.response);
 
       throw error;
@@ -139,6 +139,25 @@ export const getAPIActDiskusiSpacesFollow = createAsyncThunk(
   async (path) => {
     try {
       const response = await axiosInstance.post(`${backendURL}${path}`);
+      if (response) {
+        toast.success(`${response.data.message}`, {
+          position: "bottom-right",
+        });
+
+        return response.data.data.spaces;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
+export const getAPIActDiskusiSpacesUnFollow = createAsyncThunk(
+  "get/api/unfollow",
+  async (path) => {
+    try {
+      const response = await axiosInstance.delete(`${backendURL}${path}`);
       if (response) {
         toast.success(`${response.data.message}`, {
           position: "bottom-right",

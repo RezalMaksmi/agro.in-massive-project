@@ -9,6 +9,8 @@ const FormDiskusi = ({
   submit,
   descriptionValue,
   titleValue,
+  selectFile,
+  idSpace,
 }) => {
   switch (type) {
     case "question":
@@ -48,16 +50,21 @@ const FormDiskusi = ({
           <textarea
             name=""
             id=""
+            onChange={description}
+            value={descriptionValue}
             className="w-full md:h-[95px] h-[60px] bg-white rounded-xl md:p-3 p-2 outline-0 focus:outline-0 md:text-base text-sm"
             placeholder="Tulis Informasi..."
           ></textarea>
           <div className="flex justify-between items-center md:pt-2 pt-1">
             <div className="flex gap-3 text-lg text-white ">
-              <FaCamera />
+              <input type="file" onChange={selectFile} />
               <FaImage />
               <GrAttachment />
             </div>
-            <button className="bg-secondary rounded-full py-1 px-5 w-max md:text-lg text-base">
+            <button
+              onClick={submit}
+              className="bg-secondary rounded-full py-1 px-5 w-max md:text-lg text-base"
+            >
               Kirim
             </button>
           </div>

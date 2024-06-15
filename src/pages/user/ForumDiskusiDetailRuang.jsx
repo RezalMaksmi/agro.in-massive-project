@@ -4,10 +4,12 @@ import logo from "../../assets/bg_detail-ruang.jpg";
 import { Button, CardDiskusi } from "../../components/atoms";
 import TemplateLogin from "../../template/TemplateLogin";
 import { FormPostingan } from "../../components/moleculs";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIActDetail } from "../../redux/featch/Spaces";
-import { getPostsAPIAct } from "../../redux/featch/Posts";
+import { getPostsAPIAct, postPostsAPIAct } from "../../redux/featch/Posts";
+import { toast } from "react-toastify";
+import axiosInstance from "../../api/axiosInstance";
 
 const ForumDiskusiDetailRuang = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -36,46 +38,114 @@ const ForumDiskusiDetailRuang = () => {
   //  filterById(idToFind);
   //}, [idToFind]);
 
+  const [selectedMenu, setSelectedMenu] = useState("question");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("question");
+  const [img, setImg] = useState("");
+  const [space_id, setSpace_id] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("null");
+
   useEffect(() => {
     // filterById(idToFind);
     setIdToFind(id);
     detail ? (detail.space.is_owned === true ? setOpenModal(true) : "") : "";
-    dispatch(getAPIActDetail(`spaces/${id}`));
-    dispatch(getPostsAPIAct(`posts`));
+    detail ? (detail.space.following === true ? setOpenModal(true) : "") : "";
+    // detail && detail.space.following ? setOpenModal(true) : setOpenModal(false);
+    fetchData();
+    setSpace_id(id);
   }, [id]);
 
   // console.log("id nya berapa", idToFind);
   // console.log("apa datanyaa : ", filteredData ? filteredData : "");
   console.log("apa detailnya", detail ? detail : "");
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
+
+    console.log(img);
+    try {
+      const response = await axiosInstance.post(
+        "http://localhost:4000/utils/image-upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setImg(selectedFile.name);
+      console.log(response.data);
+      toast.success(`${response.data.message}`, {
+        position: "bottom-right",
+      });
+    } catch (error) {
+      console.error("Error uploading the image:", error);
+    }
+    const newData = { title, description, type, img, space_id };
+    dispatch(postPostsAPIAct(newData));
+    fetchData();
+    setTitle("");
+    setDescription("");
+  };
+
+  const fetchData = () => {
+    dispatch(getAPIActDetail(`spaces/${id}`));
+    dispatch(getPostsAPIAct(`posts`));
+  };
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="flex flex-col md:gap-5 gap-3 pb-3">
           <div className="border-[#ececec] shadow-md rounded-2xl bg-white border ">
             <div className="border-[#ececec] shadow-md rounded-2xl overflow-hidden md:h-[400px] h-[320px] relative">
-              <img src={logo} alt="" className="w-full h-full object-cover" />
+              <img
+                src={detail ? `${detail.space.img}` : ""}
+                alt=""
+                className="w-full h-full object-cover"
+              />
               <div className="flex flex-col md:gap-4 gap-2 absolute md:px-3 px-2 md:py-5 py-2 right-0 left-0 bottom-0 text-white bg-[#171717] backdrop-blur-lg bg-opacity-40 ">
                 <div className="flex flex-row justify-between items-center">
                   <h1 className="md:text-4xl text-base font-bold">
                     {detail ? detail.space.title : ""}
                   </h1>
-                  {detail ? (
-                    detail.space.is_owned ? (
-                      ""
-                    ) : (
-                      <Button
-                        type="PrimaryButton"
-                        text={!openModal ? `Ikuti` : `Berhenti Mengikuti`}
-                        className={
-                          !openModal
-                            ? "bg-darkGray_20 text-primary"
-                            : "bg-secondary py-1 px-2"
-                        }
-                        onClick={() => setOpenModal(!openModal)}
-                      />
-                    )
+                  {/* {detail ? (
+                    <Button
+                      type="PrimaryButton"
+                      // text={!openModal ? `Ikuti` : `Berhenti Mengikuti`}
+                      // button={item.following}
+
+                      button={detail.space.following}
+                      className={
+                        !openModal
+                          ? "bg-darkGray_20 text-primary"
+                          : "bg-secondary py-1 px-2"
+                      }
+                      onClick={() => setOpenModal(!openModal)}
+                    />
                   ) : (
                     ""
+                  )} */}
+                  {detail && detail.space.following === true ? (
+                    <Button
+                      onClick={""}
+                      type="PrimaryButton"
+                      text="Berhenti Mengikuti"
+                      className=" bg-secondary hover:bg-[#ca9c45] text-white"
+                    />
+                  ) : (
+                    <Button
+                      onClick={""}
+                      type="PrimaryButton"
+                      text="Ikuti"
+                      className="bg-primary hover:bg-[#14312c] text-white"
+                    />
                   )}
                 </div>
                 <span className="md:text-base text-xs">
@@ -85,24 +155,42 @@ const ForumDiskusiDetailRuang = () => {
             </div>
           </div>
           {/* form */}
-          {openModal ? <FormPostingan /> : <></>}
+          {openModal ? (
+            <FormPostingan
+              submit={handleSubmit}
+              type={selectedMenu}
+              title={(e) => setTitle(e.target.value)}
+              titleValue={title}
+              description={(e) => setDescription(e.target.value)}
+              descriptionValue={description}
+              selectFile={handleFileChange}
+              idSpace={id}
+            />
+          ) : (
+            <></>
+          )}
           <div className=" flex flex-col gap-4 py-3 ">
             {/* card  */}
-            {dataResult ? (
-              dataResult.map((item, i) => {
+            {detail &&
+              detail.space.posts.map((item, i) => {
                 return (
-                  <CardDiskusi
+                  <Link
                     key={i}
-                    type="detailRuang"
-                    title={item.title}
-                    description={item.description}
-                  />
+                    // to={`detail/pertanyaan/${item.id}`}
+                    to={`/diskusi/detail/${item.type}/${item.id}`}
+                    className="bg-white"
+                  >
+                    <CardDiskusi
+                      key={i}
+                      type="detailRuang"
+                      title={item.title}
+                      description={item.description}
+                      answer={item.comment_count}
+                    />
+                  </Link>
                   // <span key={i}>{item.title}</span>
                 );
-              })
-            ) : (
-              <div>Ruang belum ada diskusi</div>
-            )}
+              })}
 
             {/* {data.map((item, i) => {
               return <span key={i}>{item.title}</span>;

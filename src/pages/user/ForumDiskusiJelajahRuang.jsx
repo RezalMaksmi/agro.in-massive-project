@@ -10,6 +10,7 @@ import {
   getAPIActDiskusiSpacesFollow,
   getAPIActDiskusiSpacesfollowing,
   deleteAPIActDiskusiSpaces,
+  getAPIActDiskusiSpacesUnFollow,
 } from "../../redux/featch/Spaces";
 import PopUp from "../../components/atoms/PopUp";
 
@@ -31,16 +32,22 @@ const ForumDiskusiJelajahRuang = () => {
   const followAct = (id) => {
     dispatch(getAPIActDiskusiSpacesFollow(`spaces/${id}/followers`));
     navigate("/diskusi/ruang");
+    getData();
+  };
+
+  const unfollowAct = (id) => {
+    dispatch(getAPIActDiskusiSpacesUnFollow(`spaces/${id}/followers`));
+    getData();
   };
   // Fungsi untuk mencocokkan data
-  useEffect(() => {
-    dispatch(getExploreAPIAct(`spaces`));
-    dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-    explore ? setDataToMatch(explore.spaces) : "";
-    following ? setDataList(following) : "";
+  // useEffect(() => {
+  //   dispatch(getExploreAPIAct(`spaces`));
+  //   dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
+  //   explore ? setDataToMatch(explore.spaces) : "";
+  //   following ? setDataList(following) : "";
 
-    matchData();
-  }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
+  //   matchData();
+  // }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
 
   const matchData = () => {
     if (!dataToMatch || (!Array.isArray(dataToMatch) && !dataList)) {
@@ -72,12 +79,6 @@ const ForumDiskusiJelajahRuang = () => {
   // console.log("apa hasilnya", follow);
   // console.log("pppppppppppppppp", unFollow);
 
-  const openModalFollow = (item) => {
-    setId(item);
-    console.log("idnya apa ini", item);
-    setPopupFollow(!popupFollow);
-  };
-
   const closeModalFollow = () => {
     setPopupFollow(!popupFollow);
     setId(null);
@@ -90,17 +91,21 @@ const ForumDiskusiJelajahRuang = () => {
     closeModalFollow();
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   dispatch(getExploreAPIAct(`spaces`));
+  //   dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
+  //   setDataToMatch(explore ? explore.spaces : "");
+  //   setDataList(following ? following : "");
+  //   matchData();
+  // }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
+
+  const getData = () => {
     dispatch(getExploreAPIAct(`spaces`));
     dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-    setDataToMatch(explore ? explore.spaces : "");
-    setDataList(following ? following : "");
-    matchData();
-  }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
+  };
 
   useEffect(() => {
-    dispatch(getExploreAPIAct(`spaces`));
-    dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
+    getData();
     console.log("Data diupdate:", data);
   }, [id, dispatch]);
 
@@ -123,7 +128,7 @@ const ForumDiskusiJelajahRuang = () => {
               Jelajahi Ruang yang ada
             </h2>
             <div className="flex flex-col gap-2">
-              {follow && user ? (
+              {/* {follow && user ? (
                 follow.map((item, i) => {
                   return (
                     <CardDiskusi
@@ -150,7 +155,7 @@ const ForumDiskusiJelajahRuang = () => {
                 })
               ) : (
                 <div></div>
-              )}
+              )} */}
 
               {/* {unFollow && user ? (
                 unFollow.map((item, i) => {
@@ -195,12 +200,15 @@ const ForumDiskusiJelajahRuang = () => {
                       }`}
                       title={item.title}
                       description={item.description}
-                      follow={() => followAct(item.id)}
-                      button="Ikuti"
+                      follow={!item.following ? () => followAct(item.id) : ""}
+                      unfollow={
+                        item.following ? () => unfollowAct(item.id) : ""
+                      }
+                      button={item.following}
+                      // button="Ikuti"
+
                       // button={ following.filter(item1 => item.find(item2 => item1.id === item2.id))}
-                      className={`${
-                        item.user_id == user.id ? "hidden" : "flex"
-                      }`}
+                      className={"flex"}
                     />
                   );
                 })

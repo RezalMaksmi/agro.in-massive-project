@@ -27,6 +27,7 @@ const CardDiskusi = (props) => {
     button,
     id,
     date,
+    unfollow,
     likeDown,
     likeUpAct,
     likeDownAct,
@@ -35,7 +36,7 @@ const CardDiskusi = (props) => {
     case "Postingan":
       return (
         <>
-          {typePost == "pertanyaan" ? (
+          {typePost == "question" ? (
             <div className="rounded-t-xl  flex flex-col md:gap-5 gap-3 md:py-6 py-3 px-4 border-b-2">
               {/* Profil */}
 
@@ -88,15 +89,19 @@ const CardDiskusi = (props) => {
                 />
               </div>
               <div className="flex flex-row justify-between w-full">
-                <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
+                {/* <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
                   <AiFillUpCircle className="text-xl" />
                   <span className="md:text-xl text-base">{likeUp}</span>
                   <AiFillDownCircle className="text-xl" />
                   <span className="md:text-xl text-base">{likeDown}</span>
-                </div>
+                </div> */}
+                <span className="md:text-base text-sm">{date}</span>
+
                 <div className="flex flex-row gap-1 items-center">
-                  <BiCommentDetail />
-                  <span className="md:text-xl text-base">{comment}</span>
+                  <BiCommentDetail className="text-xl" />
+                  <span className="md:text-xl text-base">
+                    {answer ? answer : "0"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -209,9 +214,9 @@ const CardDiskusi = (props) => {
               </div>
             </Link>
             <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
-              {button === "Berhenti Mengikuti" ? (
+              {button === true ? (
                 <Button
-                  onClick={onClick}
+                  onClick={unfollow}
                   type="PrimaryButton"
                   text="Berhenti Mengikuti"
                   className=" bg-secondary hover:bg-[#ca9c45] text-white"
@@ -241,7 +246,7 @@ const CardDiskusi = (props) => {
                 <div className="flex flex-row gap-3">
                   <span className="md:text-base text-sm">5 Mei 2024</span>
                   <span className="md:text-base text-sm font-bold">
-                    Belum ada jawaban{" "}
+                    Belum ada jawaban
                   </span>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
@@ -258,15 +263,11 @@ const CardDiskusi = (props) => {
               </div>
 
               <div className="flex flex-row gap-3 w-full justify-between">
-                <div className="flex flex-row gap-3">
+                <div className="flex flex-row gap-3 justify-between w-full">
                   <span className="md:text-base text-sm">5 Mei 2024</span>
-                  <span className="md:text-base text-sm font-bold">
-                    Belum ada jawaban{" "}
+                  <span className="md:text-base text-sm">
+                    {answer ? answer : "belum ada "} jawaban
                   </span>
-                </div>
-                <div className="flex flex-row gap-3 items-center">
-                  <BiComment className="text-2xl" />
-                  <span className="md:text-base text-sm font-bold">10 </span>
                 </div>
               </div>
             </div>

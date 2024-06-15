@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { FormDiskusi } from "../atoms";
 
-const FormPostingan = () => {
-  const [selectedMenu, setSelectedMenu] = useState("pertanyaan");
+const FormPostingan = ({
+  submit,
+  type,
+  title,
+  titleValue,
+  description,
+  descriptionValue,
+  selectFile,
+  idSpace,
+}) => {
+  const [selectedMenu, setSelectedMenu] = useState("question");
 
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
-    if (menu === "pertanyaan") {
-      setSelectedMenu("pertanyaan");
+    if (menu === "question") {
+      setSelectedMenu("question");
     } else {
-      setSelectedMenu("buat-informasi");
+      setSelectedMenu("information");
     }
   };
   return (
@@ -31,9 +40,9 @@ const FormPostingan = () => {
       {/* pertanyaan */}
       <div className="w-full border-2 border-dark_10 rounded-full md:p-1 p-[2px] grid grid-cols-2">
         <button
-          onClick={() => handleMenuClick("pertanyaan")}
+          onClick={() => handleMenuClick("question")}
           className={` ${
-            selectedMenu === "pertanyaan"
+            selectedMenu === "question"
               ? "bg-white text-primary"
               : "  text-white scale-95"
           } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
@@ -41,9 +50,9 @@ const FormPostingan = () => {
           Pertanyaan
         </button>
         <button
-          onClick={() => handleMenuClick("buat-informasi")}
+          onClick={() => handleMenuClick("information")}
           className={` ${
-            selectedMenu === "buat-informasi"
+            selectedMenu === "information"
               ? "bg-white text-primary"
               : "  text-white scale-95"
           } rounded-full md:py-2 py-1 text-center font-semibold  md:text-lg text-sm transform transition-all duration-300`}
@@ -53,7 +62,16 @@ const FormPostingan = () => {
       </div>
       {/* form */}
 
-      <FormDiskusi type={selectedMenu} />
+      <FormDiskusi
+        type={selectedMenu}
+        submit={submit}
+        title={title}
+        titleValue={titleValue}
+        description={description}
+        descriptionValue={descriptionValue}
+        selectFile={selectFile}
+        idSpace={idSpace}
+      />
       {/*  */}
     </div>
   );
