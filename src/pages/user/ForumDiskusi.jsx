@@ -20,7 +20,7 @@ const ForumDiskusi = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("question");
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState();
   const [space_id, setSpace_id] = useState(null);
   const [selectedFile, setSelectedFile] = useState("null");
 
@@ -60,13 +60,12 @@ const ForumDiskusi = () => {
           },
         }
       );
-      setImg(selectedFile.name);
       console.log(response.data);
     } catch (error) {
       console.error("Error uploading the image:", error);
     }
-    const newData = { title, description, type, img, space_id };
-    dispatch(postPostsAPIAct(newData));
+    // const newData = { title, description, type, img, space_id };
+    dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
     fetchData();
     setTitle("");
     setDescription("");
@@ -77,10 +76,11 @@ const ForumDiskusi = () => {
   };
 
   useEffect(() => {
+    setImg(selectedFile.name);
     fetchData();
-  }, []);
+  }, [selectedFile]);
 
-  console.log("apa ini", data);
+  console.log("apa ini", img);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -100,7 +100,7 @@ const ForumDiskusi = () => {
               />
               <div className="flex flex-col  text-white">
                 <h1 className="md:text-xl text-base font-bold">
-                  {user ? user.username : ""}
+                  {user ? user.name : ""}
                 </h1>
                 <span className="md:text-base text-xs">
                   {user ? user.job : ""}

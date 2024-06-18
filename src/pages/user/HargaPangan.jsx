@@ -3,25 +3,11 @@ import bgHero from "../../assets/bg-heroHargaPangan.jpg";
 import axios from "axios";
 import { HargaGrub } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
+import axiosInstance from "../../api/axiosInstance";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPIAct } from "../../redux/featch/getData";
 
 const HargaPangan = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // Fetch data when component mounts
-    axios
-      .get("https://badanpangan.go.id/api/panel-harga/2024-05-10/3")
-      .then((response) => {
-        // Set data to state
-        console.log("isinya apaya", response);
-        setData(eval(JSON.stringify(response.data)));
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
-  }, []);
-
-  console.log(data);
   return (
     <TemplateLogin>
       <div>

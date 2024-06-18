@@ -241,6 +241,11 @@ const CardDiskusi = (props) => {
               <div className="">
                 <h2 className="md:text-base text-sm font-bold">{title}</h2>
                 <span className="md:text-base text-sm ">{description}</span>
+                <img
+                  src={imgPost}
+                  alt=""
+                  className="object-cover w-full rounded-md"
+                />
               </div>
               <div className="flex flex-row gap-3 w-full justify-between">
                 <div className="flex flex-row gap-3">
@@ -251,7 +256,8 @@ const CardDiskusi = (props) => {
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                   <BiComment className="text-2xl" />
-                  <span className="md:text-base text-sm font-bold">10 </span>
+                  {answer ? answer : "0"}
+                  <span className="md:text-base text-sm font-bold"></span>
                 </div>
               </div>
             </div>

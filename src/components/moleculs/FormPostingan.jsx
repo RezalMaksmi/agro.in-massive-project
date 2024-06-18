@@ -10,17 +10,20 @@ const FormPostingan = ({
   descriptionValue,
   selectFile,
   idSpace,
+  typeQuestion,
+  typeInformation,
+  selectedMenu,
 }) => {
-  const [selectedMenu, setSelectedMenu] = useState("question");
+  // const [selectedMenu, setSelectedMenu] = useState("question");
 
-  const handleMenuClick = (menu) => {
-    setSelectedMenu(menu);
-    if (menu === "question") {
-      setSelectedMenu("question");
-    } else {
-      setSelectedMenu("information");
-    }
-  };
+  // const handleMenuClick = (menu) => {
+  //   setSelectedMenu(menu);
+  //   if (menu === "question") {
+  //     setSelectedMenu("question");
+  //   } else {
+  //     setSelectedMenu("information");
+  //   }
+  // };
   return (
     <div className="rounded-xl bg-primary flex flex-col md:gap-5 gap-3 md:py-6 py-3 md:px-4 px-2">
       {/* Profil */}
@@ -40,7 +43,7 @@ const FormPostingan = ({
       {/* pertanyaan */}
       <div className="w-full border-2 border-dark_10 rounded-full md:p-1 p-[2px] grid grid-cols-2">
         <button
-          onClick={() => handleMenuClick("question")}
+          onClick={typeQuestion}
           className={` ${
             selectedMenu === "question"
               ? "bg-white text-primary"
@@ -50,7 +53,7 @@ const FormPostingan = ({
           Pertanyaan
         </button>
         <button
-          onClick={() => handleMenuClick("information")}
+          onClick={typeInformation}
           className={` ${
             selectedMenu === "information"
               ? "bg-white text-primary"

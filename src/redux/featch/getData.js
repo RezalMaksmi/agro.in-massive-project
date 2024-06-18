@@ -9,7 +9,7 @@ export const getAPIAct = createAsyncThunk("get/api", async (url) => {
   try {
     const response = await axiosInstance.get(url);
     if (response) {
-      console.log(response.data.data);
+      console.log(response.data);
 
       return response.data.data;
     }
@@ -18,6 +18,24 @@ export const getAPIAct = createAsyncThunk("get/api", async (url) => {
     throw error;
   }
 });
+
+// Async thunk untuk login
+export const getFoodPricesAPIAct = createAsyncThunk(
+  "get/food/api",
+  async (url) => {
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        console.log(response.data);
+
+        return response.data.data;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
 
 export const getArtikelAPIAct = createAsyncThunk(
   "get/artikel/api",
@@ -133,6 +151,7 @@ const getData = createSlice({
   name: "get",
   initialState: {
     data: null,
+    foodPrices: null,
     owned: null,
     following: null,
     detail: null,
@@ -151,6 +170,18 @@ const getData = createSlice({
         state.data = action.payload;
       })
       .addCase(getAPIAct.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      .addCase(getFoodPricesAPIAct.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getFoodPricesAPIAct.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.foodPrices = action.payload;
+      })
+      .addCase(getFoodPricesAPIAct.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })

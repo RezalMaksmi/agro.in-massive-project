@@ -16,6 +16,7 @@ const ForumDiskusiDetailRuang = () => {
   // State untuk menyimpan ID yang dicari dan data yang difilter
   const [filteredData, setFilteredData] = useState();
   const [idToFind, setIdToFind] = useState();
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -46,22 +47,23 @@ const ForumDiskusiDetailRuang = () => {
   const [space_id, setSpace_id] = useState(null);
   const [selectedFile, setSelectedFile] = useState("null");
 
-  useEffect(() => {
-    // filterById(idToFind);
-    setIdToFind(id);
-    detail ? (detail.space.is_owned === true ? setOpenModal(true) : "") : "";
-    detail ? (detail.space.following === true ? setOpenModal(true) : "") : "";
-    // detail && detail.space.following ? setOpenModal(true) : setOpenModal(false);
-    fetchData();
-    setSpace_id(id);
-  }, [id]);
-
   // console.log("id nya berapa", idToFind);
   // console.log("apa datanyaa : ", filteredData ? filteredData : "");
   console.log("apa detailnya", detail ? detail : "");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+
+  const handleMenuClick = (menu) => {
+    setSelectedMenu(menu);
+    if (menu === "question") {
+      setType("question");
+      setSelectedMenu("question");
+    } else {
+      setType("information");
+      setSelectedMenu("information");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -80,7 +82,7 @@ const ForumDiskusiDetailRuang = () => {
           },
         }
       );
-      setImg(selectedFile.name);
+
       console.log(response.data);
       toast.success(`${response.data.message}`, {
         position: "bottom-right",
@@ -88,8 +90,8 @@ const ForumDiskusiDetailRuang = () => {
     } catch (error) {
       console.error("Error uploading the image:", error);
     }
-    const newData = { title, description, type, img, space_id };
-    dispatch(postPostsAPIAct(newData));
+    // const newData = { title, description, type, img, space_id };
+    dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
     fetchData();
     setTitle("");
     setDescription("");
@@ -98,7 +100,21 @@ const ForumDiskusiDetailRuang = () => {
   const fetchData = () => {
     dispatch(getAPIActDetail(`spaces/${id}`));
     dispatch(getPostsAPIAct(`posts`));
+    detail && detail.space.is_owned === true ? setOpenModal(true) : "";
+    detail && detail.space.following === true ? setOpenModal(true) : "";
   };
+
+  useEffect(() => {
+    // filterById(idToFind);
+    setIdToFind(id);
+    setImg(selectedFile.name);
+    // detail && detail.space.following ? setOpenModal(true) : setOpenModal(false);
+    fetchData();
+    setSpace_id(id);
+  }, [id, selectedFile, openModal]);
+
+  console.log("apanih typenya", type);
+
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -158,7 +174,9 @@ const ForumDiskusiDetailRuang = () => {
           {openModal ? (
             <FormPostingan
               submit={handleSubmit}
-              type={selectedMenu}
+              typeQuestion={() => handleMenuClick("question")}
+              typeInformation={() => handleMenuClick("information")}
+              selectedMenu={type}
               title={(e) => setTitle(e.target.value)}
               titleValue={title}
               description={(e) => setDescription(e.target.value)}
@@ -182,8 +200,10 @@ const ForumDiskusiDetailRuang = () => {
                   >
                     <CardDiskusi
                       key={i}
+                      typePost={item.type}
                       type="detailRuang"
                       title={item.title}
+                      imgPost={`http://localhost:4000/assets/images/${item.img}`}
                       description={item.description}
                       answer={item.comment_count}
                     />
