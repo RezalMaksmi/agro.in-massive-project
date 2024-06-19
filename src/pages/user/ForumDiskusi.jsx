@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import petani from "../../assets/info-img.jpg";
 import { BiCommentDetail } from "react-icons/bi";
@@ -15,7 +15,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
 const ForumDiskusi = () => {
-  const [showTable, setShowTable] = useState(10);
+  // const [showTable, setShowTable] = useState(10);
   const [selectedMenu, setSelectedMenu] = useState("question");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -40,6 +40,13 @@ const ForumDiskusi = () => {
 
   const { user } = useSelector((state) => state.auth);
   const { data } = useSelector((state) => state.posts);
+
+  const fileInputRef = useRef(null);
+
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -49,7 +56,6 @@ const ForumDiskusi = () => {
     const formData = new FormData();
     formData.append("photo", selectedFile);
 
-    console.log(img);
     try {
       const response = await axiosInstance.post(
         "http://localhost:4000/utils/image-upload",
@@ -60,7 +66,8 @@ const ForumDiskusi = () => {
           },
         }
       );
-      console.log(response.data);
+
+      fetchData();
     } catch (error) {
       console.error("Error uploading the image:", error);
     }
@@ -100,7 +107,7 @@ const ForumDiskusi = () => {
               />
               <div className="flex flex-col  text-white">
                 <h1 className="md:text-xl text-base font-bold">
-                  {user ? user.name : ""}
+                  {user ? user.username : ""}
                 </h1>
                 <span className="md:text-base text-xs">
                   {user ? user.job : ""}
@@ -140,6 +147,8 @@ const ForumDiskusi = () => {
               descriptionValue={description}
               submit={handleSubmit}
               selectFile={handleFileChange}
+              handleIconClick={handleIconClick}
+              fileInputRef={fileInputRef}
             />
             {/*  */}
           </div>

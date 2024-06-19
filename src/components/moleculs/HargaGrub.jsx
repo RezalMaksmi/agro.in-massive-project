@@ -6,7 +6,7 @@ import Searchable from "react-searchable-dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getFoodPricesAPIAct } from "../../redux/featch/getData";
 
-const HargaGrub = () => {
+const HargaGrub = ({ full }) => {
   const [dateRange, setDateRange] = useState([null, null]);
   const [jenisDataValue, setJenisDataValue] = useState("");
 
@@ -28,7 +28,7 @@ const HargaGrub = () => {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
-    return `${year}-${month}-${1}`;
+    return `${year}-${month}-${"01"}`;
   };
   const currentDate = new Date();
 
@@ -38,7 +38,7 @@ const HargaGrub = () => {
         `food-prices?type=${
           jenisDataValue ? jenisDataValue : "eceran"
         }&startDate=${
-          startDate ? formatStartDate(startDate) : formatDate(currentDate)
+          startDate ? formatDate(startDate) : formatStartDate(currentDate)
         }&endDate=${endDate ? formatDate(endDate) : formatDate(currentDate)}`
       )
     );
@@ -113,8 +113,22 @@ const HargaGrub = () => {
       </div>
       <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-3 gap-3 mb-3">
         {/* items */}
-        {foodPrices
-          ? foodPrices.foodPrices.map((items, i) => {
+
+        {full === true
+          ? foodPrices
+            ? foodPrices.foodPrices.map((items, i) => {
+                return (
+                  <CardHargaPangan
+                    Key={i}
+                    Title={items.name}
+                    Img={items.img}
+                    Price={items.price}
+                  />
+                );
+              })
+            : ""
+          : foodPrices
+          ? foodPrices.foodPrices.slice(0, 8).map((items, i) => {
               return (
                 <CardHargaPangan
                   Key={i}

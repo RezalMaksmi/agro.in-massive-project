@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import logo from "../../assets/bg_detail-ruang.jpg";
 import { Button, CardDiskusi } from "../../components/atoms";
@@ -46,13 +46,16 @@ const ForumDiskusiDetailRuang = () => {
   const [img, setImg] = useState("");
   const [space_id, setSpace_id] = useState(null);
   const [selectedFile, setSelectedFile] = useState("null");
+  const fileInputRef = useRef(null);
 
-  // console.log("id nya berapa", idToFind);
-  // console.log("apa datanyaa : ", filteredData ? filteredData : "");
   console.log("apa detailnya", detail ? detail : "");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+
+  const handleIconClick = () => {
+    fileInputRef.current.click();
   };
 
   const handleMenuClick = (menu) => {
@@ -83,10 +86,7 @@ const ForumDiskusiDetailRuang = () => {
         }
       );
 
-      console.log(response.data);
-      toast.success(`${response.data.message}`, {
-        position: "bottom-right",
-      });
+      fetchData();
     } catch (error) {
       console.error("Error uploading the image:", error);
     }
@@ -183,6 +183,8 @@ const ForumDiskusiDetailRuang = () => {
               descriptionValue={description}
               selectFile={handleFileChange}
               idSpace={id}
+              handleIconClick={handleIconClick}
+              fileInputRef={fileInputRef}
             />
           ) : (
             <></>

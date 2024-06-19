@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import plantsData from "../../data/plantsData.json";
 import { AnalisisAct } from "../../redux/featch/Analisis";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const jenistanaman = [
   {
@@ -214,8 +215,8 @@ const FormAnalisis = (props) => {
   const [result, setResult] = useState("");
 
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.analisis);
-
+  const { data, cuaca } = useSelector((state) => state.analisis);
+  console.log("cuaca hari ini aaaaaaaaaaa", cuaca);
   const analyzeSoil = () => {
     // const result = plantsData.filter((plant) => {
     //   const isPhMatch =
@@ -237,7 +238,19 @@ const FormAnalisis = (props) => {
     //   );
     // });
     // setAnalysisResult(result);
-
+    if (
+      !PhTanah ||
+      !PhTanah ||
+      !teksturTanah ||
+      !strukturTanah ||
+      !warnaTanah ||
+      !kondisiTanah
+    ) {
+      toast.error("data tidak boleh kosong!", {
+        position: "bottom-right",
+      });
+      return;
+    }
     switch (jenisTanaman) {
       case "padi":
         PhTanah >= 4 &&
@@ -246,7 +259,7 @@ const FormAnalisis = (props) => {
         strukturTanah == "struktur serbuk" &&
         warnaTanah == "cokelat kehitaman" &&
         kondisiTanah == "agak halus"
-          ? setResult("cocok")
+          ? setResult("Cocok")
           : setResult("Tidak Cocok");
 
         break;
@@ -257,17 +270,24 @@ const FormAnalisis = (props) => {
         strukturTanah == "struktur serbuk" &&
         warnaTanah == "cokelat kehitaman" &&
         kondisiTanah == "agak halus"
-          ? setResult("cocok")
+          ? setResult("Cocok")
           : setResult("Tidak Cocok");
         break;
       default:
         break;
     }
+
+    result && redirect();
+  };
+
+  const redirect = () => {
+    navigate("/hasil-analisis");
   };
 
   useEffect(() => {
-    dispatch(AnalisisAct(result));
-  }, [result]);
+    // dispatch(AnalisisAct(result));
+    dispatch(AnalisisAct({ result, PhTanah, teksturTanah }));
+  }, [result, PhTanah]);
 
   console.log("Hasilnya adalah", result);
   console.log("Datanya adalah", data);

@@ -21,9 +21,20 @@ const Profil = () => {
   //   phone: "",
   //   password: "",
   // });
-
+  const [viewImage, setViewImage] = useState();
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setViewImage(reader.result); // This will store the base64 representation of the image
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -46,31 +57,27 @@ const Profil = () => {
   //localhost:4000/spaces
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!username || !email || !job || !phone_number) {
-      toast.error("Data tidak boleh kosong!", {
-        position: "bottom-right",
-      });
-      return;
-    }
-    // const userData = localStorage.getItem("user");
-    // const userCheck = userData ? JSON.parse(userData) : null;
-    // const user = userCheck ? userCheck : "";
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    const dataUpdate = {
-      username,
-      email,
-      job,
-      phone_number,
-      img: user.img,
-    };
-    console.log(dataUpdate);
-    dispatch(updateProfilAPIAct(dataUpdate));
+  // const userData = localStorage.getItem("user");
+  // const userCheck = userData ? JSON.parse(userData) : null;
+  // const user = userCheck ? userCheck : "";
 
-    navigate("/profil");
-    setShowModal(false);
-  };
+  //   const dataUpdate = {
+  //     name: username,
+  //     email,
+  //     job,
+  //     phone_number,
+  //     img: img ? img : user.img,
+  //   };
+  //   console.log(dataUpdate);
+  //   dispatch(updateProfilAPIAct(dataUpdate));
+  //   handleFileUpload();
+
+  //   navigate("/profil");
+  //   setShowModal(false);
+  // };
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -126,8 +133,9 @@ const Profil = () => {
     reader.readAsDataURL(file);
   };
 
-  const formData = new FormData();
-  formData.append("photo", selectedFile);
+  // const formData = new FormData();
+  // formData.append("photo", selectedFile);
+
   // const handleFileUpload = async () => {
   //   if (!selectedFile) return;
 
@@ -165,7 +173,7 @@ const Profil = () => {
   //   // );
   // };
 
-  const handleFileUpload = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("photo", selectedFile);
@@ -173,7 +181,7 @@ const Profil = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://localhost:4000/users/uploud",
+        "http://localhost:4000/utils/image-upload",
         formData,
         {
           headers: {
@@ -188,10 +196,22 @@ const Profil = () => {
         email: user.email,
         job: user.job,
         phone_number: user.phone_number,
-        img: img,
+        img: img ? img : user.img,
       };
+
+      const dataUpdate = {
+        username: username ? username : user.name,
+        email,
+        job: job ? job : user.job,
+        phone_number: phone_number ? phone_number : user.phone_number,
+        img: img ? img : user.img,
+      };
+      console.log(dataUpdate);
+      dispatch(updateProfilAPIAct(dataUpdate));
+      setShowModal(false);
+
       localStorage.setItem("user", JSON.stringify(data));
-      console.log(response.data);
+
       toast.success(`${response.data.message}`, {
         position: "bottom-right",
       });
@@ -201,10 +221,16 @@ const Profil = () => {
     }
   };
   const { data } = useSelector((state) => state.profil);
-  console.log("apa isinya", data);
-  const localData = JSON.stringify(localStorage.getItem("user"));
 
-  console.log("apa ini", localData);
+  const fileInputRef = useRef(null);
+
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
+
+  useEffect(() => {
+    setImg(selectedFile.name);
+  }, [selectedFile]);
   return (
     <TemplateLogin>
       <div
@@ -296,24 +322,42 @@ const Profil = () => {
             <div className="flex items-center mb-4">
               {selectedFile && (
                 <img
-                  className="w-20 h-20 rounded-full mr-4"
+                  className="w-20 h-20 rounded-full mr-4 object-cover"
                   src={
-                    imagePreview
-                      ? imagePreview
-                      : user.profile_image
-                      ? `http://localhost:4000/assets/images/${user.profile_image}`
+                    viewImage
+                      ? viewImage
+                      : user
+                      ? `http://localhost:4000/assets/images/${user.img}`
                       : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                   }
                   alt="Profile"
                 />
               )}
+              <span
+                onClick={handleIconClick}
+                className="cursor-pointer bg-[#e2e2e2] text-primary font-bold px-3 py-2 rounded-full"
+              >
+                Pilih Gambar
+              </span>
+              {/* {viewImage && (
+                <div>
+                  <img
+                    src={viewImage}
+                    alt="Preview"
+                    style={{ maxWidth: "100%", maxHeight: "200px" }}
+                  />
+                </div>
+              )} */}
 
               {/* <CustomFileInput onFileSelect={handleFileSelect} /> */}
 
-              <form onSubmit={handleFileUpload}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Upload</button>
-              </form>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                className="hidden"
+              />
+
               {uploadStatus && <p>{uploadStatus}</p>}
 
               {/* {uploadStatus && <p>{uploadStatus}</p>} */}

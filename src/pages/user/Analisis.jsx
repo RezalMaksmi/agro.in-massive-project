@@ -6,8 +6,23 @@ import { dataProvinsi } from "../../data";
 import { FormAnalisis } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {
+  AnalisisAct,
+  AnalisisCuacaAct,
+  AnalisisTemperatureAct,
+  getLocationAct,
+} from "../../redux/featch/Analisis";
 
-async function GetLastIndex(times, currentTime) {
+async function GetLastIndexWeather(times, currentTime) {
+  const cc = await times.filter((c) => {
+    return c.h <= currentTime;
+  });
+
+  return cc[cc.length - 1];
+}
+
+async function GetLastIndexTemperature(times, currentTime) {
   const cc = await times.filter((c) => {
     return c.h <= currentTime;
   });
@@ -26,6 +41,8 @@ const Analisis = () => {
   const [prov, setProv] = useState(null);
   const [cuaca, setCuaca] = useState({});
   const [time, setTime] = useState([]);
+  const [temperature, setTemperature] = useState([]);
+  const [temperatureValue, setTemperatureValue] = useState([]);
   const [currentTime, setCurrentTime] = useState("");
 
   console.log(openModal);
@@ -35,6 +52,8 @@ const Analisis = () => {
   // const handleChange = (event) => {
   //   setSelectedCity(event.target.value);
   // };
+
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setSelectedCity(event.target.value);
@@ -51,32 +70,39 @@ const Analisis = () => {
     }, 1000);
     () => clearInterval(interval);
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(URL_API);
-        setData(response.data.data);
-        setTime(await response.data.data.params[6].times);
-
-        setCuaca(await GetLastIndex(time, currentTime));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
-
-    const fetchCity = async () => {
-      try {
-        const response = await axios.get(
-          `https://cuaca-gempa-rest-api.vercel.app/weather/${removedSpacesProv}`
-        );
-        setDataSearchCity(await response.data.data.areas);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchCity();
-  }, [prov, dataCity, currentTime]);
+  }, [prov, dataCity, currentTime, openModal, selectedCity]);
 
+  cuaca && dispatch(AnalisisCuacaAct(cuaca));
+  temperatureValue && dispatch(AnalisisTemperatureAct(temperatureValue));
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(URL_API);
+      setData(response.data.data);
+      setTime(await response.data.data.params[6].times);
+      setTemperature(await response.data.data.params[5].times);
+
+      setCuaca(await GetLastIndexWeather(time, currentTime));
+      setTemperatureValue(
+        await GetLastIndexTemperature(temperature, currentTime)
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchCity = async () => {
+    try {
+      const response = await axios.get(
+        `https://cuaca-gempa-rest-api.vercel.app/weather/${removedSpacesProv}`
+      );
+      setDataSearchCity(await response.data.data.areas);
+      dispatch(getLocationAct(data));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   console.log("apa ini datanya ", dataSearchCity ? dataSearchCity : "");
 
   // const data = [dataSearchCity ? dataSearchCity.map((items, i) => "value" : items.description) :""]

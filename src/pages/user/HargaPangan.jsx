@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import bgHero from "../../assets/bg-heroHargaPangan.jpg";
-import axios from "axios";
 import { HargaGrub } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
 import axiosInstance from "../../api/axiosInstance";
@@ -34,7 +33,7 @@ const HargaPangan = () => {
           className="relative z-10 h-auto md:px-20  px-4 py-12 gap-14 container mx-auto flex flex-col justify-center items-center"
         >
           <div className="flex flex-col gap-10 w-full items-center ">
-            <HargaGrub />
+            <HargaGrub full={true} />
           </div>
         </div>
       </div>

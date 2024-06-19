@@ -13,17 +13,9 @@ const FormPostingan = ({
   typeQuestion,
   typeInformation,
   selectedMenu,
+  handleIconClick,
+  fileInputRef,
 }) => {
-  // const [selectedMenu, setSelectedMenu] = useState("question");
-
-  // const handleMenuClick = (menu) => {
-  //   setSelectedMenu(menu);
-  //   if (menu === "question") {
-  //     setSelectedMenu("question");
-  //   } else {
-  //     setSelectedMenu("information");
-  //   }
-  // };
   return (
     <div className="rounded-xl bg-primary flex flex-col md:gap-5 gap-3 md:py-6 py-3 md:px-4 px-2">
       {/* Profil */}
@@ -74,6 +66,8 @@ const FormPostingan = ({
         descriptionValue={descriptionValue}
         selectFile={selectFile}
         idSpace={idSpace}
+        handleIconClick={handleIconClick}
+        fileInputRef={fileInputRef}
       />
       {/*  */}
     </div>

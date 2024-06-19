@@ -58,7 +58,7 @@ const Navbar = () => {
   const userCheck = userData ? JSON.parse(userData) : null;
   const user = userCheck ? userCheck : "";
 
-  const firstLetter = user ? user.name.split(" ")[0] : "";
+  const firstLetter = user ? user.username.split(" ")[0] : "";
   console.log("usernya", user);
   return token ? (
     <div className="w-full md:px-10 px-3 fixed top-7 z-50 ">

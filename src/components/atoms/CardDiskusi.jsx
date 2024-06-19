@@ -85,7 +85,7 @@ const CardDiskusi = (props) => {
                 <img
                   src={imgPost}
                   alt=""
-                  className="object-cover w-full rounded-md"
+                  className="object-cover w-full rounded-md "
                 />
               </div>
               <div className="flex flex-row justify-between w-full">
@@ -113,12 +113,14 @@ const CardDiskusi = (props) => {
         <div className="px-3 py-6">
           {/* Profil */}
           <div className="flex flex-row gap-4  w-full items-start">
-            <img
-              src={imgProfil}
-              alt=""
-              className="w-10 h-10 rounded-full object-cover col-span-1 "
-            />
-            <div className="flex flex-col gap-4">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-black">
+              <img
+                src={imgProfil}
+                alt=""
+                className="w-20 h-10  object-cover  col-span-1 "
+              />
+            </div>
+            <div className="flex flex-col gap-4 w-full">
               <div className="flex flex-col  text-dark_30 col-span-2 w-full ">
                 <h1 className="md:text-xl text-sm font-bold">{name}</h1>
                 <span className="md:text-sm text-xs">{about}</span>

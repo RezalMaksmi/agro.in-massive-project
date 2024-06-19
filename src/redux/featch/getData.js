@@ -26,7 +26,7 @@ export const getFoodPricesAPIAct = createAsyncThunk(
     try {
       const response = await axiosInstance.get(url);
       if (response) {
-        console.log(response.data);
+        console.log("apa isinya", response.data);
 
         return response.data.data;
       }

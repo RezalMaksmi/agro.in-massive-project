@@ -11,7 +11,7 @@ export const updateProfilAPIAct = createAsyncThunk(
         `http://localhost:4000/users/`,
         body
       );
-      // console.log("apa responsnyya bodyyy:", body);
+      console.log("apa responsnyya bodyyy:", body);
 
       const data = response.data.data;
       // console.log("apa responsnyya", response.data);
