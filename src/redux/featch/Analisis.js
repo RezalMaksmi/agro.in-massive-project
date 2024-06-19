@@ -11,7 +11,6 @@ export const AnalisisAct = createAsyncThunk(
 export const AnalisisCuacaAct = createAsyncThunk(
   "get/cuaca/api",
   async (data) => {
-    console.log("apa niiiiiiiiiiiiiiiiiiiiiiiiiiiiii", data);
     return data;
   }
 );
@@ -19,7 +18,6 @@ export const AnalisisCuacaAct = createAsyncThunk(
 export const AnalisisTemperatureAct = createAsyncThunk(
   "get/temp/api",
   async (data) => {
-    console.log("apa niiiiiiiiiiiiiiiiiiiiiiiiiiiiii", data);
     return data;
   }
 );
@@ -27,7 +25,6 @@ export const AnalisisTemperatureAct = createAsyncThunk(
 export const getLocationAct = createAsyncThunk(
   "get/location/api",
   async (data) => {
-    console.log("apa niiiiiiiiiiiiiiiiiiiiiiiiiiiiii", data);
     return data;
   }
 );

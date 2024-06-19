@@ -15,7 +15,6 @@ const ForumDiskusiCari = () => {
     dispatch(searchPostsAPIAct(`posts/search?q=${search}`));
   };
 
-  console.log("apa ini su ================", searching);
   useEffect(() => {
     dispatch(searchPostsAPIAct(`posts/search?q=""`));
     setSearch("");
@@ -64,7 +63,7 @@ const ForumDiskusiCari = () => {
                         imgProfil={`
                       ${
                         item.author_image
-                          ? `http://localhost:4000/assets/images/${item.author_image}`
+                          ? `${process.env.API_URL}/assets/images/${item.author_image}`
                           : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                       }`}
                         // title="Apa Itu Jagung?"
@@ -77,14 +76,6 @@ const ForumDiskusiCari = () => {
               ) : (
                 <></>
               )}
-
-              {/* <CardDiskusi
-                type="pencarian"
-                imgProfil="https://vannashara.files.wordpress.com/2012/11/senyum-petani.jpg"
-                title="Shomat"
-                description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-                follow={"true"}
-              /> */}
             </div>
           </div>
         </div>

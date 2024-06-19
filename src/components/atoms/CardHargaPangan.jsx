@@ -2,10 +2,7 @@ import React from "react";
 
 const CardHargaPangan = ({ Img, Title, Price, Key }) => {
   return (
-    <div
-      key={Key}
-      className="border-2 border-dark_10 p-3 rounded-xl bg-white hover:bg-darkGray_10 hover:shadow-md transform transition-all duration-300"
-    >
+    <div className="border-2 border-dark_10 p-3 rounded-xl bg-white hover:bg-darkGray_10 hover:shadow-md transform transition-all duration-300">
       <img
         src={Img}
         alt=""

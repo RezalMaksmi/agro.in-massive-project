@@ -30,16 +30,8 @@ const ForumDiskusiDetailRuang = () => {
   const dataResult = data
     ? data.filter((entry) => entry.space_id === parseInt(id))
     : "";
-  // console.log("apa ya iniiiiiiii", dataResult);
-  //   setFilteredData(result);
-  // };
 
-  // Memanggil fungsi filter ketika komponen pertama kali di-render
-  //useEffect(() => {
-  //  filterById(idToFind);
-  //}, [idToFind]);
-
-  const [selectedMenu, setSelectedMenu] = useState("question");
+  // const [selectedMenu, setSelectedMenu] = useState("question");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("question");
@@ -59,13 +51,13 @@ const ForumDiskusiDetailRuang = () => {
   };
 
   const handleMenuClick = (menu) => {
-    setSelectedMenu(menu);
+    // setSelectedMenu(menu);
     if (menu === "question") {
       setType("question");
-      setSelectedMenu("question");
+      // setSelectedMenu("question");
     } else {
       setType("information");
-      setSelectedMenu("information");
+      // setSelectedMenu("information");
     }
   };
 
@@ -77,7 +69,7 @@ const ForumDiskusiDetailRuang = () => {
     console.log(img);
     try {
       const response = await axiosInstance.post(
-        "http://localhost:4000/utils/image-upload",
+        `${process.env.API_URL}/utils/image-upload`,
         formData,
         {
           headers: {
@@ -100,15 +92,14 @@ const ForumDiskusiDetailRuang = () => {
   const fetchData = () => {
     dispatch(getAPIActDetail(`spaces/${id}`));
     dispatch(getPostsAPIAct(`posts`));
-    detail && detail.space.is_owned === true ? setOpenModal(true) : "";
-    detail && detail.space.following === true ? setOpenModal(true) : "";
   };
 
+  const ownedSpaces = detail && detail.space.is_owned == true;
+  const followSpaces = detail && detail.space.following == true;
+
   useEffect(() => {
-    // filterById(idToFind);
     setIdToFind(id);
     setImg(selectedFile.name);
-    // detail && detail.space.following ? setOpenModal(true) : setOpenModal(false);
     fetchData();
     setSpace_id(id);
   }, [id, selectedFile, openModal]);
@@ -148,20 +139,25 @@ const ForumDiskusiDetailRuang = () => {
                   ) : (
                     ""
                   )} */}
-                  {detail && detail.space.following === true ? (
-                    <Button
-                      onClick={""}
-                      type="PrimaryButton"
-                      text="Berhenti Mengikuti"
-                      className=" bg-secondary hover:bg-[#ca9c45] text-white"
-                    />
+
+                  {!ownedSpaces ? (
+                    detail && detail.space.following === true ? (
+                      <Button
+                        onClick={""}
+                        type="PrimaryButton"
+                        text="Berhenti Mengikuti"
+                        className=" bg-secondary hover:bg-[#ca9c45] text-white"
+                      />
+                    ) : (
+                      <Button
+                        onClick={""}
+                        type="PrimaryButton"
+                        text="Ikuti"
+                        className="bg-primary hover:bg-[#14312c] text-white"
+                      />
+                    )
                   ) : (
-                    <Button
-                      onClick={""}
-                      type="PrimaryButton"
-                      text="Ikuti"
-                      className="bg-primary hover:bg-[#14312c] text-white"
-                    />
+                    ""
                   )}
                 </div>
                 <span className="md:text-base text-xs">
@@ -171,7 +167,7 @@ const ForumDiskusiDetailRuang = () => {
             </div>
           </div>
           {/* form */}
-          {openModal ? (
+          {followSpaces || ownedSpaces ? (
             <FormPostingan
               submit={handleSubmit}
               typeQuestion={() => handleMenuClick("question")}
@@ -205,7 +201,7 @@ const ForumDiskusiDetailRuang = () => {
                       typePost={item.type}
                       type="detailRuang"
                       title={item.title}
-                      imgPost={`http://localhost:4000/assets/images/${item.img}`}
+                      imgPost={`${process.env.API_URL}/assets/images/${item.img}`}
                       description={item.description}
                       answer={item.comment_count}
                     />

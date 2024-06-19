@@ -16,7 +16,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, status, error, token } = useSelector((state) => state.auth);
+  const apiKey = process.env.API_URL;
 
+  console.log(apiKey);
   const validateEmail = (email) => {
     return email.includes("@");
   };

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Artikel from "./pages/user/Artikel";
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
+
 import {
   Home,
   HargaPangan,

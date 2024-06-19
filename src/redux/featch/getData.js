@@ -3,14 +3,13 @@ import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
 // const backendURL = "http://localhost:4000";
+const apiKey = process.env.API_URL;
 
 // Async thunk untuk login
 export const getAPIAct = createAsyncThunk("get/api", async (url) => {
   try {
     const response = await axiosInstance.get(url);
     if (response) {
-      console.log(response.data);
-
       return response.data.data;
     }
   } catch (error) {
@@ -26,8 +25,6 @@ export const getFoodPricesAPIAct = createAsyncThunk(
     try {
       const response = await axiosInstance.get(url);
       if (response) {
-        console.log("apa isinya", response.data);
-
         return response.data.data;
       }
     } catch (error) {
@@ -43,8 +40,6 @@ export const getArtikelAPIAct = createAsyncThunk(
     try {
       const response = await axiosInstance.get(url);
       if (response) {
-        console.log(response.data.data);
-
         return response.data.data;
       }
     } catch (error) {
@@ -60,8 +55,6 @@ export const getAPIActDetail = createAsyncThunk(
     try {
       const response = await axiosInstance.get(url);
       if (response) {
-        console.log(response.data.data);
-
         return response.data.data;
       }
     } catch (error) {
@@ -75,10 +68,8 @@ export const getAPIActDiskusiSpacesOwned = createAsyncThunk(
   "get/api/owned",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`http://localhost:4000/${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
-        console.log(response.data.data);
-
         return response.data.data.spaces;
       }
     } catch (error) {
@@ -88,37 +79,12 @@ export const getAPIActDiskusiSpacesOwned = createAsyncThunk(
   }
 );
 
-// export const deleteAPIActDiskusiSpacesOwned = createAsyncThunk(
-//   "delete/api/owned",
-//   async (path) => {
-//     console.log("apa ini");
-//     try {
-//       const response = await axiosInstance.delete(
-//         `http://localhost:4000/${path}`
-//       );
-//       if (response) {
-//         toast.success(`${response.data.message}`, {
-//           position: "bottom-right",
-//         });
-
-//         return response.data.data.spaces;
-//       }
-//     } catch (error) {
-//       console.log(error);
-
-//       throw error;
-//     }
-//   }
-// );
-
 export const getAPIActDiskusiSpacesfollowing = createAsyncThunk(
   "get/api/following",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`http://localhost:4000/${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
-        console.log(response.data.data);
-
         return response.data.data.spaces;
       }
     } catch (error) {
@@ -132,12 +98,8 @@ export const getAPIActDiskusiSpacesFollow = createAsyncThunk(
   "get/api/follow",
   async (path) => {
     try {
-      const response = await axiosInstance.post(
-        `http://localhost:4000/${path}`
-      );
+      const response = await axiosInstance.post(`${apiKey}/${path}`);
       if (response) {
-        console.log(response.data.data);
-
         return response.data.data.spaces;
       }
     } catch (error) {

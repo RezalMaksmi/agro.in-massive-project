@@ -1,8 +1,15 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+import React from "react";
 
+import Cookies from "js-cookie";
+// import env from "react-dotenv";
+
+// console.log(env.API_URL);
+const apiKey = process.env.API_URL;
+
+// console.log(apiKey);
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000/",
+  baseURL: apiKey,
 });
 
 axiosInstance.interceptors.request.use((config) => {

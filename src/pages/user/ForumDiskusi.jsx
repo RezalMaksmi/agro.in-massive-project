@@ -15,7 +15,6 @@ import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
 const ForumDiskusi = () => {
-  // const [showTable, setShowTable] = useState(10);
   const [selectedMenu, setSelectedMenu] = useState("question");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -58,7 +57,7 @@ const ForumDiskusi = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://localhost:4000/utils/image-upload",
+        `${process.env.API_URL}/utils/image-upload`,
         formData,
         {
           headers: {
@@ -71,7 +70,6 @@ const ForumDiskusi = () => {
     } catch (error) {
       console.error("Error uploading the image:", error);
     }
-    // const newData = { title, description, type, img, space_id };
     dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
     fetchData();
     setTitle("");
@@ -87,7 +85,6 @@ const ForumDiskusi = () => {
     fetchData();
   }, [selectedFile]);
 
-  console.log("apa ini", img);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -99,7 +96,7 @@ const ForumDiskusi = () => {
                 src={`
                 ${
                   user && user.img != null
-                    ? `http://localhost:4000/assets/images/${user.img}`
+                    ? `${process.env.API_URL}/assets/images/${user.img}`
                     : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                 }`}
                 alt="profil"
@@ -168,14 +165,14 @@ const ForumDiskusi = () => {
                     imgProfil={`
                     ${
                       item.author_image !== null
-                        ? `http://localhost:4000/assets/images/${item.author_image}`
+                        ? `${process.env.API_URL}/assets/images/${item.author_image}`
                         : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                     }`}
                     name={item.username}
                     about={item.job}
                     title={item.title}
                     description={item.description}
-                    imgPost={`http://localhost:4000/assets/images/${item.img}`}
+                    imgPost={`${process.env.API_URL}/assets/images/${item.img}`}
                     date={
                       item
                         ? format(new Date(item.created_at), "yyyy-MM-dd")
@@ -188,18 +185,6 @@ const ForumDiskusi = () => {
                 </Link>
               );
             })}
-          {/* <Link to="detail/postingan" className="bg-white">
-            <CardDiskusi
-              type="Postingan"
-              imgProfil={hasna}
-              name="Hasna"
-              about="Peternak Sapi"
-              description="Hasil ngobrol sama petani di beberapa daerah : 1. Harga komoditas pertanian merupakan kunci kesejahteraan dan insentif utama bagi petani. Kalau harga produk pertanian selalu dipaksa harus murah, kapan petani mau sejahtera?"
-              imgPost="https://awsimages.detik.net.id/community/media/visual/2021/07/19/sapi-limosin.jpeg?w=1200"
-              likeUp="200"
-              comment="300"
-            />
-          </Link> */}
         </div>
       </ForumDiskusiTemplate>
     </TemplateLogin>

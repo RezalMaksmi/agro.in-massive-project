@@ -2,15 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
-const backendURL = "http://localhost:4000/";
+const apiKey = process.env.API_URL;
 
 // Async thunk untuk login
 export const getPostsAPIAct = createAsyncThunk("get/posts/api", async (url) => {
   try {
-    const response = await axiosInstance.get(`${backendURL}${url}`);
+    const response = await axiosInstance.get(`${apiKey}/${url}`);
     if (response) {
-      console.log("apa ini coyyyy", response.data);
-
       return response.data;
     }
   } catch (error) {
@@ -24,10 +22,8 @@ export const getPostsAPIActDetail = createAsyncThunk(
   "get/posts/detail/api",
   async (url) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${url}`);
+      const response = await axiosInstance.get(`${apiKey}/${url}`);
       if (response) {
-        console.log("apa ini detailnya coyyyy", response.data);
-
         return response.data.data;
       }
     } catch (error) {
@@ -42,11 +38,9 @@ export const getPostsAPIActComments = createAsyncThunk(
   async (id) => {
     try {
       const response = await axiosInstance.get(
-        `${backendURL}posts/${id}/comments`
+        `${apiKey}/posts/${id}/comments`
       );
       if (response) {
-        console.log("apa ini comentnya coyyyy", response.data.data);
-
         return response.data.data;
       }
     } catch (error) {
@@ -55,34 +49,19 @@ export const getPostsAPIActComments = createAsyncThunk(
     }
   }
 );
-// Async thunk untuk login
-// export const getPostsAPIAct = createAsyncThunk("get/posts/api", async (url) => {
-//   try {
-//     const response = await axiosInstance.get(`${backendURL}${url}`);
-//     if (response) {
-//       console.log("apa ini coyyyy", response.data);
-
-//       return response.data;
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// });
 
 // add spaceeee
 export const postPostsAPIAct = createAsyncThunk(
   "post/posts/api",
   async ({ title, description, type, img, space_id }) => {
     try {
-      const response = await axiosInstance.post(`${backendURL}posts/`, {
+      const response = await axiosInstance.post(`${apiKey}/posts/`, {
         title,
         description,
         type,
         img,
         space_id,
       });
-      console.log("apa responsnyya", response.data);
       toast.success(`${response.data.message}`, {
         position: "bottom-right",
       });
@@ -102,13 +81,12 @@ export const commentPostsAPIAct = createAsyncThunk(
   async ({ id, text }) => {
     try {
       const response = await axiosInstance.post(
-        `${backendURL}posts/${id}/comments`,
+        `${apiKey}/posts/${id}/comments`,
         {
           text,
         }
       );
-      console.log("apa ini suuuuuuuuuu", text);
-      console.log("apa responsnyya", response.data);
+
       toast.success(`${response.data.message}`, {
         position: "bottom-right",
       });
@@ -128,14 +106,13 @@ export const likeUpPostsAPIAct = createAsyncThunk(
   async ({ id, idComment }) => {
     try {
       const response = await axiosInstance.post(
-        `${backendURL}posts/${id}/comments/${idComment}`,
+        `${apiKey}/posts/${id}/comments/${idComment}`,
         {
           type: "up",
         }
       );
 
       if (response) {
-        console.log("apa responsnyya", response);
         toast.success(`${response.data.message}`, {
           position: "bottom-right",
         });
@@ -154,14 +131,13 @@ export const likeDownPostsAPIAct = createAsyncThunk(
   async ({ id, idComment }) => {
     try {
       const response = await axiosInstance.delete(
-        `${backendURL}posts/${id}/comments/${idComment}`,
+        `${apiKey}/posts/${id}/comments/${idComment}`,
         {
           type: "up",
         }
       );
 
       if (response) {
-        console.log("apa responsnyya", response);
         toast.success(`${response.data.message}`, {
           position: "bottom-right",
         });
@@ -178,10 +154,8 @@ export const searchPostsAPIAct = createAsyncThunk(
   "search/posts/api",
   async (url) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${url}`);
+      const response = await axiosInstance.get(`${apiKey}/${url}`);
       if (response) {
-        console.log("apa ini search nya", response.data);
-
         return response.data.data;
       }
     } catch (error) {

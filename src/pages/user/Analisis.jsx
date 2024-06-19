@@ -8,7 +8,6 @@ import TemplateLogin from "../../template/TemplateLogin";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
-  AnalisisAct,
   AnalisisCuacaAct,
   AnalisisTemperatureAct,
   getLocationAct,
@@ -32,7 +31,6 @@ async function GetLastIndexTemperature(times, currentTime) {
 
 const provinsi = dataProvinsi;
 
-const kota = [];
 const Analisis = () => {
   const [openModal, setOpenModal] = useState(false);
   const [dataSearchCity, setDataSearchCity] = useState([]);
@@ -45,13 +43,8 @@ const Analisis = () => {
   const [temperatureValue, setTemperatureValue] = useState([]);
   const [currentTime, setCurrentTime] = useState("");
 
-  console.log(openModal);
   const [selectedCity, setSelectedCity] = useState("");
   const removedSpacesCity = dataCity ? dataCity.split(" ").join("-") : "";
-
-  // const handleChange = (event) => {
-  //   setSelectedCity(event.target.value);
-  // };
 
   const dispatch = useDispatch();
 
@@ -61,7 +54,6 @@ const Analisis = () => {
 
   const removedSpacesProv = prov ? prov.split(" ").join("-") : "";
   const URL_API = `https://cuaca-gempa-rest-api.vercel.app/weather/${removedSpacesProv}/${removedSpacesCity.toLowerCase()}`;
-  console.log("URL nya adalah", URL_API);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -103,7 +95,6 @@ const Analisis = () => {
       console.error("Error fetching data:", error);
     }
   };
-  console.log("apa ini datanya ", dataSearchCity ? dataSearchCity : "");
 
   // const data = [dataSearchCity ? dataSearchCity.map((items, i) => "value" : items.description) :""]
 
@@ -122,8 +113,6 @@ const Analisis = () => {
   });
 
   const dataFinalCity = filteredData;
-  console.log("apa ini isinya", data);
-  console.log("ini cuaca", cuaca);
 
   return (
     <TemplateLogin>
