@@ -2,15 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
+const apiKey = process.env.API_URL;
+
 // Async thunk untuk post
 export const updateProfilAPIAct = createAsyncThunk(
   "post/update/profil",
   async (body) => {
     try {
-      const response = await axiosInstance.patch(
-        `http://localhost:4000/users/`,
-        body
-      );
+      const response = await axiosInstance.patch(`${apiKey}/users/`, body);
       console.log("apa responsnyya bodyyy:", body);
 
       const data = response.data.data;

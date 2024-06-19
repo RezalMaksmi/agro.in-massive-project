@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
-const backendURL = "http://localhost:4000/";
+// const backendURL = "http://localhost:4000/";
+const apiKey = process.env.API_URL;
 
 // Async thunk untuk login
 export const getAPIAct = createAsyncThunk("get/api", async (url) => {
@@ -24,7 +25,7 @@ export const postSpaceAPIAct = createAsyncThunk(
   "post/space/api",
   async ({ title, description }) => {
     try {
-      const response = await axiosInstance.post(`${backendURL}spaces/`, {
+      const response = await axiosInstance.post(`${apiKey}/spaces/`, {
         title,
         description,
       });
@@ -46,7 +47,7 @@ export const getExploreAPIAct = createAsyncThunk(
   "get/explore/api",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
         console.log(response.data.data);
 
@@ -63,7 +64,7 @@ export const getAPIActDetail = createAsyncThunk(
   "get/apiDetail/ruang",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
         console.log(response.data.data);
 
@@ -80,7 +81,7 @@ export const getAPIActDiskusiSpacesOwned = createAsyncThunk(
   "get/api/owned",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
         console.log(response.data.data);
 
@@ -98,7 +99,7 @@ export const deleteAPIActDiskusiSpaces = createAsyncThunk(
   async (path) => {
     console.log("apa ini", path);
     try {
-      const response = await axiosInstance.delete(`${backendURL}${path}`);
+      const response = await axiosInstance.delete(`${apiKey}/${path}`);
       if (response) {
         toast.success(`${response.data.message}`, {
           position: "bottom-right",
@@ -121,7 +122,7 @@ export const getAPIActDiskusiSpacesfollowing = createAsyncThunk(
   "get/api/following",
   async (path) => {
     try {
-      const response = await axiosInstance.get(`${backendURL}${path}`);
+      const response = await axiosInstance.get(`${apiKey}/${path}`);
       if (response) {
         console.log(response.data.data);
 
@@ -138,7 +139,7 @@ export const getAPIActDiskusiSpacesFollow = createAsyncThunk(
   "get/api/follow",
   async (path) => {
     try {
-      const response = await axiosInstance.post(`${backendURL}${path}`);
+      const response = await axiosInstance.post(`${apiKey}/${path}`);
       if (response) {
         toast.success(`${response.data.message}`, {
           position: "bottom-right",
@@ -157,7 +158,7 @@ export const getAPIActDiskusiSpacesUnFollow = createAsyncThunk(
   "get/api/unfollow",
   async (path) => {
     try {
-      const response = await axiosInstance.delete(`${backendURL}${path}`);
+      const response = await axiosInstance.delete(`${apiKey}/${path}`);
       if (response) {
         toast.success(`${response.data.message}`, {
           position: "bottom-right",

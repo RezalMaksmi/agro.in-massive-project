@@ -5,20 +5,12 @@ import axiosInstance from "../../api/axiosInstance";
 import Loading from "./Loading";
 
 const Artikel = ({ className, TextColor }) => {
-  // const [error, setError] = useState(false);
-  // const [loader, setLoader] = useState(true);
-  // const [article, setArticle] = useState();
   const dispatch = useDispatch();
   const { artikel, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getArtikelAPIAct(`http://localhost:4000/artikel`));
+    dispatch(getArtikelAPIAct(`${process.env.API_URL}/artikel`));
   }, []);
-
-  console.log("apa isinya?", artikel);
-
-  // if (error) return <>eror</>;
-  // if (loader) return <>Loading...</>;
 
   return (
     <div
@@ -35,13 +27,13 @@ const Artikel = ({ className, TextColor }) => {
             artikel.slice(0, 3).map((item, i) => {
               return (
                 <div
-                  key={i + 1}
+                  key={i}
                   className=" flex flex-col rounded-lg bg-[#fff] max-h-[355px] md:min-h-[355px] min-h-[155px] h-full  overflow-hidden cursor-pointer"
                 >
                   <div className="group/item h-full flex md:flex-col flex-row rounded-lg bg-[#fff] overflow-hidden relative transform transition-all duration-500">
                     <div className="md:h-[99px] h-full md:group-hover/item:h-full w-full overflow-hidden transform transition-all duration-500 md:group-hover/item:relative">
                       <img
-                        src={`http://localhost:4000/assets/images/${item.featured_image}`}
+                        src={`${process.env.API_URL}/assets/images/${item.featured_image}`}
                         alt=""
                         className="object-cover w-full h-full transform transition-all duration-500 "
                       />
@@ -67,44 +59,6 @@ const Artikel = ({ className, TextColor }) => {
           ) : (
             <Loading />
           )}
-
-          {/* <div className=" flex flex-col rounded-lg bg-[#fff] overflow-hidden">
-            <div className="h-[70px] w-full overflow-hidden">
-              <img src={artikel} alt="" className="object-cover w-full" />
-            </div>
-            <div className="flex flex-col gap-2 px-6 py-6">
-              <h1 className="text-2xl font-bold">
-                Suhu Udara Tinggi, Kegiatan Pertanian Turun
-              </h1>
-              <span className="">
-                Pemerintah Aceh melalui Dinas Pertanian dan Perkebunan Aceh
-                kembali menggelar pasar tani pada tahun ini. Ratusan masyarakat
-                antusias menyerbu
-              </span>
-              <a href="" className="py-4 text-end">
-                Read More
-              </a>
-            </div>
-          </div>
-
-          <div className=" flex flex-col rounded-lg bg-[#fff] overflow-hidden">
-            <div className="h-[70px] w-full overflow-hidden">
-              <img src={artikel} alt="" className="object-cover w-full" />
-            </div>
-            <div className="flex flex-col gap-2 px-6 py-6">
-              <h1 className="text-2xl font-bold">
-                Apakah Makan Organik Benar-benar Sehat?
-              </h1>
-              <span className="">
-                Pemerintah Aceh melalui Dinas Pertanian dan Perkebunan Aceh
-                kembali menggelar pasar tani pada tahun ini. Ratusan masyarakat
-                antusias menyerbu
-              </span>
-              <a href="" className="py-4 text-end">
-                Read More
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

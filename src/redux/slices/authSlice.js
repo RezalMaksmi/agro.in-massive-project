@@ -4,18 +4,19 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const backendURL = "http://localhost:4000";
+// const backendURL = "http://localhost:4000";
+const apiKey = process.env.API_URL;
 
 // Async thunk untuk login
 export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }) => {
     try {
-      const response = await axiosInstance.post(`${backendURL}/auth/login`, {
+      const response = await axiosInstance.post(`${apiKey}/auth/login`, {
         email,
         password,
       });
-
+      console.log(apiKey);
       const newToken = `${response.data.token}`;
       Cookies.set("token", newToken, { expires: 1 });
       const data = response.data;
@@ -36,7 +37,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async ({ username, email, password }) => {
     try {
-      const response = await axios.post(`http://localhost:4000/auth/register`, {
+      const response = await axios.post(`${apiKey}/auth/register`, {
         username,
         email,
         password,

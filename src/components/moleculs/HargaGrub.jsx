@@ -10,8 +10,6 @@ const HargaGrub = ({ full }) => {
   const [dateRange, setDateRange] = useState([null, null]);
   const [jenisDataValue, setJenisDataValue] = useState("");
 
-  // const [data, setData] = useState([]);
-
   const dispatch = useDispatch();
   const [startDate, endDate] = dateRange;
   const { foodPrices } = useSelector((state) => state.get);
@@ -43,25 +41,10 @@ const HargaGrub = ({ full }) => {
       )
     );
   };
-  console.log("apa ini", currentDate);
 
   useEffect(() => {
-    // Fetch data when component mounts
-    // axiosInstance
-    //   .get("http://localhost:4000/food-prices")
-    //   .then((response) => {
-    //     // Set data to state
-    //     console.log("isinya apaya", response);
-    //     setData(eval(JSON.stringify(response)));
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data: ", error);
-    //   });
-
     fetchData();
   }, [jenisDataValue, startDate, endDate, dateRange]);
-
-  console.log(formatDate(startDate));
 
   const jenisData = [
     {
@@ -78,7 +61,6 @@ const HargaGrub = ({ full }) => {
     },
   ];
 
-  console.log(foodPrices);
   return (
     <div className="flex flex-col gap-10">
       <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full">
@@ -118,24 +100,26 @@ const HargaGrub = ({ full }) => {
           ? foodPrices
             ? foodPrices.foodPrices.map((items, i) => {
                 return (
-                  <CardHargaPangan
-                    Key={i}
-                    Title={items.name}
-                    Img={items.img}
-                    Price={items.price}
-                  />
+                  <div key={i}>
+                    <CardHargaPangan
+                      Title={items.name}
+                      Img={items.img}
+                      Price={items.price}
+                    />
+                  </div>
                 );
               })
             : ""
           : foodPrices
           ? foodPrices.foodPrices.slice(0, 8).map((items, i) => {
               return (
-                <CardHargaPangan
-                  Key={i}
-                  Title={items.name}
-                  Img={items.img}
-                  Price={items.price}
-                />
+                <div key={i}>
+                  <CardHargaPangan
+                    Title={items.name}
+                    Img={items.img}
+                    Price={items.price}
+                  />
+                </div>
               );
             })
           : ""}

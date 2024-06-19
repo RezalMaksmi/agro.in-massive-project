@@ -14,6 +14,7 @@ import TemplateLogin from "../../template/TemplateLogin";
 import Line from "./../../components/atoms/Line";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIAct, getAPIActDetail } from "../../redux/featch/getData";
+import { Loading } from "../../components/moleculs";
 
 const articles = [
   {
@@ -86,7 +87,7 @@ const ChildArtikel = () => {
   const { data, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+    dispatch(getAPIAct(`${process.env.API_URL}/artikel`));
   }, []);
 
   return (
@@ -99,7 +100,7 @@ const ChildArtikel = () => {
             key={i}
           >
             <img
-              src={`http://localhost:4000/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
               alt={news.title}
               className="w-24 h-24 object-cover rounded-2xl"
             />
@@ -147,7 +148,7 @@ export const ArtikelDetail = () => {
   const { detail, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getAPIActDetail(`http://localhost:4000/artikel/${slug}`));
+    dispatch(getAPIActDetail(`${process.env.API_URL}/artikel/${slug}`));
   }, [slug]);
   console.log(detail);
   return (
@@ -160,7 +161,7 @@ export const ArtikelDetail = () => {
           >
             <div className="flex flex-col gap-y-4 px-4 sm:px-32 w-full sm:w-[60%]">
               <img
-                src={`http://localhost:4000/assets/images/${news.featured_image}`}
+                src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
                 alt={news.title}
                 className="w-full h-72 object-cover  rounded-lg"
               />
@@ -182,9 +183,7 @@ export const ArtikelDetail = () => {
           </div>
         ))
       ) : status == "loading" ? (
-        <div className="h-screen flex justify-center items-center">
-          Loading coyy
-        </div>
+        <Loading />
       ) : (
         ""
       )}

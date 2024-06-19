@@ -12,6 +12,7 @@ import SearchBar from "../../components/atoms/SearchBar";
 import TemplateLogin from "../../template/TemplateLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIAct, getAPIActDetail } from "../../redux/featch/getData";
+import { Loading } from "../../components/moleculs";
 
 const DataArtikel = [
   {
@@ -74,7 +75,7 @@ export const MainArtikel = (props) => {
   const { data, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+    dispatch(getAPIAct(`${process.env.API_URL}/artikel`));
   }, []);
 
   return (
@@ -83,7 +84,7 @@ export const MainArtikel = (props) => {
         data.map((news, i) => (
           <div className={`flex flex-col ${props.className} gap-y-2`} key={i}>
             <img
-              src={`http://localhost:4000/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
               alt={news.title}
               className="w-full sm:max-w-[580px] sm:w-full rounded-lg"
             />
@@ -99,7 +100,7 @@ export const MainArtikel = (props) => {
           </div>
         ))
       ) : (
-        <>Loading...</>
+        <Loading />
       )}
     </div>
   );
@@ -110,7 +111,7 @@ const ChildArtikel = () => {
   const { data, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
-    dispatch(getAPIAct(`http://localhost:4000/artikel`));
+    dispatch(getAPIAct(`${process.env.API_URL}/artikel`));
   }, []);
 
   return (
@@ -123,7 +124,7 @@ const ChildArtikel = () => {
             key={i}
           >
             <img
-              src={`http://localhost:4000/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
               alt={news.title}
               className="w-24 h-24 object-cover rounded-2xl"
             />
@@ -137,7 +138,7 @@ const ChildArtikel = () => {
           </Link>
         ))
       ) : (
-        <>Loading...</>
+        <Loading />
       )}
     </div>
   );
@@ -145,14 +146,13 @@ const ChildArtikel = () => {
 
 const Artikel = (props) => {
   const [search, setSearch] = useState("");
-  console.log(search);
   const dispatch = useDispatch();
   const { data, status, error } = useSelector((state) => state.get);
 
   useEffect(() => {
     const formattedSlug = search.replace(/\s+/g, "-");
     dispatch(
-      getAPIAct(`http://localhost:4000/artikel/search?q=${formattedSlug}`)
+      getAPIAct(`${process.env.API_URL}/artikel/search?q=${formattedSlug}`)
     );
   }, [search]);
   return (
@@ -175,7 +175,7 @@ const Artikel = (props) => {
             </div>
           ) : (
             <div className="grid gap-3 grid-cols-3">
-              {data ? (
+              {data &&
                 data.map((news, i) => (
                   <div
                     className={`flex flex-col ${props.className} gap-y-2 rounded-lg bg-white shadow-xl`}
@@ -183,7 +183,7 @@ const Artikel = (props) => {
                   >
                     <div className="flex flex-col p-3 gap-1">
                       <img
-                        src={`http://localhost:4000/assets/images/${news.featured_image}`}
+                        src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
                         alt={news.title}
                         className="w-full h-[250px] rounded-lg object-cover"
                       />
@@ -199,10 +199,7 @@ const Artikel = (props) => {
                       <p className="w-full  pb-5  text-sm">{news.summary}</p>{" "}
                     </div>
                   </div>
-                ))
-              ) : (
-                <>Loading...</>
-              )}
+                ))}
             </div>
           )}
         </div>

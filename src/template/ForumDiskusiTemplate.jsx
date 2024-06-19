@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const ForumDiskusiTemplate = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
-  console.log(openModal);
 
   const { data } = useSelector((state) => state.spaces);
   useEffect(() => {
@@ -25,7 +24,7 @@ const ForumDiskusiTemplate = ({ children }) => {
       >
         <div className="container mx-auto md:px-10 px-3">
           <div className="grid grid-cols-6 md:gap-4 gap-2 h-max mb-12 ">
-            <div className="bg-primary rounded-2xl shadow-md h-max  sticky md:top-32 top-28">
+            <div className="bg-primary rounded-2xl shadow-md h-max  sticky md:top-32 top-28 mb-8">
               <div className="flex flex-col gap-0 items-center ">
                 <div className="flex flex-col justify-center items-center my-3">
                   <img src={logo} alt="" className="md:w-20 w-10" />
@@ -80,7 +79,9 @@ const ForumDiskusiTemplate = ({ children }) => {
                 </button>
               </div>
             </div>
-            <div className=" md:col-span-3 col-span-5 h-auto">{children}</div>
+            <div className=" md:col-span-3 col-span-5 h-auto pb-9">
+              {children}
+            </div>
             <div className="bg-netral_10 md:col-span-2 col-end-7 col-span-5 w-full shadow-md   sticky top-32 h-max overflow-hidden">
               <div className="flex py-3 flex-col justify-center items-center">
                 <span className="pb-2"> Advertisement</span>

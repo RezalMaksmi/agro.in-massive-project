@@ -8,10 +8,6 @@ import TemplateLogin from "../../template/TemplateLogin";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomeLogin = () => {
-  const { user } = useSelector((state) => state.auth);
-  console.log("usernya", user);
-  const dispatch = useDispatch();
-
   return (
     <TemplateLogin>
       <div className=" ">

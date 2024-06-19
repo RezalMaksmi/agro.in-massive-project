@@ -52,48 +52,8 @@ const Profil = () => {
   const [phone_number, setPhoneNumber] = useState(
     user ? user.phone_number : ""
   );
-  // user && user.img
 
-  //localhost:4000/spaces
   const navigate = useNavigate();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  // const userData = localStorage.getItem("user");
-  // const userCheck = userData ? JSON.parse(userData) : null;
-  // const user = userCheck ? userCheck : "";
-
-  //   const dataUpdate = {
-  //     name: username,
-  //     email,
-  //     job,
-  //     phone_number,
-  //     img: img ? img : user.img,
-  //   };
-  //   console.log(dataUpdate);
-  //   dispatch(updateProfilAPIAct(dataUpdate));
-  //   handleFileUpload();
-
-  //   navigate("/profil");
-  //   setShowModal(false);
-  // };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = {
-  //       name: "user",
-  //       email: "mulyadi@example.com",
-  //       job: "Petani",
-  //       phone: "+123 456 7890",
-  //       password: "*********",
-  //     };
-
-  //     setUserData(data);
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   const handleEditProfile = () => {
     setShowModal(true);
@@ -106,18 +66,6 @@ const Profil = () => {
   const handleCloseConfirmModal = () => {
     setShowConfirmModal(false);
   };
-
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setUserData({ ...userData, [name]: value });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setShowConfirmModal(true);
-  // };
-
-  console.log("papappapap", user.img);
 
   const [selectedFile, setSelectedFile] = useState("null");
   const [imagePreview, setImagePreview] = useState(null);
@@ -133,46 +81,6 @@ const Profil = () => {
     reader.readAsDataURL(file);
   };
 
-  // const formData = new FormData();
-  // formData.append("photo", selectedFile);
-
-  // const handleFileUpload = async () => {
-  //   if (!selectedFile) return;
-
-  //   const formData = new FormData();
-  //   formData.append("photo", selectedFile);
-  //   console.log("apa ini", formData.get("photo"));
-  //   formData.append("file", selectedFile);
-
-  //   if (!selectedFile) return;
-
-  //   try {
-  //     const response = await axiosInstance.post(
-  //       "http://localhost:4000/users/upload",
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //           Authorization: `Bearer ${Cookies.get("token")}`, // Menggunakan token untuk autentikasi
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       setUploadStatus("Upload berhasil!");
-  //     } else {
-  //       setUploadStatus("Upload gagal.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Terjadi kesalahan saat mengupload:", error);
-  //     setUploadStatus("Terjadi kesalahan saat mengupload.");
-  //   }
-
-  //   // dispatch(
-  //   //   postAPIAct(`http://localhost:4000/users/uploud`, formData.get("photo"))
-  //   // );
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -181,7 +89,7 @@ const Profil = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://localhost:4000/utils/image-upload",
+        `${process.env.API_URL}/utils/image-upload`,
         formData,
         {
           headers: {
@@ -206,7 +114,6 @@ const Profil = () => {
         phone_number: phone_number ? phone_number : user.phone_number,
         img: img ? img : user.img,
       };
-      console.log(dataUpdate);
       dispatch(updateProfilAPIAct(dataUpdate));
       setShowModal(false);
 
@@ -220,7 +127,6 @@ const Profil = () => {
       console.error("Error uploading the image:", error);
     }
   };
-  const { data } = useSelector((state) => state.profil);
 
   const fileInputRef = useRef(null);
 
@@ -245,7 +151,7 @@ const Profil = () => {
                 src={`
                ${
                  user.img !== null
-                   ? `http://localhost:4000/assets/images/${user.img}`
+                   ? `${process.env.API_URL}/assets/images/${user.img}`
                    : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                }`}
                 alt="Profile"
@@ -327,7 +233,7 @@ const Profil = () => {
                     viewImage
                       ? viewImage
                       : user
-                      ? `http://localhost:4000/assets/images/${user.img}`
+                      ? `${process.env.API_URL}/assets/images/${user.img}`
                       : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                   }
                   alt="Profile"
