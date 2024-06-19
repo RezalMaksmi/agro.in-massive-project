@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaCamera, FaImage } from "react-icons/fa";
 import { GrAttachment } from "react-icons/gr";
 
@@ -11,6 +11,8 @@ const FormDiskusi = ({
   titleValue,
   selectFile,
   idSpace,
+  handleIconClick,
+  fileInputRef,
 }) => {
   switch (type) {
     case "question":
@@ -57,9 +59,17 @@ const FormDiskusi = ({
           ></textarea>
           <div className="flex justify-between items-center md:pt-2 pt-1">
             <div className="flex gap-3 text-lg text-white ">
-              <input type="file" onChange={selectFile} />
-              <FaImage />
-              <GrAttachment />
+              <input
+                type="file"
+                onChange={selectFile}
+                ref={fileInputRef}
+                className="hidden"
+              />
+              <FaImage onClick={handleIconClick} className="cursor-pointer" />
+              <GrAttachment
+                onClick={handleIconClick}
+                className="cursor-pointer"
+              />
             </div>
             <button
               onClick={submit}

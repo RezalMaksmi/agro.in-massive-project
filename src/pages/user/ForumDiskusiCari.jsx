@@ -11,7 +11,6 @@ const ForumDiskusiCari = () => {
   const dispatch = useDispatch();
   const { searching } = useSelector((state) => state.posts);
 
-  console.log(search);
   const handleSearch = () => {
     dispatch(searchPostsAPIAct(`posts/search?q=${search}`));
   };

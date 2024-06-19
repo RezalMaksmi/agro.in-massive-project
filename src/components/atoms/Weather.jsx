@@ -1,9 +1,9 @@
 import React from "react";
-import cerahBerawan from "../../assets/cloudy.png";
-import berawan from "../../assets/berawan.png";
-import sunny from "../../assets/sunny.png";
-import storm from "../../assets/storm.png";
-import cloud from "../../assets/cloud.png";
+import cerahBerawan from "../../assets/cuaca/cloudy.png";
+import berawan from "../../assets/cuaca/berawan.png";
+import sunny from "../../assets/cuaca/sunny.png";
+import storm from "../../assets/cuaca/storm.png";
+import cloud from "../../assets/cuaca/cloud.png";
 
 const Weather = ({ cuaca }) => {
   switch (cuaca) {

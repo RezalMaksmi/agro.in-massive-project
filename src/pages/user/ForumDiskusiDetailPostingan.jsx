@@ -108,7 +108,7 @@ const ForumDiskusiDetailPostingan = () => {
                       : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                   }`}
                   alt=""
-                  className="w-10 h-10 bg-pink-600 rounded-full object-cover "
+                  className="w-10 h-10  rounded-full object-cover "
                 />
                 <input
                   type="text"
