@@ -4,10 +4,8 @@ import bgProfile from "../../assets/bg_profile.png";
 import Modal from "../../components/atoms/modal_edit_profile";
 import { ConfirmModalProfile } from "../../components/atoms";
 import TemplateLogin from "../../template/TemplateLogin";
-import { useDispatch, useSelector } from "react-redux";
-import CustomFileInput from "../../components/atoms/CustomFileInput";
-import axios from "axios";
-import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { updateProfilAPIAct } from "../../redux/featch/Profil";
@@ -60,7 +58,7 @@ const Profil = () => {
     setShowConfirmModal(false);
   };
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadStatus, setUploadStatus] = useState("");
 
@@ -143,7 +141,7 @@ const Profil = () => {
                 className="w-20 h-20 rounded-full mb-4 object-cover"
                 src={`
                ${
-                 user.img !== null
+                 (user.img !== null) & (user.img !== "")
                    ? `${process.env.API_URL}/public/images/${user.img}`
                    : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                }`}
@@ -225,7 +223,7 @@ const Profil = () => {
                   src={
                     viewImage
                       ? viewImage
-                      : user
+                      : user & (user.img !== "")
                       ? `${process.env.API_URL}/public/images/${user.img}`
                       : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                   }
@@ -238,17 +236,6 @@ const Profil = () => {
               >
                 Pilih Gambar
               </span>
-              {/* {viewImage && (
-                <div>
-                  <img
-                    src={viewImage}
-                    alt="Preview"
-                    style={{ maxWidth: "100%", maxHeight: "200px" }}
-                  />
-                </div>
-              )} */}
-
-              {/* <CustomFileInput onFileSelect={handleFileSelect} /> */}
 
               <input
                 type="file"
@@ -258,8 +245,6 @@ const Profil = () => {
               />
 
               {uploadStatus && <p>{uploadStatus}</p>}
-
-              {/* {uploadStatus && <p>{uploadStatus}</p>} */}
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">

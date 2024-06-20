@@ -21,7 +21,7 @@ const ForumDiskusi = () => {
   const [type, setType] = useState("question");
   const [img, setImg] = useState();
   const [space_id, setSpace_id] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("");
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -84,6 +84,8 @@ const ForumDiskusi = () => {
     setImg(selectedFile.name);
     fetchData();
   }, [selectedFile]);
+
+  // console.log(user);
 
   return (
     <TemplateLogin>
