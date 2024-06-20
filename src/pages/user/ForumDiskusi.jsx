@@ -175,7 +175,7 @@ const ForumDiskusi = () => {
                     imgPost={`${process.env.API_URL}/assets/images/${item.img}`}
                     date={
                       item
-                        ? format(new Date(item.created_at), "yyyy-MM-dd")
+                        ? format(new Date(item.created_at), "yyyy-MM-dd HH:mm")
                         : ""
                     }
                     likeUp="200"

@@ -19,7 +19,6 @@ const ForumDiskusiJelajahRuang = () => {
   const [followBtn, setFollowBtn] = useState(null);
   const { explore, following, data } = useSelector((state) => state.spaces);
   const { user } = useSelector((state) => state.auth);
-  // const {  } = useSelector((state) => state.post);
   const [popupFollow, setPopupFollow] = useState(false);
   const [id, setId] = useState(null);
   const navigate = useNavigate();
@@ -39,15 +38,6 @@ const ForumDiskusiJelajahRuang = () => {
     dispatch(getAPIActDiskusiSpacesUnFollow(`spaces/${id}/followers`));
     getData();
   };
-  // Fungsi untuk mencocokkan data
-  // useEffect(() => {
-  //   dispatch(getExploreAPIAct(`spaces`));
-  //   dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-  //   explore ? setDataToMatch(explore.spaces) : "";
-  //   following ? setDataList(following) : "";
-
-  //   matchData();
-  // }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
 
   const matchData = () => {
     if (!dataToMatch || (!Array.isArray(dataToMatch) && !dataList)) {
@@ -68,16 +58,10 @@ const ForumDiskusiJelajahRuang = () => {
         )
     );
 
-    // Simpan data yang cocok ke dalam state
     setFollow(follow);
     setUnFollow(unFollow);
     return;
   };
-
-  // console.log(dataToMatch ? dataToMatch : "");
-  // console.log(dataList);
-  // console.log("apa hasilnya", follow);
-  // console.log("pppppppppppppppp", unFollow);
 
   const closeModalFollow = () => {
     setPopupFollow(!popupFollow);
@@ -90,14 +74,6 @@ const ForumDiskusiJelajahRuang = () => {
     dispatch(deleteAPIActDiskusiSpaces(`spaces/${id}/followers`));
     closeModalFollow();
   };
-
-  // useEffect(() => {
-  //   dispatch(getExploreAPIAct(`spaces`));
-  //   dispatch(getAPIActDiskusiSpacesfollowing(`spaces?filter=following`));
-  //   setDataToMatch(explore ? explore.spaces : "");
-  //   setDataList(following ? following : "");
-  //   matchData();
-  // }, [id, dataList, dataToMatch, criteriaList, data, dispatch]);
 
   const getData = () => {
     dispatch(getExploreAPIAct(`spaces`));
@@ -128,63 +104,6 @@ const ForumDiskusiJelajahRuang = () => {
               Jelajahi Ruang yang ada
             </h2>
             <div className="flex flex-col gap-2">
-              {/* {follow && user ? (
-                follow.map((item, i) => {
-                  return (
-                    <CardDiskusi
-                      key={i}
-                      type="jelajahRuang"
-                      id={item.id}
-                      imgProfil={`
-                      ${
-                        item && item.author_image != null
-                          ? `${process.env.API_URL}/assets/images/${item.author_image}`
-                          : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
-                      }`}
-                      title={item.title}
-                      description={item.description}
-                      follow={() => followAct(item.id)}
-                      button="Berhenti Mengikuti"
-                      onClick={() => openModalFollow(item.id)}
-                      // button={ following.filter(item1 => item.find(item2 => item1.id === item2.id))}
-                      className={`${
-                        item.user_id == user.id ? "hidden" : "flex"
-                      }`}
-                    />
-                  );
-                })
-              ) : (
-                <div></div>
-              )} */}
-
-              {/* {unFollow && user ? (
-                unFollow.map((item, i) => {
-                  return (
-                    <CardDiskusi
-                      key={i}
-                      type="jelajahRuang"
-                      id={item.id}
-                      imgProfil={`
-                      ${
-                        item && item.author_image != null
-                          ? `${process.env.API_URL}/assets/images/${item.author_image}`
-                          : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
-                      }`}
-                      title={item.title}
-                      description={item.description}
-                      follow={() => followAct(item.id)}
-                      button="Ikuti"
-                      // button={ following.filter(item1 => item.find(item2 => item1.id === item2.id))}
-                      className={`${
-                        item.user_id == user.id ? "hidden" : "flex"
-                      }`}
-                    />
-                  );
-                })
-              ) : (
-                <div>Jelajah ruang kosong</div>
-              )} */}
-
               {explore ? (
                 explore.spaces.map((item, i) => {
                   return (
@@ -205,9 +124,6 @@ const ForumDiskusiJelajahRuang = () => {
                         item.following ? () => unfollowAct(item.id) : ""
                       }
                       button={item.following}
-                      // button="Ikuti"
-
-                      // button={ following.filter(item1 => item.find(item2 => item1.id === item2.id))}
                       className={"flex"}
                     />
                   );
