@@ -21,7 +21,7 @@ const ForumDiskusi = () => {
   const [type, setType] = useState("question");
   const [img, setImg] = useState();
   const [space_id, setSpace_id] = useState(null);
-  const [selectedFile, setSelectedFile] = useState("null");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const dispatch = useDispatch();
   const { id } = useParams();

@@ -14,13 +14,6 @@ import { updateProfilAPIAct } from "../../redux/featch/Profil";
 import axiosInstance from "../../api/axiosInstance";
 
 const Profil = () => {
-  // const [userData, setUserData] = useState({
-  //   name: "",
-  //   email: "",
-  //   job: "",
-  //   phone: "",
-  //   password: "",
-  // });
   const [viewImage, setViewImage] = useState();
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -67,7 +60,7 @@ const Profil = () => {
     setShowConfirmModal(false);
   };
 
-  const [selectedFile, setSelectedFile] = useState("null");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadStatus, setUploadStatus] = useState("");
 
