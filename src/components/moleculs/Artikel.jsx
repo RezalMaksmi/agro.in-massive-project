@@ -33,7 +33,7 @@ const Artikel = ({ className, TextColor }) => {
                   <div className="group/item h-full flex md:flex-col flex-row rounded-lg bg-[#fff] overflow-hidden relative transform transition-all duration-500">
                     <div className="md:h-[99px] h-full md:group-hover/item:h-full w-full overflow-hidden transform transition-all duration-500 md:group-hover/item:relative">
                       <img
-                        src={`${process.env.API_URL}/assets/images/${item.featured_image}`}
+                        src={`${process.env.API_URL}/public/images/${item.featured_image}`}
                         alt=""
                         className="object-cover w-full h-full transform transition-all duration-500 "
                       />

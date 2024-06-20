@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Artikel1 from "./../../assets/artikel/artikel1.png";
-import Artikel2 from "./../../assets/artikel/artikel2.png";
-import Artikel3 from "./../../assets/artikel/artikel3.jpg";
-import Artikel4 from "./../../assets/artikel/artikel4.png";
-import Artikel6 from "./../../assets/artikel/artikel6.png";
-import Artikel7 from "./../../assets/artikel/artikel7.png";
-import Artikel8 from "./../../assets/artikel/artikel8.png";
-import Artikel9 from "./../../assets/artikel/artikel9.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/atoms/SearchBar";
 import TemplateLogin from "../../template/TemplateLogin";
@@ -59,7 +51,7 @@ export const MainArtikel = (props) => {
         data.map((news, i) => (
           <div className={`flex flex-col ${props.className} gap-y-2`} key={i}>
             <img
-              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/public/images/${news.featured_image}`}
               alt={news.title}
               className="w-full sm:max-w-[580px] sm:w-full rounded-lg"
             />
@@ -109,7 +101,7 @@ const ChildArtikel = () => {
             key={i}
           >
             <img
-              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/public/images/${news.featured_image}`}
               alt={news.title}
               className="w-24 h-24 object-cover rounded-2xl"
             />
@@ -178,7 +170,7 @@ const Artikel = (props) => {
                   >
                     <div className="flex flex-col p-3 gap-1">
                       <img
-                        src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
+                        src={`${process.env.API_URL}/public/images/${news.featured_image}`}
                         alt={news.title}
                         className="w-full h-[250px] rounded-lg object-cover"
                       />

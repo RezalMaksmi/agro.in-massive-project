@@ -58,7 +58,7 @@ const ChildArtikel = () => {
             key={i}
           >
             <img
-              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/public/images/${news.featured_image}`}
               alt={news.title}
               className="w-24 h-24 object-cover rounded-2xl"
             />
@@ -129,7 +129,7 @@ export const ArtikelDetail = () => {
           >
             <div className="flex flex-col gap-y-4 px-4 sm:px-32 w-full sm:w-[60%]">
               <img
-                src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
+                src={`${process.env.API_URL}/public/images/${news.featured_image}`}
                 alt={news.title}
                 className="w-full h-72 object-cover  rounded-lg"
               />
