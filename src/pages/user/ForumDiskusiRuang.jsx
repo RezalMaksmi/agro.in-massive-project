@@ -87,7 +87,7 @@ const ForumDiskusiRuang = () => {
                       id={items.id}
                       imgProfil={`
                       ${
-                        user && user.img != null
+                        user && (user.img != null) & (user.img !== "")
                           ? `${process.env.API_URL}/public/images/${user.img}`
                           : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                       }`}
