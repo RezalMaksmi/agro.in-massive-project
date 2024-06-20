@@ -41,6 +41,18 @@ const Register = () => {
       return;
     }
 
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.info(
+        "Kata sandi harus terdiri dari minimal 8 karakter dan mencakup setidaknya satu huruf besar, satu angka, dan satu karakter khusus.",
+        {
+          position: "bottom-right",
+        }
+      );
+      return;
+    }
+
     if (check === true) {
       dispatch(register(addData))
         .unwrap()

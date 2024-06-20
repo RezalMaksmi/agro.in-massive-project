@@ -15,73 +15,31 @@ import Line from "./../../components/atoms/Line";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIAct, getAPIActDetail } from "../../redux/featch/getData";
 import { Loading } from "../../components/moleculs";
+import {
+  getDate,
+  getHours,
+  getMinutes,
+  getMonth,
+  getYear,
+  parseISO,
+} from "date-fns";
 
-const articles = [
-  {
-    image: Artikel3,
-    title:
-      "Optimalisasi Produksi Tanaman: Panduan Praktis untuk Mengatur pH Tanah",
-    date: "2 Mei 2024",
-  },
-  {
-    image: Artikel4,
-    title:
-      "Menciptakan Keseimbangan: Antara Tanggung Jawab di Sawah dan Dunia Digital",
-    date: "2 Mei 2024",
-  },
-  {
-    image: Artikel6,
-    title: "Pemerintah Aceh Gelora Kembali Pasar Tani di 2024",
-    date: "25 April 2024",
-  },
-  {
-    image: Artikel7,
-    title: "Apakah Makanan Organik Benar-benar Sehat?",
-    date: "25 April 2024",
-  },
-  {
-    image: Artikel8,
-    title: `Violet Sun Agro+, Solusi Pertanian Lahan Kering Bertenaga Surya`,
-    date: "25 April 2024",
-  },
-  {
-    image: Artikel9,
-    title: `6 Pengaruh Negatif IPTEK di Bidang Pertanian`,
-    date: "25 April 2024",
-  },
-];
-const SampingArtikel = [
-  {
-    judulArtikel: `Optimalisasi Produksi Tanaman: Panduan Praktis untuk Mengatur pH Tanah`,
-    timestamps: "2 Mei 2024",
-    image: Artikel3,
-  },
-  {
-    judulArtikel: `Pemerintah Aceh Gelora Kembali Pasar Tani di 2024`,
-    timestamps: "25 April 2024",
-    image: Artikel4,
-  },
-  {
-    judulArtikel: `Apakah Makanan Organik Benar-benar Sehat?`,
-    timestamps: "25 April 2024",
-    image: Artikel6,
-  },
-  {
-    judulArtikel: `Stok Pupuk Bersubsidi Melimpah, Petani Diminta Menebus Kuota yang Dimiliki`,
-    timestamps: "25 April 2024",
-    image: Artikel7,
-  },
-  {
-    judulArtikel: `Violet Sun Agro+, Solusi Pertanian Lahan Kering Bertenaga Surya`,
-    timestamps: "25 April 2024",
-    image: Artikel8,
-  },
-  {
-    judulArtikel: `6 Pengaruh Negatif IPTEK di Bidang Pertanian`,
-    timestamps: "25 April 2024",
-    image: Artikel9,
-  },
-];
+const extractTimestamp = (timestampStr) => {
+  const timestamp = parseISO(timestampStr);
+  const year = getYear(timestamp);
+  const month = getMonth(timestamp) + 1; // getMonth() returns 0-11, so we add 1
+  const day = getDate(timestamp);
+  const hour = getHours(timestamp);
+  const minute = getMinutes(timestamp);
+  return {
+    year,
+    month,
+    day,
+    hour,
+    minute,
+  };
+};
+
 const ChildArtikel = () => {
   const dispatch = useDispatch();
   const { data, status, error } = useSelector((state) => state.get);
@@ -109,7 +67,17 @@ const ChildArtikel = () => {
                 {news.title}
               </div>
               <p className="  text-[9px]">{news.summary}</p>
-              <p className="text-xs font-thin text-gray-500">{news.created}</p>
+              <p className="text-xs font-thin text-gray-500">
+                {extractTimestamp(news.created).day +
+                  "-" +
+                  extractTimestamp(news.created).month +
+                  "-" +
+                  extractTimestamp(news.created).year +
+                  "    " +
+                  extractTimestamp(news.created).hour +
+                  ":" +
+                  extractTimestamp(news.created).minute}
+              </p>
             </div>
           </Link>
         ))
@@ -165,7 +133,17 @@ export const ArtikelDetail = () => {
                 alt={news.title}
                 className="w-full h-72 object-cover  rounded-lg"
               />
-              <p className="text-[12px] text-gray-500">{news.created}</p>
+              <p className="text-[12px] text-gray-500">
+                {extractTimestamp(news.created).day +
+                  "-" +
+                  extractTimestamp(news.created).month +
+                  "-" +
+                  extractTimestamp(news.created).year +
+                  "    " +
+                  extractTimestamp(news.created).hour +
+                  ":" +
+                  extractTimestamp(news.created).minute}
+              </p>
               <p className="text-sm text-justify leading-loose">
                 {news.content}
               </p>

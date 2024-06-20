@@ -11,10 +11,6 @@ const HasilAnalisis = () => {
     (state) => state.analisis
   );
 
-  console.log("apa isinya ini yaaaaaaa", cuaca);
-  console.log("apa isinya ini lokasi", location);
-  console.log("tanahnya apa", data);
-
   return (
     <TemplateLogin>
       <div>

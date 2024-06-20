@@ -91,7 +91,9 @@ const ForumDiskusiDetailPostingan = () => {
               detail ? detail.img : ""
             }`}
             date={
-              detail ? format(new Date(detail.created_at), "yyyy-MM-dd") : ""
+              detail
+                ? format(new Date(detail.created_at), "yyyy-MM-dd HH:mm")
+                : ""
             }
             answer={detail ? detail.comment_count : ""}
             likeUp="200"

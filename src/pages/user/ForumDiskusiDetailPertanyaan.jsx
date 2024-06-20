@@ -84,7 +84,9 @@ const ForumDiskusiDetailPertanyaan = () => {
             description={detail ? detail.description : ""}
             imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
             date={
-              detail ? format(new Date(detail.created_at), "yyyy-MM-dd") : ""
+              detail
+                ? format(new Date(detail.created_at), "yyyy-MM-dd HH:mm")
+                : ""
             }
             answer={detail ? detail.comment_count : ""}
             likeUp="200"

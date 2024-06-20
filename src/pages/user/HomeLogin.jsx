@@ -5,7 +5,6 @@ import bgHero from "../../assets/bg-hero.jpg";
 import { Artikel, Fitur, HargaGrub } from "../../components/moleculs";
 import Button from "../../components/atoms/Button";
 import TemplateLogin from "../../template/TemplateLogin";
-import { useDispatch, useSelector } from "react-redux";
 
 const HomeLogin = () => {
   return (

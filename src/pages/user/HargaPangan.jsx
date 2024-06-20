@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import bgHero from "../../assets/bg-heroHargaPangan.jpg";
 import { HargaGrub } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
-import axiosInstance from "../../api/axiosInstance";
-import { useDispatch, useSelector } from "react-redux";
-import { getAPIAct } from "../../redux/featch/getData";
 
 const HargaPangan = () => {
   return (

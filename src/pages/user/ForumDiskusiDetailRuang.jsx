@@ -12,9 +12,8 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../api/axiosInstance";
 
 const ForumDiskusiDetailRuang = () => {
-  const [openModal, setOpenModal] = useState(false);
-  // State untuk menyimpan ID yang dicari dan data yang difilter
   const [filteredData, setFilteredData] = useState();
+  const [openModal, setOpenModal] = useState(false);
   const [idToFind, setIdToFind] = useState();
 
   const { id } = useParams();
@@ -25,13 +24,10 @@ const ForumDiskusiDetailRuang = () => {
   const { detail } = useSelector((state) => state.spaces);
   const { data } = useSelector((state) => state.posts);
 
-  // Fungsi untuk memfilter data berdasarkan ID
-  // const filterById = (id) => {
   const dataResult = data
     ? data.filter((entry) => entry.space_id === parseInt(id))
     : "";
 
-  // const [selectedMenu, setSelectedMenu] = useState("question");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("question");
@@ -122,23 +118,6 @@ const ForumDiskusiDetailRuang = () => {
                   <h1 className="md:text-4xl text-base font-bold">
                     {detail ? detail.space.title : ""}
                   </h1>
-                  {/* {detail ? (
-                    <Button
-                      type="PrimaryButton"
-                      // text={!openModal ? `Ikuti` : `Berhenti Mengikuti`}
-                      // button={item.following}
-
-                      button={detail.space.following}
-                      className={
-                        !openModal
-                          ? "bg-darkGray_20 text-primary"
-                          : "bg-secondary py-1 px-2"
-                      }
-                      onClick={() => setOpenModal(!openModal)}
-                    />
-                  ) : (
-                    ""
-                  )} */}
 
                   {!ownedSpaces ? (
                     detail && detail.space.following === true ? (

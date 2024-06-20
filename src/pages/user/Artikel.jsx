@@ -13,61 +13,36 @@ import TemplateLogin from "../../template/TemplateLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { getAPIAct, getAPIActDetail } from "../../redux/featch/getData";
 import { Loading } from "../../components/moleculs";
-
-const DataArtikel = [
-  {
-    image: Artikel1,
-    title: "Mentan Ingin Bangun Klaster Pertanian Modern",
-    timestamps: "07 Mei 2024 15:52 WIB",
-    description:
-      "Kementerian Pertanian (Kementan) berencana untuk membangun klaster pertanian modern. Klaster pertanian modern tersebut mengacu sistem pertanian di negara-negara maju. Hal tersebut diungkapkan Mentan Andi Amran Sulaiman saat mendatangi para petani Bojongemas, Kecamatan Solokanjeruk, Kabupaten Bandung, Selasa (7/5/2024). Menurut Amran, demi merealisasikan pertanian modern, pemerintah daerah perlu menyediakan lahan.",
-  },
-  {
-    image: Artikel2,
-    title: "PJ Bupati Palas Edy Junaedi Salurkan Bantuan Alsintan ke Petani",
-    timestamps: "07 Mei 2024 14:40 WIB",
-    description:
-      "Pj Bupati Padang Lawas (Palas) Edy Junaedi menyampaikan sejumlah langkah yang akan dilakukan untuk meningkatkan produksi pangan masyarakat. Satu di antaranya, memaksimalkan bantuan dari kementerian berupa alat dan mesin pertanian (Alsintan)",
-  },
-];
-
-const SampingArtikel = [
-  {
-    judulArtikel: `Optimalisasi Produksi Tanaman: Panduan Praktis untuk Mengatur pH Tanah`,
-    timestamps: "2 Mei 2024",
-    image: Artikel3,
-  },
-  {
-    judulArtikel: `Pemerintah Aceh Gelora Kembali Pasar Tani di 2024`,
-    timestamps: "25 April 2024",
-    image: Artikel4,
-  },
-  {
-    judulArtikel: `Apakah Makanan Organik Benar-benar Sehat?`,
-    timestamps: "25 April 2024",
-    image: Artikel6,
-  },
-  {
-    judulArtikel: `Stok Pupuk Bersubsidi Melimpah, Petani Diminta Menebus Kuota yang Dimiliki`,
-    timestamps: "25 April 2024",
-    image: Artikel7,
-  },
-  {
-    judulArtikel: `Violet Sun Agro+, Solusi Pertanian Lahan Kering Bertenaga Surya`,
-    timestamps: "25 April 2024",
-    image: Artikel8,
-  },
-  {
-    judulArtikel: `6 Pengaruh Negatif IPTEK di Bidang Pertanian`,
-    timestamps: "25 April 2024",
-    image: Artikel9,
-  },
-];
+import {
+  getDate,
+  getHours,
+  getMinutes,
+  getMonth,
+  getYear,
+  minutesToHours,
+  parseISO,
+} from "date-fns";
 
 const Line = (props) => {
   return (
     <div className="border-t border-gray-400 my-4" style={props.style}></div>
   );
+};
+
+const extractTimestamp = (timestampStr) => {
+  const timestamp = parseISO(timestampStr);
+  const year = getYear(timestamp);
+  const month = getMonth(timestamp) + 1; // getMonth() returns 0-11, so we add 1
+  const day = getDate(timestamp);
+  const hour = getHours(timestamp);
+  const minute = getMinutes(timestamp);
+  return {
+    year,
+    month,
+    day,
+    hour,
+    minute,
+  };
 };
 
 export const MainArtikel = (props) => {
@@ -88,7 +63,17 @@ export const MainArtikel = (props) => {
               alt={news.title}
               className="w-full sm:max-w-[580px] sm:w-full rounded-lg"
             />
-            <p className="text-[12px] text-gray-500">{news.created}</p>
+            <p className="text-[12px] text-gray-500">
+              {extractTimestamp(news.created).day +
+                "-" +
+                extractTimestamp(news.created).month +
+                "-" +
+                extractTimestamp(news.created).year +
+                "    " +
+                extractTimestamp(news.created).hour +
+                ":" +
+                extractTimestamp(news.created).minute}
+            </p>
             <Link
               to={`/artikel/${news.slug}`}
               className="text-[24px] sm:text-[32px] font-semibold w-full sm:w-[430px] hover:text-gray-700"
@@ -133,7 +118,17 @@ const ChildArtikel = () => {
                 {news.title}
               </div>
               <p className="  text-[9px]">{news.summary}</p>
-              <p className="text-xs font-thin text-gray-500">{news.created}</p>
+              <p className="text-xs font-thin text-gray-500">
+                {extractTimestamp(news.created).day +
+                  "-" +
+                  extractTimestamp(news.created).month +
+                  "-" +
+                  extractTimestamp(news.created).year +
+                  "    " +
+                  extractTimestamp(news.created).hour +
+                  ":" +
+                  extractTimestamp(news.created).minute}
+              </p>
             </div>
           </Link>
         ))
@@ -188,7 +183,15 @@ const Artikel = (props) => {
                         className="w-full h-[250px] rounded-lg object-cover"
                       />
                       <p className="text-[12px] text-gray-500 ">
-                        {news.created}
+                        {extractTimestamp(news.created).day +
+                          "-" +
+                          extractTimestamp(news.created).month +
+                          "-" +
+                          extractTimestamp(news.created).year +
+                          "    " +
+                          extractTimestamp(news.created).hour +
+                          ":" +
+                          extractTimestamp(news.created).minute}
                       </p>
                       <Link
                         to={`/artikel/${news.slug}`}
