@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { store } from "./redux/store";
 import "@fontsource/poppins"; // Defaults to weight 400
 import "@fontsource/poppins/400.css"; // Specify weight
@@ -6,9 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Artikel from "./pages/user/Artikel";
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
-
 import {
-  Home,
   HargaPangan,
   Analisis,
   ForumDiskusi,
@@ -18,8 +17,11 @@ import {
   Profil,
   ForumDiskusiDetailPostingan,
   ForumDiskusiDetailPertanyaan,
+  Home,
   NotFound,
 } from "./pages";
+// const Home = React.lazy(() => import("./pages"));
+
 import { Provider, useSelector } from "react-redux";
 import About from "./pages/user/About";
 import HasilAnalisis from "./pages/user/HasilAnalisis";
@@ -29,6 +31,7 @@ import ForumDiskusiDetailRuang from "./pages/user/ForumDiskusiDetailRuang";
 import { ArtikelDetail } from "./pages/user/ArtikelDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Loading } from "./components/moleculs";
 
 const Router = () => {
   const getUserDataFromLocalStorage = () => {
@@ -94,7 +97,7 @@ const Router = () => {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
         </Routes>
-      </BrowserRouter>{" "}
+      </BrowserRouter>
     </>
   );
 };

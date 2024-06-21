@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import bgHero from "../../assets/bg-heroHargaPangan.jpg";
-import { HargaGrub } from "../../components/moleculs";
+import { HargaGrub, Loading } from "../../components/moleculs";
 import TemplateLogin from "../../template/TemplateLogin";
 
 const HargaPangan = () => {
