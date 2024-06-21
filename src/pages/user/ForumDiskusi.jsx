@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import petani from "../../assets/info-img.jpg";
-import { BiCommentDetail } from "react-icons/bi";
-import { AiFillDownCircle, AiFillUpCircle } from "react-icons/ai";
 import { CardDiskusi, FormDiskusi } from "../../components/atoms";
+
 import ForumDiskusiTemplate from "../../template/ForumDiskusiTemplate";
 import hasna from "../../assets/tim/hasna.png";
 import TemplateLogin from "../../template/TemplateLogin";
@@ -13,6 +11,7 @@ import { getPostsAPIAct, postPostsAPIAct } from "../../redux/featch/Posts";
 import { format } from "date-fns";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
+import { Loading } from "../../components/moleculs";
 
 const ForumDiskusi = () => {
   const [selectedMenu, setSelectedMenu] = useState("question");
@@ -38,7 +37,7 @@ const ForumDiskusi = () => {
   };
 
   const { user } = useSelector((state) => state.auth);
-  const { data } = useSelector((state) => state.posts);
+  const { data, status } = useSelector((state) => state.posts);
 
   const fileInputRef = useRef(null);
 
@@ -157,7 +156,6 @@ const ForumDiskusi = () => {
               return (
                 <Link
                   key={i}
-                  // to={`detail/pertanyaan/${item.id}`}
                   to={`/diskusi/detail/${item.type}/${item.id}`}
                   className="bg-white"
                 >
@@ -187,6 +185,7 @@ const ForumDiskusi = () => {
                 </Link>
               );
             })}
+          {status == "loading" && <Loading type={"cardForum"} />}
         </div>
       </ForumDiskusiTemplate>
     </TemplateLogin>

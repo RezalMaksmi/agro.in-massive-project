@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Searchable from "react-searchable-dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getFoodPricesAPIAct } from "../../redux/featch/getData";
+import Loading from "./Loading";
 
 const HargaGrub = ({ full }) => {
   const [dateRange, setDateRange] = useState([null, null]);
@@ -12,7 +13,7 @@ const HargaGrub = ({ full }) => {
 
   const dispatch = useDispatch();
   const [startDate, endDate] = dateRange;
-  const { foodPrices } = useSelector((state) => state.get);
+  const { foodPrices, status } = useSelector((state) => state.get);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -62,7 +63,7 @@ const HargaGrub = ({ full }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 w-full">
       <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full">
         <div className="flex flex-col md:col-span-1 col-span-3 gap-1 justify-start">
           <span className="font-semibold text-lg">Jenis Data</span>
@@ -97,21 +98,8 @@ const HargaGrub = ({ full }) => {
         {/* items */}
 
         {full === true
-          ? foodPrices
-            ? foodPrices.foodPrices.map((items, i) => {
-                return (
-                  <div key={i}>
-                    <CardHargaPangan
-                      Title={items.name}
-                      Img={items.img}
-                      Price={items.price}
-                    />
-                  </div>
-                );
-              })
-            : ""
-          : foodPrices
-          ? foodPrices.foodPrices.slice(0, 8).map((items, i) => {
+          ? foodPrices &&
+            foodPrices.foodPrices.map((items, i) => {
               return (
                 <div key={i}>
                   <CardHargaPangan
@@ -122,8 +110,27 @@ const HargaGrub = ({ full }) => {
                 </div>
               );
             })
-          : ""}
+          : foodPrices &&
+            foodPrices.foodPrices.slice(0, 8).map((items, i) => {
+              return (
+                <div key={i}>
+                  <CardHargaPangan
+                    Title={items.name}
+                    Img={items.img}
+                    Price={items.price}
+                  />
+                </div>
+              );
+            })}
       </div>
+      {status == "loading" && (
+        <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-3 gap-3 w-full h-full mb-3">
+          <Loading type={"foodPrices"} />
+          <Loading type={"foodPrices"} />
+          <Loading type={"foodPrices"} />
+          <Loading type={"foodPrices"} />
+        </div>
+      )}
     </div>
   );
 };
