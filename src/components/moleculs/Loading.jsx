@@ -6,7 +6,7 @@ const Loading = ({ type }) => {
   switch (type) {
     case "foodPrices":
       return (
-        <div className="border border-[#f4f4f4] shadow rounded-md p-4 flex mx-auto w-full">
+        <div className="border border-[#f4f4f4] shadow rounded-md p-4 flex mx-auto w-full bg-white">
           <div className="animate-pulse flex gap-5 flex-col w-full">
             <div className="w-full bg-[#bcbcbc] md:h-[270px] h-[150px] object-cover overflow-hidden rounded-lg"></div>
             <div className="flex flex-col w-full gap-4">
@@ -23,7 +23,7 @@ const Loading = ({ type }) => {
       );
     case "cardForum":
       return (
-        <div className="border-b border-[#f4f4f4]  rounded-md p-4 w-full mx-auto">
+        <div className="border-b border-[#f4f4f4]  rounded-md p-4 w-full mx-auto bg-white">
           <div className="animate-pulse flex space-x-4">
             <div className="rounded-full bg-[#bcbcbc] h-10 w-10"></div>
             <div className="flex-1 space-y-6 py-1">

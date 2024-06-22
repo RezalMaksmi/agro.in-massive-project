@@ -94,11 +94,11 @@ const HargaGrub = ({ full }) => {
           />
         </div>
       </div>
-      <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-3 gap-3 mb-3">
-        {/* items */}
+      {/* items */}
 
-        {full === true
-          ? foodPrices &&
+      <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-3 gap-3 mb-3">
+        {full === true ? (
+          foodPrices ? (
             foodPrices.foodPrices.map((items, i) => {
               return (
                 <div key={i}>
@@ -110,27 +110,33 @@ const HargaGrub = ({ full }) => {
                 </div>
               );
             })
-          : foodPrices &&
-            foodPrices.foodPrices.slice(0, 8).map((items, i) => {
-              return (
-                <div key={i}>
-                  <CardHargaPangan
-                    Title={items.name}
-                    Img={items.img}
-                    Price={items.price}
-                  />
-                </div>
-              );
-            })}
+          ) : (
+            <Loading type={"foodPrices"} />
+          )
+        ) : foodPrices ? (
+          foodPrices.foodPrices.slice(0, 8).map((items, i) => {
+            return (
+              <div key={i}>
+                <CardHargaPangan
+                  Title={items.name}
+                  Img={items.img}
+                  Price={items.price}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <Loading type={"foodPrices"} />
+        )}
       </div>
-      {status == "loading" && (
+      {/* {status == "loading" && (
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-3 gap-3 w-full h-full mb-3">
           <Loading type={"foodPrices"} />
           <Loading type={"foodPrices"} />
           <Loading type={"foodPrices"} />
           <Loading type={"foodPrices"} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
