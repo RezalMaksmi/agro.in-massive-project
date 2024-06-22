@@ -185,7 +185,12 @@ const ForumDiskusi = () => {
                 </Link>
               );
             })}
-          {status == "loading" && <Loading type={"cardForum"} />}
+          {status == "loading" && (
+            <>
+              <Loading type={"cardForum"} />
+              <Loading type={"cardForum"} />
+            </>
+          )}
         </div>
       </ForumDiskusiTemplate>
     </TemplateLogin>

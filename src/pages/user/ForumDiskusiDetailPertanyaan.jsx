@@ -14,6 +14,7 @@ import {
 } from "../../redux/featch/Posts";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
+import { Loading } from "../../components/moleculs";
 
 const ForumDiskusiDetailPertanyaan = () => {
   const dispatch = useDispatch();
@@ -68,29 +69,33 @@ const ForumDiskusiDetailPertanyaan = () => {
     <TemplateLogin>
       <ForumDiskusiTemplate>
         <div className="bg-white pb-5">
-          <CardDiskusi
-            type="Postingan"
-            variant="detail"
-            typePost="question"
-            imgProfil={`
+          {detail ? (
+            <CardDiskusi
+              type="Postingan"
+              variant="detail"
+              typePost="question"
+              imgProfil={`
             ${
               detail && detail.author.img
                 ? `${process.env.API_URL}/public/images/${detail.author.img}`
                 : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
             }`}
-            name={detail ? detail.author.name : ""}
-            about={detail ? detail.author.job : ""}
-            title={detail ? detail.title : ""}
-            description={detail ? detail.description : ""}
-            imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
-            date={
-              detail
-                ? format(new Date(detail.created_at), "yyyy-MM-dd HH:mm")
-                : ""
-            }
-            answer={detail ? detail.comment_count : ""}
-            likeUp="200"
-          />
+              name={detail ? detail.author.name : ""}
+              about={detail ? detail.author.job : ""}
+              title={detail ? detail.title : ""}
+              description={detail ? detail.description : ""}
+              imgPost="https://d220hvstrn183r.cloudfront.net/attachment/36170596897847692237.large"
+              date={
+                detail
+                  ? format(new Date(detail.created_at), "yyyy-MM-dd HH:mm")
+                  : ""
+              }
+              answer={detail ? detail.comment_count : ""}
+              likeUp="200"
+            />
+          ) : (
+            <Loading type={"cardForum"} />
+          )}
           <div className="flex flex-col  ">
             <div className="w-full h-auto bg-darkGray_20 p-3">
               <div className="flex flex-row gap-3 items-center">
@@ -117,7 +122,9 @@ const ForumDiskusiDetailPertanyaan = () => {
               </div>
             </div>
 
-            {comments ? (
+            {comments && comments.length === 0 ? (
+              <p>Belum ada komentar</p>
+            ) : comments ? (
               comments.map((item, i) => {
                 return (
                   <CardDiskusi
@@ -140,7 +147,7 @@ const ForumDiskusiDetailPertanyaan = () => {
                 );
               })
             ) : (
-              <>belum ada komentar</>
+              <Loading type={"cardForum"} />
             )}
           </div>
         </div>
