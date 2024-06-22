@@ -10,13 +10,16 @@ import {
   getAPIActDiskusiSpacesOwned,
   getAPIActDiskusiSpacesfollowing,
 } from "../../redux/featch/Spaces";
+import { Loading } from "../../components/moleculs";
 
 const ForumDiskusiRuang = () => {
   const [Follow, setFollow] = useState(false);
   const [popupHapus, setPopupHapus] = useState(false);
   const [id, setId] = useState(null);
   const dispatch = useDispatch();
-  const { owned, following, data } = useSelector((state) => state.spaces);
+  const { owned, following, data, status } = useSelector(
+    (state) => state.spaces
+  );
 
   const openModal = (item) => {
     setId(item);
@@ -78,7 +81,9 @@ const ForumDiskusiRuang = () => {
 
             {/* item card */}
             <div className="">
-              {owned ? (
+              {owned && owned.length === 0 ? (
+                <p>Anda belum membuat ruang</p>
+              ) : owned ? (
                 owned.map((items, i) => {
                   return (
                     <CardDiskusi
@@ -99,7 +104,7 @@ const ForumDiskusiRuang = () => {
                   );
                 })
               ) : (
-                <div>Anda Belom Membuat Ruang</div>
+                <Loading type={"cardForum"} />
               )}
             </div>
           </div>
@@ -112,7 +117,9 @@ const ForumDiskusiRuang = () => {
 
             {/* item card */}
             <div>
-              {following ? (
+              {following && following.length === 0 ? (
+                <p>Anda belum mengikuti ruang</p>
+              ) : following ? (
                 following.map((items, i) => {
                   return (
                     <CardDiskusi
@@ -134,7 +141,7 @@ const ForumDiskusiRuang = () => {
                   );
                 })
               ) : (
-                <div>Anda belum mengikuti ruang</div>
+                <Loading type={"cardForum"} />
               )}
             </div>
           </div>

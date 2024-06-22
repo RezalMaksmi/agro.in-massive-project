@@ -13,11 +13,14 @@ import {
   getAPIActDiskusiSpacesUnFollow,
 } from "../../redux/featch/Spaces";
 import PopUp from "../../components/atoms/PopUp";
+import { Loading } from "../../components/moleculs";
 
 const ForumDiskusiJelajahRuang = () => {
   const dispatch = useDispatch();
   const [followBtn, setFollowBtn] = useState(null);
-  const { explore, following, data } = useSelector((state) => state.spaces);
+  const { explore, following, data, status } = useSelector(
+    (state) => state.spaces
+  );
   const { user } = useSelector((state) => state.auth);
   const [popupFollow, setPopupFollow] = useState(false);
   const [id, setId] = useState(null);
@@ -104,7 +107,9 @@ const ForumDiskusiJelajahRuang = () => {
               Jelajahi Ruang yang ada
             </h2>
             <div className="flex flex-col gap-2">
-              {explore ? (
+              {explore && explore.length === 0 ? (
+                <p>Tidak ada ruang</p>
+              ) : explore ? (
                 explore.spaces.map((item, i) => {
                   return (
                     <CardDiskusi
@@ -129,7 +134,10 @@ const ForumDiskusiJelajahRuang = () => {
                   );
                 })
               ) : (
-                <div>Jelajah ruang kosong</div>
+                <>
+                  <Loading type={"cardForum"} />
+                  <Loading type={"cardForum"} />
+                </>
               )}
             </div>
           </div>
