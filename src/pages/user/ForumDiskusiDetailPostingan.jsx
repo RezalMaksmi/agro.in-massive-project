@@ -82,14 +82,14 @@ const ForumDiskusiDetailPostingan = () => {
               imgProfil={`
               ${
                 detail && detail.author.img
-                  ? `${process.env.API_URL}/public/images/${detail.author.img}`
+                  ? `${process.env.API_URL}/assets/images/${detail.author.img}`
                   : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
               }`}
               name={detail ? detail.author.name : ""}
               about={detail ? detail.author.job : ""}
               title={detail ? detail.title : ""}
               description={detail ? detail.description : ""}
-              imgPost={`${process.env.API_URL}/public/images/${
+              imgPost={`${process.env.API_URL}/assets/images/${
                 detail ? detail.img : ""
               }`}
               date={
@@ -111,7 +111,7 @@ const ForumDiskusiDetailPostingan = () => {
                   src={`
                   ${
                     user.img !== null
-                      ? `${process.env.API_URL}/public/images/${user.img}`
+                      ? `${process.env.API_URL}/assets/images/${user.img}`
                       : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                   }`}
                   alt=""
@@ -141,7 +141,7 @@ const ForumDiskusiDetailPostingan = () => {
                     imgProfil={`
                     ${
                       item.user.img
-                        ? `${process.env.API_URL}/public/images/${item.user.img}`
+                        ? `${process.env.API_URL}/assets/images/${item.user.img}`
                         : "https://cdn.idntimes.com/content-images/post/20240207/33bac083ba44f180c1435fc41975bf36-ca73ec342155d955387493c4eb78c8bb.jpg"
                     }`}
                     name={item.user.name}
