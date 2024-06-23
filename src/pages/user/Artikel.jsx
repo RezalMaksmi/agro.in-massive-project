@@ -51,7 +51,7 @@ export const MainArtikel = (props) => {
         data.map((news, i) => (
           <div className={`flex flex-col ${props.className} gap-y-2`} key={i}>
             <img
-              src={`${process.env.API_URL}/public/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
               alt={news.title}
               className="w-full sm:max-w-[580px] sm:w-full rounded-lg"
             />
@@ -101,7 +101,7 @@ const ChildArtikel = () => {
             key={i}
           >
             <img
-              src={`${process.env.API_URL}/public/images/${news.featured_image}`}
+              src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
               alt={news.title}
               className="w-24 h-24 object-cover rounded-2xl"
             />
@@ -170,7 +170,7 @@ const Artikel = (props) => {
                   >
                     <div className="flex flex-col p-3 gap-1">
                       <img
-                        src={`${process.env.API_URL}/public/images/${news.featured_image}`}
+                        src={`${process.env.API_URL}/assets/images/${news.featured_image}`}
                         alt={news.title}
                         className="w-full h-[250px] rounded-lg object-cover"
                       />

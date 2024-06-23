@@ -180,7 +180,7 @@ const ForumDiskusiDetailRuang = () => {
                       typePost={item.type}
                       type="detailRuang"
                       title={item.title}
-                      imgPost={`${process.env.API_URL}/public/images/${item.img}`}
+                      imgPost={`${process.env.API_URL}/assets/images/${item.img}`}
                       description={item.description}
                       answer={item.comment_count}
                     />
