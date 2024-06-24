@@ -15,6 +15,9 @@ const FormPostingan = ({
   selectedMenu,
   handleIconClick,
   fileInputRef,
+  nameFile,
+  handleCancelFile,
+  keyImg,
 }) => {
   const userData = localStorage.getItem("user");
   const userCheck = userData ? JSON.parse(userData) : null;
@@ -77,8 +80,10 @@ const FormPostingan = ({
         idSpace={idSpace}
         handleIconClick={handleIconClick}
         fileInputRef={fileInputRef}
+        nameFile={nameFile}
+        handleCancelFile={handleCancelFile}
+        keyImg={keyImg}
       />
-      {/*  */}
     </div>
   );
 };

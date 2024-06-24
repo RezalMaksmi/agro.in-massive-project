@@ -35,6 +35,7 @@ const ForumDiskusiDetailRuang = () => {
   const [img, setImg] = useState("");
   const [space_id, setSpace_id] = useState(null);
   const [selectedFile, setSelectedFile] = useState("");
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
   const fileInputRef = useRef(null);
 
   console.log("apa detailnya", detail ? detail : "");
@@ -63,7 +64,6 @@ const ForumDiskusiDetailRuang = () => {
     const formData = new FormData();
     formData.append("photo", selectedFile);
 
-    console.log(img);
     try {
       const response = await axiosInstance.post(
         `${process.env.API_URL}/utils/image-upload`,
@@ -83,20 +83,28 @@ const ForumDiskusiDetailRuang = () => {
     dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
     fetchData();
     setTitle("");
+    setImg("");
     setDescription("");
   };
 
   const fetchData = () => {
     dispatch(getAPIActDetail(`spaces/${id}`));
     dispatch(getPostsAPIAct(`posts`));
+    setImg(selectedFile && selectedFile.name);
   };
 
   const ownedSpaces = detail && detail.space.is_owned == true;
   const followSpaces = detail && detail.space.following == true;
 
+  const handleCancelFile = () => {
+    setSelectedFile(null);
+    setImg("");
+    setFileInputKey(Date.now());
+  };
+
   useEffect(() => {
     setIdToFind(id);
-    setImg(selectedFile.name);
+
     fetchData();
     setSpace_id(id);
   }, [id, selectedFile, openModal]);
@@ -161,6 +169,9 @@ const ForumDiskusiDetailRuang = () => {
               idSpace={id}
               handleIconClick={handleIconClick}
               fileInputRef={fileInputRef}
+              nameFile={img}
+              handleCancelFile={handleCancelFile}
+              keyImg={fileInputKey}
             />
           ) : (
             <></>

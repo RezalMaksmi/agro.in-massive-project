@@ -20,7 +20,8 @@ const ForumDiskusi = () => {
   const [type, setType] = useState("question");
   const [img, setImg] = useState();
   const [space_id, setSpace_id] = useState(null);
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -46,7 +47,7 @@ const ForumDiskusi = () => {
   };
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    event.target.files && setSelectedFile(event.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -72,20 +73,27 @@ const ForumDiskusi = () => {
     dispatch(postPostsAPIAct({ title, description, type, img, space_id }));
     fetchData();
     setTitle("");
+    setImg("");
     setDescription("");
   };
 
   const fetchData = () => {
     dispatch(getPostsAPIAct(`posts`));
+    setImg(selectedFile && selectedFile.name);
+  };
+
+  // cancel file
+  const handleCancelFile = () => {
+    setSelectedFile(null);
+    setImg();
+    setFileInputKey(Date.now());
   };
 
   useEffect(() => {
-    setImg(selectedFile.name);
     fetchData();
-  }, [selectedFile]);
-
-  // console.log(user);
-
+  }, [selectedFile, img]);
+  console.log(selectedFile ? selectedFile : "kosong");
+  console.log("apa ini", img);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>
@@ -147,6 +155,9 @@ const ForumDiskusi = () => {
               selectFile={handleFileChange}
               handleIconClick={handleIconClick}
               fileInputRef={fileInputRef}
+              nameFile={img}
+              handleCancelFile={handleCancelFile}
+              keyImg={fileInputKey}
             />
             {/*  */}
           </div>
