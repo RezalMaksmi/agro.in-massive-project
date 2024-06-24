@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
+import { CgClose } from "react-icons/cg";
 import { FaCamera, FaImage } from "react-icons/fa";
 import { GrAttachment } from "react-icons/gr";
+import TextShortener from "./TextShortener";
 
 const FormDiskusi = ({
   type,
@@ -13,6 +15,9 @@ const FormDiskusi = ({
   idSpace,
   handleIconClick,
   fileInputRef,
+  nameFile,
+  handleCancelFile,
+  keyImg,
 }) => {
   switch (type) {
     case "question":
@@ -60,16 +65,21 @@ const FormDiskusi = ({
           <div className="flex justify-between items-center md:pt-2 pt-1">
             <div className="flex gap-3 text-lg text-white ">
               <input
+                key={keyImg}
                 type="file"
                 onChange={selectFile}
                 ref={fileInputRef}
                 className="hidden"
               />
-              <FaImage onClick={handleIconClick} className="cursor-pointer" />
-              <GrAttachment
-                onClick={handleIconClick}
-                className="cursor-pointer"
-              />
+              <div className="flex flex-row gap-6 items-center ">
+                <FaImage onClick={handleIconClick} className="cursor-pointer" />
+                {nameFile && (
+                  <div className="flex flex-row gap-5 justify-center items-center">
+                    <TextShortener text={nameFile} maxLength="20" />
+                    <CgClose onClick={handleCancelFile} />
+                  </div>
+                )}
+              </div>
             </div>
             <button
               onClick={submit}

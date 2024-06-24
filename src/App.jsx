@@ -32,6 +32,7 @@ import { ArtikelDetail } from "./pages/user/ArtikelDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loading } from "./components/moleculs";
+import ScrollToTop from "./utils/ScrollToTop.js";
 
 const Router = () => {
   const getUserDataFromLocalStorage = () => {

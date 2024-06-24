@@ -23,6 +23,7 @@ import {
   getYear,
   parseISO,
 } from "date-fns";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const extractTimestamp = (timestampStr) => {
   const timestamp = parseISO(timestampStr);
@@ -121,6 +122,8 @@ export const ArtikelDetail = () => {
   console.log(detail);
   return (
     <TemplateLogin>
+      <ScrollToTop />
+
       {detail ? (
         detail.map((news, index) => (
           <div

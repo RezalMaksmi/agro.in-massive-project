@@ -6,6 +6,7 @@ import CardDiskusi from "./CardDiskusi";
 import ModalProfile from "./modal_edit_profile";
 import ConfirmModalProfile from "./ConfirmModalProfile";
 import Weather from "./Weather";
+import TextShortener from "./TextShortener";
 export {
   Button,
   CardHargaPangan,
@@ -14,4 +15,5 @@ export {
   ModalProfile,
   ConfirmModalProfile,
   Weather,
+  TextShortener,
 };
