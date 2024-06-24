@@ -10,6 +10,7 @@ import { getAPIActDetail } from "../../redux/featch/Spaces";
 import { getPostsAPIAct, postPostsAPIAct } from "../../redux/featch/Posts";
 import { toast } from "react-toastify";
 import axiosInstance from "../../api/axiosInstance";
+import { format } from "date-fns";
 
 const ForumDiskusiDetailRuang = () => {
   const [filteredData, setFilteredData] = useState();
@@ -100,7 +101,7 @@ const ForumDiskusiDetailRuang = () => {
     setSpace_id(id);
   }, [id, selectedFile, openModal]);
 
-  console.log("apanih typenya", type);
+  console.log("apanih typenya", detail);
 
   return (
     <TemplateLogin>
@@ -183,15 +184,19 @@ const ForumDiskusiDetailRuang = () => {
                       imgPost={`${process.env.API_URL}/assets/images/${item.img}`}
                       description={item.description}
                       answer={item.comment_count}
+                      date={
+                        item
+                          ? format(
+                              new Date(item.created_at),
+                              "yyyy-MM-dd HH:mm"
+                            )
+                          : ""
+                      }
                     />
                   </Link>
                   // <span key={i}>{item.title}</span>
                 );
               })}
-
-            {/* {data.map((item, i) => {
-              return <span key={i}>{item.title}</span>;
-            })} */}
           </div>
         </div>
       </ForumDiskusiTemplate>{" "}

@@ -9,7 +9,6 @@ import {
   commentPostsAPIAct,
   getPostsAPIActComments,
   getPostsAPIActDetail,
-  likeDownPostsAPIAct,
   likeUpPostsAPIAct,
 } from "../../redux/featch/Posts";
 import { format } from "date-fns";
