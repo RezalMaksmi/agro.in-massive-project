@@ -36,15 +36,13 @@ const Profil = () => {
   const userCheck = userData ? JSON.parse(userData) : null;
   const user = userCheck ? userCheck : "";
 
-  const [username, setUsername] = useState(user ? user.username : "");
-  const [email, setEmail] = useState(user ? user.email : "");
-  const [job, setJob] = useState(user ? user.job : "");
-  const [img, setImg] = useState(user ? user.img : "");
-  const [phone_number, setPhoneNumber] = useState(
-    user ? user.phone_number : ""
+  const [username, setUsername] = useState(
+    user !== null ? user.username : null
   );
-
-  const navigate = useNavigate();
+  const [email, setEmail] = useState(user !== null ? user.email : null);
+  const [job, setJob] = useState(user !== null ? user.job : null);
+  const [img, setImg] = useState(user !== null ? user.img : null);
+  const [phone_number, setPhoneNumber] = useState(user && user.phone_number);
 
   const handleEditProfile = () => {
     setShowModal(true);
@@ -109,13 +107,8 @@ const Profil = () => {
       setShowModal(false);
 
       localStorage.setItem("user", JSON.stringify(data));
-
-      toast.success(`${response.data.message}`, {
-        position: "bottom-right",
-      });
     } catch (error) {
-      setUploadStatus("Upload failed");
-      console.error("Error uploading the image:", error);
+      console.log(error);
     }
   };
 

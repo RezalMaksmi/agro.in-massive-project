@@ -20,13 +20,10 @@ const ForumDiskusiDetailPertanyaan = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const [idP, setIdP] = useState();
+  const [click, setClick] = useState("");
 
   const { id } = useParams();
-  useEffect(() => {
-    dispatch(getPostsAPIActDetail(`posts/${id}`));
-    dispatch(getPostsAPIActComments(id));
-    setIdP(id);
-  }, [id, idP]);
+
   const { data, detail, comments } = useSelector((state) => state.posts);
 
   const userData = localStorage.getItem("user");
@@ -48,12 +45,16 @@ const ForumDiskusiDetailPertanyaan = () => {
   };
 
   const likeUp = (idComment) => {
-    dispatch(likeUpPostsAPIAct({ id, idComment }));
+    setClick("click");
+    const type = "up";
+    dispatch(likeUpPostsAPIAct({ id, idComment, type }));
     fetchData();
   };
 
   const likeDown = (idComment) => {
-    dispatch(likeDownPostsAPIAct({ id, idComment }));
+    setClick("click");
+    const type = "down";
+    dispatch(likeUpPostsAPIAct({ id, idComment, type }));
     fetchData();
   };
 
@@ -64,7 +65,7 @@ const ForumDiskusiDetailPertanyaan = () => {
 
   useEffect(() => {
     fetchData();
-  }, [id, idP, text]);
+  }, [id, idP, text, click]);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>

@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import bgHero from "../../assets/bgHeroAbout.jpg";
 import logo1 from "../../assets/logo/Logo1_white.svg";
-import logoTextWhite from "../../assets/logo/logo-txt-putih.png";
+import logoTextWhite from "../../assets/logo/logo-text-putih.svg";
 
 import { Fitur, Loading, TimKami } from "../../components/moleculs";
 import { Link } from "react-router-dom";

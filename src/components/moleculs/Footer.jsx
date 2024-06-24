@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo/logo-txt-putih.png";
+import logo from "../../assets/logo/logo-text-putih.svg";
 import { LuFacebook, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import bgFooter from "../../assets/Footer.jpg";

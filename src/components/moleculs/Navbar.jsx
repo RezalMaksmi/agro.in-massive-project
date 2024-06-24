@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logoText from "../../assets/logo/logo-txt-hijau.png";
+import logoText from "../../assets/logo/logo_navbar.svg";
 import Button from "../atoms/Button";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
