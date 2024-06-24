@@ -7,7 +7,6 @@ import {
   commentPostsAPIAct,
   getPostsAPIActComments,
   getPostsAPIActDetail,
-  likeDownPostsAPIAct,
   likeUpPostsAPIAct,
 } from "../../redux/featch/Posts";
 import { toast } from "react-toastify";

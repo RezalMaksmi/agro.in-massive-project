@@ -251,7 +251,7 @@ const CardDiskusi = (props) => {
               </div>
               <div className="flex flex-row gap-3 w-full justify-between">
                 <div className="flex flex-row gap-3">
-                  <span className="md:text-base text-sm">5 Mei 2024</span>
+                  <span className="md:text-base text-sm">{date && date}</span>
                   <span className="md:text-base text-sm font-bold">
                     Belum ada jawaban
                   </span>
@@ -272,7 +272,7 @@ const CardDiskusi = (props) => {
 
               <div className="flex flex-row gap-3 w-full justify-between">
                 <div className="flex flex-row gap-3 justify-between w-full">
-                  <span className="md:text-base text-sm">5 Mei 2024</span>
+                  <span className="md:text-base text-sm">{date && date}</span>
                   <span className="md:text-base text-sm">
                     {answer ? answer : "belum ada "} jawaban
                   </span>
