@@ -48,9 +48,9 @@ const TimKami = ({ className }) => {
     <div className={`w-full ${className}`}>
       <div
         id="tim"
-        className={`h-auto md:px-20 px-10 py-20 gap-16 container mx-auto flex flex-col justify-center items-center `}
+        className={`h-auto md:px-20 px-10 md:py-20 py-14 md:gap-16 gap-10 container mx-auto flex flex-col justify-center items-center `}
       >
-        <h1 className="text-5xl font-semibold">Tim Kami</h1>
+        <h1 className="md:text-5xl text-2xl font-semibold">Tim Kami</h1>
         <div className=" w-full items-center px-3">
           <Swiper
             loop={true}
@@ -87,8 +87,6 @@ const TimKami = ({ className }) => {
                 spaceBetween: 0,
               },
             }}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
             className="mySwiper mx-auto"
           >
             {dataProfile.map((item, i) => {
@@ -97,8 +95,10 @@ const TimKami = ({ className }) => {
                   <div className="bg-slate-400 overflow-hidden text-[#fff] flex justify-center mx-auto w-[230px] h-[300px] relative rounded-3xl">
                     <img src={item.image} alt="" className="object-cover" />
                     <div className="absolute bottom-3 text-center">
-                      <h5 className="text-2xl font-semibold">{item.name}</h5>
-                      <span className="text-xl">{item.role}</span>
+                      <h5 className="md:text-2xl text-base font-semibold">
+                        {item.name}
+                      </h5>
+                      <span className="md:text-xl text-ls">{item.role}</span>
                     </div>
                   </div>
                 </SwiperSlide>

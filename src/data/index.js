@@ -1,3 +1,4 @@
 import dataProvinsi from "./Provinsi.json";
 import hargaPangan from "./HargaPangan.json";
-export { dataProvinsi, hargaPangan };
+import Users from "./users.json";
+export { dataProvinsi, hargaPangan, Users };

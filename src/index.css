@@ -4,6 +4,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: "Poppins";
 }
 
 .searchable {
@@ -76,4 +77,27 @@ path {
     height: 500px;
     padding: 0px;
     touch-action: auto;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #e7e7e7;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #7d7d7d;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #e7e7e7;
 }

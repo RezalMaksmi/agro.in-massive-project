@@ -1,7 +1,8 @@
 import React from "react";
 import { AiFillDownCircle, AiFillUpCircle } from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
+import { BiComment, BiCommentDetail } from "react-icons/bi";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const CardDiskusi = (props) => {
   const {
@@ -14,17 +15,29 @@ const CardDiskusi = (props) => {
     description,
     imgPost,
     likeUp,
+    text,
     comment,
     imgProfil,
     follow,
     typePost,
+    variant,
+    jawaban,
+    tanggal,
+    answer,
+    button,
+    id,
+    date,
+    unfollow,
+    likeDown,
+    likeUpAct,
+    likeDownAct,
   } = props;
   switch (type) {
     case "Postingan":
       return (
         <>
-          {typePost == "pertanyaan" ? (
-            <div className="rounded-t-xl  flex flex-col gap-5 py-6 px-4">
+          {typePost == "question" ? (
+            <div className="rounded-t-xl  flex flex-col md:gap-5 gap-3 md:py-6 py-3 px-4 border-b-2">
               {/* Profil */}
 
               <div className="flex flex-row gap-4 items-center">
@@ -34,36 +47,27 @@ const CardDiskusi = (props) => {
                   className="w-10 h-10 rounded-full object-cover "
                 />
                 <div className="flex flex-col  text-black">
-                  <h1 className="text-xl font-bold">{name}</h1>
-                  <span className="text-base">{about}</span>
+                  <h1 className="md:text-xl text-sm font-bold">{name}</h1>
+                  <span className="md:text-base text-sm">{about}</span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-1">
-                <h1 className="text-lg font-bold">{title}</h1>
-                <div className="text-base">{description}</div>
-                <img
-                  src={imgPost}
-                  alt=""
-                  className="object-cover w-full rounded-md"
-                />
+                <h1 className="md:text-lg text-sm font-bold">{title}</h1>
+                <div className="md:text-base text-xs">{description}</div>
               </div>
               <div className="flex flex-row justify-between w-full">
-                <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
-                  <AiFillUpCircle className="text-xl" />
-                  <span>{likeUp}</span>
-                  <AiFillDownCircle className="text-xl" />
-                </div>
-                <div className="flex flex-row gap-1 items-center">
-                  <BiCommentDetail />
-                  <span className="">{comment}</span>
+                <div className="flex flex-row md:gap-5 gap-3 items-center text-dark_30   px-2 ext-lg">
+                  <span className="md:text-base text-sm">{date}</span>
+                  <span className="md:text-base text-sm font-bold">
+                    {answer ? answer : "Belum ada"} Jawaban
+                  </span>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="rounded-t-xl  flex flex-col gap-5 py-6 px-4">
+            <div className="rounded-t-xl  flex flex-col gap-5 py-6 px-4 border-b-2">
               {/* Profil */}
-
               <div className="flex flex-row gap-4 items-center">
                 <img
                   src={imgProfil}
@@ -71,28 +75,33 @@ const CardDiskusi = (props) => {
                   className="w-10 h-10 rounded-full object-cover "
                 />
                 <div className="flex flex-col  text-black">
-                  <h1 className="text-xl font-bold">{name}</h1>
-                  <span className="text-base">{about}</span>
+                  <h1 className="md:text-xl text-sm font-bold">{name}</h1>
+                  <span className="md:text-base text-xs">{about}</span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-1">
-                <div className="text-base">{description}</div>
+                <div className="md:text-base text-xs">{description}</div>
                 <img
                   src={imgPost}
                   alt=""
-                  className="object-cover w-full rounded-md"
+                  className="object-cover w-full rounded-md "
                 />
               </div>
               <div className="flex flex-row justify-between w-full">
-                <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
+                {/* <div className="flex flex-row gap-2 items-center text-dark_30 border-2 border-dark_20 px-2 rounded-full text-lg">
                   <AiFillUpCircle className="text-xl" />
-                  <span>{likeUp}</span>
+                  <span className="md:text-xl text-base">{likeUp}</span>
                   <AiFillDownCircle className="text-xl" />
-                </div>
+                  <span className="md:text-xl text-base">{likeDown}</span>
+                </div> */}
+                <span className="md:text-base text-sm">{date}</span>
+
                 <div className="flex flex-row gap-1 items-center">
-                  <BiCommentDetail />
-                  <span className="">{comment}</span>
+                  <BiCommentDetail className="text-xl" />
+                  <span className="md:text-xl text-base">
+                    {answer ? answer : "0"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -104,22 +113,31 @@ const CardDiskusi = (props) => {
         <div className="px-3 py-6">
           {/* Profil */}
           <div className="flex flex-row gap-4  w-full items-start">
-            <img
-              src={imgProfil}
-              alt=""
-              className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
-            />
-            <div className="flex flex-col gap-4">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-black">
+              <img
+                src={imgProfil}
+                alt=""
+                className="w-20 h-10  object-cover  col-span-1 "
+              />
+            </div>
+            <div className="flex flex-col gap-4 w-full">
               <div className="flex flex-col  text-dark_30 col-span-2 w-full ">
-                <h1 className="text-xl font-bold">{name}</h1>
-                <span className="text-sm">{about}</span>
+                <h1 className="md:text-xl text-sm font-bold">{name}</h1>
+                <span className="md:text-sm text-xs">{about}</span>
               </div>
-              <span>{description}</span>
+              <span className="md:text-base text-xs">{text}</span>
               <div className="">
                 <div className="w-max flex flex-row gap-2 items-center text-dark_30  rounded-full text-lg">
-                  <AiFillUpCircle className="text-xl" />
-                  <span>{likeUp}</span>
-                  <AiFillDownCircle className="text-xl" />
+                  <AiFillUpCircle
+                    className="md:text-xl text-base cursor-pointer"
+                    onClick={likeUpAct}
+                  />
+                  <span className="md:text-xl text-base">{likeUp}</span>
+                  <AiFillDownCircle
+                    className="md:text-xl text-base cursor-pointer"
+                    onClick={likeDownAct}
+                  />
+                  <span className="md:text-xl text-base">{likeDown}</span>
                 </div>
               </div>
             </div>
@@ -134,23 +152,26 @@ const CardDiskusi = (props) => {
             alt=""
             className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
           />
-          <div className="flex flex-col gap-4 w-full">
-            <div className="flex flex-col  text-dark_30 col-span-2 w-full ">
-              <h1 className="text-xl font-bold">{name}</h1>
-              <span className="text-sm">{about}</span>
-            </div>
-            <span>{description}</span>
+          <div className="flex flex-col md:gap-4 gap-2 w-full">
+            <Link to={`/diskusi/detail/${id}`}>
+              <div className="flex flex-col  text-dark_30 col-span-2 w-full ">
+                <h1 className="md:text-xl text-sm font-bold">{name}</h1>
+                <span className="md:text-sm text-xs">{about}</span>
+              </div>
+              <span className="md:text-base text-xs">{description}</span>
+            </Link>
             <div className="w-full">
-              <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
-                {follow == true ? (
+              <div className=" flex flex-row gap-2 items-center justify-end  text-dark_30  w-full ">
+                {follow ? (
                   <Button
                     onClick={onClick}
                     type="PrimaryButton"
                     text="Hapus Ruang"
-                    className="bg-[#D61B1B] hover:bg-[#9c2f2f] text-white"
+                    className=" text-white bg-[#ca3737] hover:bg-[#9c2f2f]"
                   />
                 ) : (
                   <Button
+                    onClick={onClick}
                     type="PrimaryButton"
                     text="Berhenti Mengikuti"
                     className="bg-secondary hover:bg-[#ca9c45] text-white"
@@ -161,6 +182,107 @@ const CardDiskusi = (props) => {
           </div>
         </div>
       );
+    case "pencarian":
+      return (
+        <div className="flex flex-row gap-4  w-full items-start border-t-2 py-4 ">
+          <img
+            src={imgProfil}
+            alt=""
+            className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
+          />
+          <div className="flex flex-col gap-4 w-full">
+            <div className="">
+              <h1 className="md:text-lg text-sm font-bold">{title}</h1>
+              <div className="md:text-base text-xs">{description}</div>
+            </div>
+          </div>
+        </div>
+      );
+    case "jelajahRuang":
+      return (
+        <div
+          className={` flex-row gap-4  w-full items-start border-t-2 py-4 ${className}`}
+        >
+          <img
+            src={imgProfil}
+            alt=""
+            className="w-10 h-10 bg-pink-600 rounded-full object-cover col-span-1 "
+          />
+          <div className="flex flex-col gap-4 w-full">
+            <Link to={`/diskusi/detail/${id}`}>
+              <div className="">
+                <h1 className="md:text-lg text-sm font-bold">{title}</h1>
+                <div className="md:text-base text-xs ">{description}</div>
+              </div>
+            </Link>
+            <div className="flex flex-row gap-2 items-center justify-end  text-dark_30  w-full text-lg">
+              {button === true ? (
+                <Button
+                  onClick={unfollow}
+                  type="PrimaryButton"
+                  text="Berhenti Mengikuti"
+                  className=" bg-secondary hover:bg-[#ca9c45] text-white"
+                />
+              ) : (
+                <Button
+                  onClick={follow}
+                  type="PrimaryButton"
+                  text="Ikuti"
+                  className="bg-primary hover:bg-[#14312c] text-white"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    case "detailRuang":
+      return (
+        <div className="border-b-2 border-[#ececec] flex flex-col gap-8 py-3 ">
+          {typePost === "information" ? (
+            <div className="flex flex-col gap-9 py-3 px-2 ">
+              <div className="">
+                <h2 className="md:text-base text-sm font-bold">{title}</h2>
+                <span className="md:text-base text-sm ">{description}</span>
+                <img
+                  src={imgPost}
+                  alt=""
+                  className="object-cover w-full rounded-md"
+                />
+              </div>
+              <div className="flex flex-row gap-3 w-full justify-between">
+                <div className="flex flex-row gap-3">
+                  <span className="md:text-base text-sm">{date && date}</span>
+                  <span className="md:text-base text-sm font-bold">
+                    Belum ada jawaban
+                  </span>
+                </div>
+                <div className="flex flex-row gap-3 items-center">
+                  <BiComment className="text-2xl" />
+                  {answer ? answer : "0"}
+                  <span className="md:text-base text-sm font-bold"></span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-9 py-3 px-2 ">
+              <div className="">
+                <h2 className="md:text-base text-sm font-bold">{title}</h2>
+                <span className="md:text-base text-sm">{description}</span>
+              </div>
+
+              <div className="flex flex-row gap-3 w-full justify-between">
+                <div className="flex flex-row gap-3 justify-between w-full">
+                  <span className="md:text-base text-sm">{date && date}</span>
+                  <span className="md:text-base text-sm">
+                    {answer ? answer : "belum ada "} jawaban
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+
     default:
       return <div className=""></div>;
   }

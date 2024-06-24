@@ -1,0 +1,110 @@
+[
+    {
+        "nama_tanaman": "Padi",
+        "ph_tanah": {
+            "min": 4,
+            "max": 7
+        },
+        "tekstur": "Liat berpasir",
+        "struktur": "struktur serbuk",
+        "warna": "Cokelat kehitaman",
+        "kondisi_fisik": "Agak halus",
+        "referensi": "http://repository.umy.ac.id/bitstream/handle/123456789/17072/f.%20BAB%20II.pdf?sequence=6&isAllowed=y#:~:text=tempat%20yang%20cocok%20untuk%20tanaman,7%20(Siswoputranto%2C1976)."
+    },
+    {
+        "nama_tanaman": "Jagung",
+        "ph_tanah": {
+            "min": 5.6,
+            "max": 7.5
+        },
+        "tekstur": "Lempung berpasir",
+        "struktur": "Gembur",
+        "warna": "Cokelat",
+        "kondisi_fisik": "Tanah yang baik drainasenya",
+        "referensi": "http://dosen.ppnp.ac.id/rizki/2020/08/06/contoh-artikel-4/#:~:text=Tanaman%20jagung%20dapat%20tumbuh%20hampir,yang%20baik%20untuk%20tanaman%20jagung."
+    },
+    {
+        "nama_tanaman": "Palawijaya",
+        "ph_tanah": {
+            "min": 4.5,
+            "max": 6.5
+        },
+        "tekstur": "Lempung liat",
+        "struktur": "Remah",
+        "warna": "Cokelat keabu-abuan",
+        "kondisi_fisik": "Tanah yang baik drainasenya",
+        "referensi": "https://www.researchgate.net/publication/337191153_Sistem_Pakar_Penentuan_Jenis_Tanah_Berdasarkan_Kadar_PH_Untuk_Tanaman_Palawija_Menggunakan_Metode_K-Means_Clustering#:~:text=Jenis%20tanah%20untuk%20menanam%20Palawija,%2C5%20%E2%80%93%206%2C5."
+    },
+    {
+        "nama_tanaman": "Cabai",
+        "ph_tanah": {
+            "min": 6,
+            "max": 7
+        },
+        "tekstur": "Lempung berpasir",
+        "struktur": "Remah, Gembur",
+        "warna": "Hitam kecokelatan",
+        "kondisi_fisik": "Tanah yang kaya bahan organik",
+        "referensi": "Pertanian.go.id"
+    },
+    {
+        "nama_tanaman": "Bawang Merah",
+        "ph_tanah": {
+            "min": 5.6,
+            "max": 6.5
+        },
+        "tekstur": "Lempung",
+        "struktur": "Remah",
+        "warna": "Cokelat muda",
+        "kondisi_fisik": "Tanah yang baik drainasenya, tanah yang kaya bahan organik",
+        "referensi": "https://repository.ump.ac.id/13893/3/Bab%20II%20%20RIDWAN%20FAHRI%20R.pdf"
+    },
+    {
+        "nama_tanaman": "Bawang Putih",
+        "ph_tanah": {
+            "min": 5.5,
+            "max": 7.5
+        },
+        "tekstur": "Lempung berpasir",
+        "struktur": "Gembur",
+        "warna": "Cokelat kekuningan",
+        "kondisi_fisik": "Tanah yang subur dan berdrainase baik",
+        "referensi": "https://desangunut.gunungkidulkab.go.id/first/artikel/362-Ciri-ciri-bawang-putih-berkualitas-#:~:text=Kali%20ini%20kami%20akan%20menyajikan,PH%205%2C5%2D7."
+    },
+    {
+        "nama_tanaman": "Umbi-umbian",
+        "ph_tanah": {
+            "min": 5,
+            "max": 7
+        },
+        "tekstur": "Lempung berpasir",
+        "struktur": "Remah",
+        "warna": "Cokelat",
+        "kondisi_fisik": "Tanah yang subur, tanah yang baik drainasenya",
+        "referensi": "http://scholar.unand.ac.id/104249/5/SKRIPSI%20UTUH.pdf"
+    },
+    {
+        "nama_tanaman": "Kacang tanah",
+        "ph_tanah": {
+            "min": 6.5,
+            "max": 7
+        },
+        "tekstur": "Lempung",
+        "struktur": "Gembur",
+        "warna": "Cokelat kekuningan",
+        "kondisi_fisik": "Tanah yang subur, tanah yang baik drainasenya",
+        "referensi": "https://demakkab.go.id/news/budidaya-kacang-tanah"
+    },
+    {
+        "nama_tanaman": "Tanaman Rimpang",
+        "ph_tanah": {
+            "min": 5.5,
+            "max": 6.5
+        },
+        "tekstur": "Lempung",
+        "struktur": "Remah",
+        "warna": "Cokelat",
+        "kondisi_fisik": "Tanah yang lembab dan kaya bahan organik",
+        "referensi": "Chatgpt"
+    }
+]

@@ -5,4 +5,15 @@ import FormDiskusi from "./FormDiskusi";
 import CardDiskusi from "./CardDiskusi";
 import ModalProfile from "./modal_edit_profile";
 import ConfirmModalProfile from "./ConfirmModalProfile";
-export { Button, CardHargaPangan, FormDiskusi, CardDiskusi, ModalProfile, ConfirmModalProfile };
+import Weather from "./Weather";
+import TextShortener from "./TextShortener";
+export {
+  Button,
+  CardHargaPangan,
+  FormDiskusi,
+  CardDiskusi,
+  ModalProfile,
+  ConfirmModalProfile,
+  Weather,
+  TextShortener,
+};
