@@ -304,7 +304,7 @@ const FormAnalisis = (props) => {
   console.log(analysisResult);
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 h-100% bg-[#1414149c] flex justify-center items-center z-50 ">
-      <div className="px-10 py-8 rounded-3xl bg-white relative max-w-[600px] w-full flex flex-col gap-3 ">
+      <div className="px-10 py-8 my-2 rounded-3xl bg-white relative max-w-[600px] w-full flex flex-col gap-3">
         <button
           className="absolute top-3 right-3 p-2 bg-[#dfdfdf] hover:bg-[#cecece]  rounded-full"
           onClick={onClick}
@@ -312,89 +312,91 @@ const FormAnalisis = (props) => {
           <CgClose />
         </button>
 
-        <h1 className="text-2xl font-bold">Form Pengecekan Tanah</h1>
-        <div className="flex flex-col gap-1 ">
-          <span>Nama Tanaman</span>
-          <Searchable
-            placeholder="Pilih Tanaman"
-            value={["popular"]}
-            hideSelected
-            options={jenistanaman}
-            onSelect={(value) => {
-              setJenisTanaman(value);
-              console.log(value);
-            }}
-          />
-        </div>
+        <h1 className="text-2xl font-bold ">Form Pengecekan Tanah</h1>
+        <div className="flex flex-col gap-3 overflow-y-scroll ">
+          <div className="flex flex-col gap-1 ">
+            <span>Nama Tanaman</span>
+            <Searchable
+              placeholder="Pilih Tanaman"
+              value={["popular"]}
+              hideSelected
+              options={jenistanaman}
+              onSelect={(value) => {
+                setJenisTanaman(value);
+                console.log(value);
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 ">
-          <span>PH Tanah</span>
-          <Searchable
-            placeholder="Masukkan PH Tanah"
-            value={["popular"]}
-            hideSelected
-            options={phTanah}
-            onSelect={(value) => {
-              setPhTanah(value);
-              console.log(value);
-            }}
-          />
-        </div>
+          <div className="flex flex-col gap-1 ">
+            <span>PH Tanah</span>
+            <Searchable
+              placeholder="Masukkan PH Tanah"
+              value={["popular"]}
+              hideSelected
+              options={phTanah}
+              onSelect={(value) => {
+                setPhTanah(value);
+                console.log(value);
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 ">
-          <span>Tekstur</span>
-          <Searchable
-            placeholder="Masukkan Tekstur"
-            value={["popular"]}
-            hideSelected
-            options={tekstur}
-            onSelect={(value) => {
-              setTeksturTanah(value);
-              console.log(value);
-            }}
-          />
-        </div>
+          <div className="flex flex-col gap-1 ">
+            <span>Tekstur</span>
+            <Searchable
+              placeholder="Masukkan Tekstur"
+              value={["popular"]}
+              hideSelected
+              options={tekstur}
+              onSelect={(value) => {
+                setTeksturTanah(value);
+                console.log(value);
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 ">
-          <span>Struktur</span>
-          <Searchable
-            placeholder="Masukkan Struktur"
-            value={["popular"]}
-            hideSelected
-            options={struktur}
-            onSelect={(value) => {
-              setStrukturTanah(value);
-              console.log(value);
-            }}
-          />
-        </div>
+          <div className="flex flex-col gap-1 ">
+            <span>Struktur</span>
+            <Searchable
+              placeholder="Masukkan Struktur"
+              value={["popular"]}
+              hideSelected
+              options={struktur}
+              onSelect={(value) => {
+                setStrukturTanah(value);
+                console.log(value);
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 ">
-          <span>Warna</span>
-          <Searchable
-            placeholder="Masukkan Warna"
-            value={["popular"]}
-            hideSelected
-            options={warna}
-            onSelect={(value) => {
-              setWarnaTanah(value);
-              console.log(value);
-            }}
-          />
-        </div>
+          <div className="flex flex-col gap-1 ">
+            <span>Warna</span>
+            <Searchable
+              placeholder="Masukkan Warna"
+              value={["popular"]}
+              hideSelected
+              options={warna}
+              onSelect={(value) => {
+                setWarnaTanah(value);
+                console.log(value);
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 ">
-          <span>Kondisi Fisik</span>
-          <Searchable
-            placeholder="Masukkan Kondisi Fisik"
-            value={["popular"]}
-            hideSelected
-            options={kondisi}
-            onSelect={(value) => {
-              setKondisiTanah(value);
-              console.log(value);
-            }}
-          />
+          <div className="flex flex-col gap-1 ">
+            <span>Kondisi Fisik</span>
+            <Searchable
+              placeholder="Masukkan Kondisi Fisik"
+              value={["popular"]}
+              hideSelected
+              options={kondisi}
+              onSelect={(value) => {
+                setKondisiTanah(value);
+                console.log(value);
+              }}
+            />
+          </div>
         </div>
         <Button
           // onClick={() => navigate("/hasil-analisis") analyzeSoil}
