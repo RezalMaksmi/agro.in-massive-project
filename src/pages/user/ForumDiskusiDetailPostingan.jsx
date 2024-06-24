@@ -19,14 +19,11 @@ import { Loading } from "../../components/moleculs";
 const ForumDiskusiDetailPostingan = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  const [click, setClick] = useState("");
   const [idP, setIdP] = useState();
 
   const { id } = useParams();
-  useEffect(() => {
-    dispatch(getPostsAPIActDetail(`posts/${id}`));
-    dispatch(getPostsAPIActComments(id));
-    setIdP(id);
-  }, [id, idP]);
+
   const { data, detail, comments } = useSelector((state) => state.posts);
 
   console.log("isinya apa nih idnya: ", id);
@@ -51,14 +48,16 @@ const ForumDiskusiDetailPostingan = () => {
   };
 
   const likeUp = (idComment) => {
-    console.log(idComment);
-    dispatch(likeUpPostsAPIAct({ id, idComment }));
+    setClick("click");
+    const type = "up";
+    dispatch(likeUpPostsAPIAct({ id, idComment, type }));
     fetchData();
   };
 
   const likeDown = (idComment) => {
-    console.log(idComment);
-    dispatch(likeDownPostsAPIAct({ id, idComment }));
+    setClick("click");
+    const type = "down";
+    dispatch(likeUpPostsAPIAct({ id, idComment, type }));
     fetchData();
   };
 
@@ -67,9 +66,13 @@ const ForumDiskusiDetailPostingan = () => {
     dispatch(getPostsAPIActComments(id));
   };
 
+  console.log(comments);
+
   useEffect(() => {
     fetchData();
-  }, [id, idP, text]);
+  }, [id, idP, text, click]);
+
+  console.log(click);
   return (
     <TemplateLogin>
       <ForumDiskusiTemplate>

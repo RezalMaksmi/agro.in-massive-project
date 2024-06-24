@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import logo1 from "../../assets/logo/Logo1.png";
+import logo1 from "../../assets/logo/tentangkami.svg";
 import bgLogo from "../../assets/logo/bg-logo.svg";
 
 import bgHero from "../../assets/bg-hero.jpg";

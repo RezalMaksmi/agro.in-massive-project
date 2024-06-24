@@ -103,12 +103,12 @@ export const commentPostsAPIAct = createAsyncThunk(
 // up comment
 export const likeUpPostsAPIAct = createAsyncThunk(
   "like/comment/posts/api",
-  async ({ id, idComment }) => {
+  async ({ id, idComment, type }) => {
     try {
       const response = await axiosInstance.post(
         `${apiKey}/posts/${id}/comments/${idComment}`,
         {
-          type: "up",
+          type: type,
         }
       );
 
@@ -125,30 +125,6 @@ export const likeUpPostsAPIAct = createAsyncThunk(
   }
 );
 
-// down comment
-export const likeDownPostsAPIAct = createAsyncThunk(
-  "likeDown/comment/posts/api",
-  async ({ id, idComment }) => {
-    try {
-      const response = await axiosInstance.delete(
-        `${apiKey}/posts/${id}/comments/${idComment}`,
-        {
-          type: "up",
-        }
-      );
-
-      if (response) {
-        toast.success(`${response.data.message}`, {
-          position: "bottom-right",
-        });
-        return response.data;
-      }
-    } catch (error) {
-      console.log(error);
-      return error.response;
-    }
-  }
-);
 // Async thunk search posts
 export const searchPostsAPIAct = createAsyncThunk(
   "search/posts/api",
