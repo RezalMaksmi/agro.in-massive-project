@@ -160,11 +160,10 @@ export const ArtikelDetail = () => {
             <ChildArtikel />
           </div>
         ))
-      ) : status == "loading" ? (
-        <Loading />
       ) : (
-        ""
+        <Loading />
       )}
+      {status === "loading" && <Loading />}
     </TemplateLogin>
   );
 };
