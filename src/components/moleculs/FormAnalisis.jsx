@@ -303,8 +303,8 @@ const FormAnalisis = (props) => {
   console.log(plantsData);
   console.log(analysisResult);
   return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 h-100% bg-[#1414149c] flex justify-center items-center z-50 ">
-      <div className="px-10 py-8 my-2 rounded-3xl bg-white relative max-w-[600px] w-full flex flex-col gap-3">
+    <div className="fixed top-0 bottom-0 left-0 right-0 h-full bg-[#1414149c] flex justify-center items-center z-50 py-4">
+      <div className="px-10 py-8 my-2 rounded-3xl bg-white relative max-w-[600px] h-full w-full flex flex-col gap-3">
         <button
           className="absolute top-3 right-3 p-2 bg-[#dfdfdf] hover:bg-[#cecece]  rounded-full"
           onClick={onClick}
