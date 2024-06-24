@@ -6,11 +6,15 @@ import TemplateLogin from "../../template/TemplateLogin";
 import { FormPostingan } from "../../components/moleculs";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAPIActDetail } from "../../redux/featch/Spaces";
+import {
+  getAPIActDetail,
+  getAPIActDiskusiSpacesUnFollow,
+} from "../../redux/featch/Spaces";
 import { getPostsAPIAct, postPostsAPIAct } from "../../redux/featch/Posts";
 import { toast } from "react-toastify";
 import axiosInstance from "../../api/axiosInstance";
 import { format } from "date-fns";
+import { getAPIActDiskusiSpacesFollow } from "../../redux/featch/getData";
 
 const ForumDiskusiDetailRuang = () => {
   const [filteredData, setFilteredData] = useState();
@@ -30,6 +34,7 @@ const ForumDiskusiDetailRuang = () => {
     : "";
 
   const [title, setTitle] = useState("");
+  const [click, setClick] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("question");
   const [img, setImg] = useState("");
@@ -102,12 +107,25 @@ const ForumDiskusiDetailRuang = () => {
     setFileInputKey(Date.now());
   };
 
+  const followAct = (id) => {
+    dispatch(getAPIActDiskusiSpacesFollow(`spaces/${id}/followers`));
+    fetchData();
+    setClick("click");
+  };
+
+  const unfollowAct = (id) => {
+    dispatch(getAPIActDiskusiSpacesUnFollow(`spaces/${id}/followers`));
+    fetchData();
+    setClick("click");
+  };
+
   useEffect(() => {
     setIdToFind(id);
+    setClick("");
 
     fetchData();
     setSpace_id(id);
-  }, [id, selectedFile, openModal]);
+  }, [id, selectedFile, openModal, click]);
 
   console.log("apanih typenya", detail);
 
@@ -131,17 +149,19 @@ const ForumDiskusiDetailRuang = () => {
                   {!ownedSpaces ? (
                     detail && detail.space.following === true ? (
                       <Button
-                        onClick={""}
                         type="PrimaryButton"
                         text="Berhenti Mengikuti"
                         className=" bg-secondary hover:bg-[#ca9c45] text-white"
+                        onClick={
+                          detail ? () => unfollowAct(detail.space.id) : ""
+                        }
                       />
                     ) : (
                       <Button
-                        onClick={""}
                         type="PrimaryButton"
                         text="Ikuti"
                         className="bg-primary hover:bg-[#14312c] text-white"
+                        onClick={detail ? () => followAct(detail.space.id) : ""}
                       />
                     )
                   ) : (
