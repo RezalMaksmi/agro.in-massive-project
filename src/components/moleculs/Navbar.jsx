@@ -214,7 +214,7 @@ const Navbar = () => {
       <div className="w-full h-[70px] text-[#1A3D37] bg-[#E8ECEB] relative rounded-full flex justify-between px-6 items-center">
         <img src={logoText} alt="" />
         <div className={`md:block ${isOpen ? `block` : `hidden`}`}>
-          <ul className="flex p-0 px-5 py-2 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#1A3D37] rounded-lg w-full md:gap-10 gap-5 font-semibold">
+          <ul className="flex p-0 px-5 md:py-2 py-3 md:flex-row flex-col md:relative absolute md:top-0 md:left-0 md:right-0 top-20 left-0 md:bg-transparent bg-[#eaeaea] rounded-lg w-full md:gap-10 gap-5 font-semibold">
             <li>
               <a href={"#home"} className={pathname === "/" ? "" : ""}>
                 Home
@@ -244,10 +244,17 @@ const Navbar = () => {
                 Artikel
               </a>
             </li>
+            <Button
+              type="PrimaryButton"
+              className="md:hidden flex bg-secondary"
+              text="Login"
+              onClick={() => navigate("/login")}
+            />
           </ul>
         </div>
         <Button
           type="PrimaryButton"
+          className="md:flex hidden bg-secondary"
           text="Login"
           onClick={() => navigate("/login")}
         />
@@ -255,7 +262,7 @@ const Navbar = () => {
           <button
             onClick={toggleNavbar}
             type="button"
-            className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            className="bg-darkGray_20 inline-flex items-center justify-center p-2 rounded-md text-primary hover:bg-[#abb9b6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark_10 focus:ring-white "
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
