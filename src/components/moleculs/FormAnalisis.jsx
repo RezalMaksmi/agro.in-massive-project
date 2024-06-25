@@ -273,6 +273,46 @@ const FormAnalisis = (props) => {
           ? setResult("Cocok")
           : setResult("Tidak Cocok");
         break;
+      case "palawija":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("Cocok")
+          : setResult("Tidak Cocok");
+        break;
+      case "cabai":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("Cocok")
+          : setResult("Tidak Cocok");
+        break;
+      case "bawang merah":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("Cocok")
+          : setResult("Tidak Cocok");
+        break;
+      case "bawang putih":
+        PhTanah >= 4 &&
+        PhTanah <= 7 &&
+        teksturTanah == "liat berpasir" &&
+        strukturTanah == "struktur serbuk" &&
+        warnaTanah == "cokelat kehitaman" &&
+        kondisiTanah == "agak halus"
+          ? setResult("Cocok")
+          : setResult("Tidak Cocok");
+        break;
       default:
         break;
     }
